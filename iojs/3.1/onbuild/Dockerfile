@@ -6,7 +6,7 @@ RUN mkdir \app
 
 # COPY package.json /app creates a file C:\app
 ONBUILD COPY package.json /app/package.json
-ONBUILD RUN cd \app & dir \app & npm install
+ONBUILD RUN cd \app & npm install
 ONBUILD COPY . /app
 
 CMD "cd \app & npm start"
