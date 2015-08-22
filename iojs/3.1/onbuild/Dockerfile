@@ -1,10 +1,12 @@
 FROM iojs:3.1.0
 
 RUN mkdir \app
-WORKDIR /app
+# WORKDIR has some problems with the CMD [ "npm start" ]
+# WORKDIR /app
 
-ONBUILD COPY package.json package.json
-ONBUILD RUN npm install
-ONBUILD COPY . .
+# COPY package.json /app creates a file C:\app
+ONBUILD COPY package.json /app/package.json
+ONBUILD RUN cd \app & dir \app & npm install
+ONBUILD COPY . /app
 
-CMD [ "npm", "start" ]
+CMD "cd \app & npm start"
