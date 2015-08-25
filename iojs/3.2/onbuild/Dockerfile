@@ -1,9 +1,10 @@
 FROM iojs:3.2.0
 
 RUN mkdir \app
+WORKDIR /app
 
-ONBUILD COPY package.json /app/package.json
-ONBUILD RUN cd \app & npm install
-ONBUILD COPY . /app
+ONBUILD COPY package.json package.json
+ONBUILD RUN npm install
+ONBUILD COPY . .
 
-CMD "cd \app & npm start"
+CMD [ "npm.cmd", "start" ]
