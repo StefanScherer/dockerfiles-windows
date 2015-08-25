@@ -10,6 +10,5 @@
   "author": "Stefan Scherer",
   "license": "MIT",
   "dependencies": {
-    "randomstring": "1.0.7"
   }
 }
