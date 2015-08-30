@@ -1,0 +1,7 @@
+mongo:
+  image: mongo
+
+app:
+  build: .
+  links:
+    - mongo

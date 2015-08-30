@@ -1,0 +1,15 @@
+{
+  "name": "testapp",
+  "version": "0.0.1",
+  "description": "Small MongoDB client running in a Windows Container",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" & exit 1"
+  },
+  "author": "Stefan Scherer",
+  "license": "MIT",
+  "dependencies": {
+    "mongodb": "2.0.42"
+  }
+}
