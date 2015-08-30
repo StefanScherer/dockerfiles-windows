@@ -1,0 +1,15 @@
+{
+  "data_dir": "/data",
+  "ui_dir": "/dist",
+  "client_addr": "0.0.0.0",
+  "server": true,
+  "bootstrap": true,
+  "ports": {
+    "dns": 53
+  },
+  "recursor": "8.8.8.8",
+  "disable_update_check": true,
+  "dns_config": {
+    "only_passing": true
+  }
+}
