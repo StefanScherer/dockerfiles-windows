@@ -7,8 +7,7 @@ RUN powershell -Command "wget -Uri https://iojs.org/dist/v%IOJS_VERSION%/iojs-v%
 
 RUN msiexec.exe /q /i iojs.msi
 
-RUN powershell -Command "wget -Uri https://github.com/StefanScherer/win-patch-iojs/releases/download/1.0.5/patchiojs.exe" -OutFile patchiojs.exe -UseBasicParsing"
-RUN patchiojs.exe "C:\Program Files\iojs\iojs.exe"
-RUN patchiojs.exe "C:\Program Files\iojs\node.exe"
+RUN powershell -Command "wget -Uri https://github.com/StefanScherer/win-patch-iojs/releases/download/1.0.9/patchiojs.exe -OutFile patchiojs.exe -UseBasicParsing"
+RUN patchiojs.exe "C:/Program Files/iojs/iojs.exe"
 
 CMD [ "iojs" ]
