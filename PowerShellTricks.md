@@ -55,3 +55,15 @@ To calculate a SHA256 sum of a file use this
 ```powershell
 ((Get-FileHash $filename -Algorithm sha256).Hash
 ```
+
+## Docker commands
+
+### Delete all containers
+
+From time to time playing with containers you might want to just delete all containers. This one is really easy and **exactly** the way as on Linux/Mac:
+
+```powershell
+docker rm -vf $(docker ps -qa)`
+```
+
+Surprise!
