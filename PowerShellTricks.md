@@ -48,7 +48,7 @@ To extract a ZIP file use this
 Expand-Archive -Path $zip -DestinationPath $dest -Force
 ```
 
-### `shasum`
+## `shasum`
 
 To calculate a SHA256 sum of a file use this
 
