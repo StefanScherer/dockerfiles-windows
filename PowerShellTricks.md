@@ -42,6 +42,16 @@ $WebClient.DownloadFile( $url, $localfile )
 
 ## `unzip`
 
+To extract a ZIP file use this
+
 ```powershell
 Expand-Archive -Path $zip -DestinationPath $dest -Force
+```
+
+### `shasum`
+
+To calculate a SHA256 sum of a file use this
+
+```powershell
+((Get-FileHash $filename -Algorithm sha256).Hash
 ```
