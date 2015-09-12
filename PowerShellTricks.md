@@ -39,3 +39,9 @@ $WebClient = New-Object System.Net.WebClient
 $WebClient.Credentials = New-Object System.Net.Networkcredential($user, $pass)
 $WebClient.DownloadFile( $url, $localfile )
 ```
+
+## `unzip`
+
+```powershell
+Expand-Archive -Path $zip -DestinationPath $dest -Force
+```
