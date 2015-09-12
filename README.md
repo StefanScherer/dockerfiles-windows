@@ -7,4 +7,4 @@ Read the [Quick Start: Windows Server Containers and Docker](https://msdn.micros
 
 Read my blog post [Create a Node.js Container image for Windows](https://stefanscherer.github.io/create-an-io-js-container-image-for-windows/) for my first test drive with Docker on Windows.
 
-Read some [PowerShell tricks](PowerShellTricks.md) if you want to port some `Dockerfile`'s to Windows.
+Read some [PowerShell tricks](PowerShellTricks.md) if you want to port some Dockerfiles to Windows.
