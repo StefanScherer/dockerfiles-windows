@@ -22,3 +22,20 @@ In bash I sometimes want to **debug the script** while it is running. The bash `
 Set-PSDebug -Trace 1
 ```
 
+## `wget`
+
+This one is easy.
+
+```powershell
+wget -Uri $url -OutFile $localfile
+```
+
+## `curl -u`
+
+To download a file with BasicAuth use this
+
+```powershell
+$WebClient = New-Object System.Net.WebClient
+$WebClient.Credentials = New-Object System.Net.Networkcredential($user, $pass)
+$WebClient.DownloadFile( $url, $localfile )
+```
