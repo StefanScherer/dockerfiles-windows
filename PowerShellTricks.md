@@ -63,7 +63,7 @@ To calculate a SHA256 sum of a file use this
 From time to time playing with containers you might want to just delete all containers. This one is really easy and **exactly** the way as on Linux/Mac:
 
 ```powershell
-docker rm -vf $(docker ps -qa)`
+docker rm -vf $(docker ps -qa)
 ```
 
 Surprise!
