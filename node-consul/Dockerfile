@@ -1,4 +1,4 @@
-FROM node:4.1.0
+FROM node:4.1.1
 
 RUN powershell -Command " \
     wget -uri https://dl.bintray.com/mitchellh/consul/0.5.2_windows_386.zip -OutFile consul.zip; \
