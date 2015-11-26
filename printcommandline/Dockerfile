@@ -1,6 +1,6 @@
 FROM windowsservercore
 
-RUN powershell.exe -Command wget -Uri https://github.com/StefanScherer/win-print-commandline/releases/download/1.0.3/printcommandline.exe -OutFile printcommandline.exe -UseBasicParsing
+RUN powershell.exe -Command Sleep 2 ; wget -Uri https://github.com/StefanScherer/win-print-commandline/releases/download/1.0.3/printcommandline.exe -OutFile printcommandline.exe -UseBasicParsing
 RUN printcommandline.exe C:\Program Files
 RUN printcommandline.exe 'C:\Program Files'
 RUN printcommandline.exe "C:\Program Files"
