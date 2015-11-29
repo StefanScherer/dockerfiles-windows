@@ -13,4 +13,4 @@ RUN powershell -Command \
     wget https://storage.googleapis.com/golang/go1.5.1.windows-amd64.zip -OutFile golang.zip -UseBasicParsing ; \
     if ((Get-FileHash golang.zip -Algorithm sha1).Hash -ne $env:GOLANG_DOWNLOAD_SHA1) {exit 1} ; \
     Expand-Archive -Path golang.zip -DestinationPath \ -Force ; \
-    Remove-Archive golang.zip ; \
+    rm golang.zip
