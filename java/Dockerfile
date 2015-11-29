@@ -1,8 +1,9 @@
 FROM windowsservercore
 MAINTAINER scherer_stefan@icloud.com
 
-RUN powershell -Command "\
+RUN powershell -Command \
+    Sleep 2; \
     iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')); \
-    choco install -y jdk8 -version 8.0.6001
+    choco install -y jdk7 -version 7.0.79.1
 
 CMD [ "java" ]
