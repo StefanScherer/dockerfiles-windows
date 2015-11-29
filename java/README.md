@@ -6,5 +6,5 @@ A Windows Docker container with Java installed.
 
 ```
 docker build -t java .
-docker tag java:latest java:8u60-jdk
+docker tag java:latest java:7.0.79
 ```
