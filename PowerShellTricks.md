@@ -56,6 +56,14 @@ To calculate a SHA256 sum of a file use this
 ((Get-FileHash $filename -Algorithm sha256).Hash
 ```
 
+## `printenv`
+
+To list all environment variables use 
+
+```powershell
+ls env:
+```
+
 ## Docker commands
 
 ### Delete all containers
