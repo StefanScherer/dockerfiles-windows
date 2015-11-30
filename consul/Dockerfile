@@ -1,9 +1,12 @@
 FROM windowsservercore
 
-RUN powershell -Command Sleep 2 ; wget -uri https://dl.bintray.com/mitchellh/consul/0.5.2_windows_386.zip -OutFile consul.zip
-RUN powershell -Command Sleep 2 ; wget -uri https://dl.bintray.com/mitchellh/consul/0.5.2_web_ui.zip -OutFile webui.zip
-RUN powershell -Command Expand-Archive -Path consul.zip -DestinationPath . -Force
-RUN powershell -Command Expand-Archive -Path webui.zip -DestinationPath \ -Force
+RUN powershell -Command Sleep 2 ; \
+    wget https://dl.bintray.com/mitchellh/consul/0.5.2_windows_386.zip -OutFile consul.zip ; \
+    wget https://dl.bintray.com/mitchellh/consul/0.5.2_web_ui.zip -OutFile webui.zip ; \
+    Expand-Archive -Path consul.zip -DestinationPath . -Force ; \
+    Expand-Archive -Path webui.zip -DestinationPath \ -Force ; \
+    rm consul.zip ; \
+    rm webui.zip
 
 ADD ./config /config/
 
