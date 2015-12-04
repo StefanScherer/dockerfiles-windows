@@ -9,7 +9,7 @@ RUN powershell -Command \
     wget https://releases.hashicorp.com/consul/%CONSUL_VERSION%/consul_%CONSUL_VERSION%_windows_386.zip -OutFile consul.zip ; \
     wget https://releases.hashicorp.com/consul/%CONSUL_VERSION%/consul_%CONSUL_VERSION%_web_ui.zip -OutFile webui.zip ; \
     wget https://releases.hashicorp.com/envconsul/%ENVCONSUL_VERSION%/envconsul_%ENVCONSUL_VERSION%_windows_amd64.zip -OutFile envconsul.zip ; \
-    Expand-Archive -Path consul.zip -DestinationPath . -Force ; \
+    Expand-Archive -Path consul.zip -DestinationPath \ -Force ; \
     Expand-Archive -Path webui.zip -DestinationPath \ -Force ; \
     Expand-Archive -Path envconsul.zip -DestinationPath \ -Force ; \
     Remove-Item consul.zip ; \
