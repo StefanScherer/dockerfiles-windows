@@ -6,14 +6,20 @@ This is a collection of some PowerShell tricks, especially if you come from Unix
 In bash I often want to **abort the script** if an exit code of a program is not zero or another error occurs. The bash equivalent to `set -e` 
 
 ```powershell
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference = 'Stop'
 ```
 
 The `set +e` equivalent is 
 
 ```powershell
-$ErrorActionPreference = "Continue"
+$ErrorActionPreference = 'Continue'
 ```
+
+You can use this in a multi line `RUN` command in Dockerfiles for Windows to abort on the first error:
+
+* Windows: `RUN powershell -Command $ErrorActionPreference = 'Stop'; fail; success`
+* Linux: `RUN fail && success`
+
 
 ## `set -x`
 In bash I sometimes want to **debug the script** while it is running. The bash `set -x` flag shows all lines as well as the `@echo on` in cmd shell, the Powershell equivalent is
