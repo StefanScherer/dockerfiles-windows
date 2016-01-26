@@ -70,6 +70,24 @@ To list all environment variables use
 ls env:
 ```
 
+## `ls -lt`
+
+List files sorted by date, oldest files at the end
+
+```powershell
+ls | sort LastWriteTime -Des
+```
+
+or with the full option: `ls | sort LastWriteTime -Descending`
+
+## `ls -ltr`
+
+List files sorted by date, newest files at the end
+
+```powershell
+ls | sort LastWriteTime
+```
+
 ## Docker commands
 
 ### Delete all containers
