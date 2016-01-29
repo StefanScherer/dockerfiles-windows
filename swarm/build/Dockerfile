@@ -1,4 +1,5 @@
-FROM golang:1.5.1
+FROM golang:1.5.3
+ENV SWARM_VERSION v1.1.0-rc2
 
 RUN powershell -Command \
     Sleep 2 ; \
@@ -7,5 +8,5 @@ RUN powershell -Command \
     cd src\github.com\docker ; \
     git clone https://github.com/docker/swarm ; \
     cd swarm ; \
-    git checkout v1.0.0 ; \
+    git checkout %SWARM_VERSION% ; \
     Start-Process -FilePath godep.exe -ArgumentList go, install, . -Wait
