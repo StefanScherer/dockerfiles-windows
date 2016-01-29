@@ -1,4 +1,4 @@
-FROM java:8u60-jdk
+FROM java:7.0.79
 
 MAINTAINER Stefan Scherer <scherer_stefan@icloud.com>
 
