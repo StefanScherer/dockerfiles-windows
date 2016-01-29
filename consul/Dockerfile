@@ -1,10 +1,11 @@
 FROM windowsservercore
+ENV CONSUL_VERSION 0.6.3
 
 RUN powershell -Command Sleep 2 ; \
-    wget https://dl.bintray.com/mitchellh/consul/0.5.2_windows_386.zip -OutFile consul.zip ; \
-    wget https://dl.bintray.com/mitchellh/consul/0.5.2_web_ui.zip -OutFile webui.zip ; \
+    wget https://releases.hashicorp.com/consul/%CONSUL_VERSION%/consul_%CONSUL_VERSION%_windows_amd64.zip -OutFile consul.zip ; \
+    wget https://releases.hashicorp.com/consul/%CONSUL_VERSION%/consul_%CONSUL_VERSION%_web_ui.zip -OutFile webui.zip ; \
     Expand-Archive -Path consul.zip -DestinationPath . -Force ; \
-    Expand-Archive -Path webui.zip -DestinationPath \ -Force ; \
+    Expand-Archive -Path webui.zip -DestinationPath \dist -Force ; \
     rm consul.zip ; \
     rm webui.zip
 
