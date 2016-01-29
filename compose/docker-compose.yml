@@ -1,7 +1,9 @@
 mongo:
   image: mongo
+  net: none
 
 app:
   build: .
-  links:
-    - mongo
+  net: none
+#  links:
+#    - mongo
