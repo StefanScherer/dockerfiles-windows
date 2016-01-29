@@ -1,2 +1,3 @@
 docker build -t golang .
-docker tag golang:latest golang:1.5.1
+if %errorlevel% neq 0 exit /b %errorlevel%
+docker tag golang:latest golang:1.5.3
