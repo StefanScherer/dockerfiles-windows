@@ -1,3 +1,3 @@
 #!/bin/bash
 docker build -t java .
-docker tag -f java:latest java:7.0.79
+docker tag java:latest java:7.0.79
