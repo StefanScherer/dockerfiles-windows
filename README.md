@@ -18,6 +18,7 @@ Various Dockerfiles for Windows. You probably have heard about Docker and that e
   * Read the [Quick Start: Windows Server Containers and Docker](https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/manage_docker) to get started with a first tutorial.
   * Read my blog post [Create a Node.js Container image for Windows](https://stefanscherer.github.io/create-an-io-js-container-image-for-windows/) for my first test drive with Docker on Windows.
   * Image what will happen when [Kitematic meets Windows Containers](http://blog.hypriot.com/post/kitematic-meets-windows-docker/).
+  * **More Dockerfiles for Windows:** [Buc Rogers: Dockerfiles-for-Windows](https://github.com/brogersyh/Dockerfiles-for-windows)
 
 ## PowerShell tricks
 Porting Dockerfiles from Linux to Windows I found it useful to use PowerShell at some points. Here are some [PowerShell tricks](PowerShellTricks.md) that were useful for me.
