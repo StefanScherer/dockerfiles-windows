@@ -1,16 +1,30 @@
 # dockerfiles-windows
-Some Dockerfiles for Windows. This is a work in progress to test and learn how to build Docker images for Windows based on the Windows Server 2016 Technical Preview 4.
+Various Dockerfiles for Windows. You probably have heard about Docker and that everyone uses Linux Containers. You can do this on Windows as well today with the Windows Server 2016 TP4 using Windows Containers.
 
-Register to [evaluate Windows 2016 TP4](https://technet.microsoft.com/de-de/evalcenter/dn781243.aspx).
+## Getting started
 
-Setup your own Vagrant [docker-windows-box](https://github.com/StefanScherer/docker-windows-box) with TP4 and some Docker tools inside.
+* Register to [evaluate Windows Server 2016 TP4](https://technet.microsoft.com/de-de/evalcenter/dn781243.aspx).
+* Get a Windows Server 2016 TP4 Virtual Machine
+  * **Packer and Vagrant**
+    * Use Packer with this [packer-windows](https://github.com/StefanScherer/packer-windows) templates to build the ` windows_2016_docker` Vagrant box.
+    * Use Vagrant and this  [docker-windows-box](https://github.com/StefanScherer/docker-windows-box) Vagrantfile to have Docker and lots of Docker Tools installed.
+  * **Azure**
+    * Create a [Windows Server 2016 Core with Containers TP4](http://azure.microsoft.com/en/marketplace/partners/Microsoft/WindowsServer2016TechnicalPreviewwithContainers/) Virtual Machine
+  * Physical Machine / Virtual Machine
+    * Read [Preparing a physical machine or an existing virtual machine for Windows Server Containers](https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/inplace_setup) to install Docker into Windows 2016 TP4.
+* Clone this repo and create some Docker images
 
-Read [Preparing a physical machine or an existing virtual machine for Windows Server Containers](https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/inplace_setup) to install Docker into Windows 2016 TP4.
+## Further reading
+  * Read the [Quick Start: Windows Server Containers and Docker](https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/manage_docker) to get started with a first tutorial.
+  * Read my blog post [Create a Node.js Container image for Windows](https://stefanscherer.github.io/create-an-io-js-container-image-for-windows/) for my first test drive with Docker on Windows.
+  * Image what will happen when [Kitematic meets Windows Containers](http://blog.hypriot.com/post/kitematic-meets-windows-docker/).
 
-Read the [Quick Start: Windows Server Containers and Docker](https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/manage_docker) to get started with a first tutorial.
+## PowerShell tricks
+Porting Dockerfiles from Linux to Windows I found it useful to use PowerShell at some points. Here are some [PowerShell tricks](PowerShellTricks.md) that were useful for me.
 
-Read my blog post [Create a Node.js Container image for Windows](https://stefanscherer.github.io/create-an-io-js-container-image-for-windows/) for my first test drive with Docker on Windows.
+## Feedback and Pull Requests are welcome
+If you have some improvements, bug fixes, some new Dockerfiles or more PowerShell tricks, just send me a PR. If you have questions or problems, open an issue for discussion.
 
-Image what will happen when [Kitematic meets Windows Containers](http://blog.hypriot.com/post/kitematic-meets-windows-docker/).
+## License
 
-Read some [PowerShell tricks](PowerShellTricks.md) if you want to port some Dockerfiles to Windows.
+MIT - for more details see the [LICENSE](./LICENSE) file.
