@@ -9,6 +9,7 @@ Various Dockerfiles for Windows. You probably have heard about Docker and that e
     * Use Packer with this [packer-windows](https://github.com/StefanScherer/packer-windows) templates to [build the ` windows_2016_docker` Vagrant box](https://github.com/StefanScherer/docker-windows-box#get-the-base-box).
     * Use Vagrant and this  [docker-windows-box](https://github.com/StefanScherer/docker-windows-box) Vagrantfile to have Docker and lots of Docker Tools installed.
   * **Azure**
+  * Deploy TP4 VM to Azure with [`docker-windows-azure`](https://github.com/StefanScherer/docker-windows-azure) template
     * Create a [Windows Server 2016 Core with Containers TP4](http://azure.microsoft.com/en/marketplace/partners/Microsoft/WindowsServer2016TechnicalPreviewwithContainers/) Virtual Machine
   * Physical Machine / Virtual Machine
     * Read [Preparing a physical machine or an existing virtual machine for Windows Server Containers](https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/inplace_setup) to install Docker into Windows 2016 TP4.
