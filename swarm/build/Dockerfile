@@ -1,5 +1,5 @@
 FROM golang:1.5.3
-ENV SWARM_VERSION v1.1.0-rc2
+ENV SWARM_VERSION v1.1.0-rc3
 
 RUN powershell -Command \
     Sleep 2 ; \
