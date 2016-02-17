@@ -315,3 +315,5 @@ e025755bc0c5: Waiting
 8e5aa99e987b: Pushing
 open C:\ProgramData\docker\image\windowsfilter\layerdb\sha256\8e5aa99e987b1573d2e5a094ccf4659680c4f897bf9717cd1d82e8390fe93aaa\tar-split.json.gz: The system cannot find the file specified.
 ```
+
+Solution to the push problem is going back to the TP4 version of docker.exe, but this is nearly three months (Nov 23 2015) old and many other bugfixes are missing there.
