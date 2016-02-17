@@ -1,6 +1,6 @@
 FROM windowsservercore
 
-ENV GOLANG_VERSION 1.5.3
+ENV GOLANG_VERSION 1.6
 ENV GIT_VERSION 2.7.0
 
 RUN mkdir \go\bin \go\src
