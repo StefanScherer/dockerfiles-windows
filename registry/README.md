@@ -215,3 +215,103 @@ github.com/docker/distribution/notifications.(*blobServiceListener).Create(0xc08
         C:/Go/src/github.com/docker/distribution/notifications/listener.go:165 +0xd0
 github.com/docker/distribution/registry/handlers.(*blobUploadHandler).StartBlobUpload(0xc08222c2a0, 0x1f39558, 0xc0825ee730, 0xc082629180)
 ```
+
+
+## Plan B - Run a Registry from a VMware Fusion Docker Machine
+
+### Registry V2
+
+#### On your Mac
+```
+mkdir resources/registry-v2
+docker run -p 5000:5000 -v $(pwd)/resources/registry-v2:/var/lib/registry registry:2.3.0
+docker-machine ip dev
+```
+#### In the TP4 VM
+##### Edit your Docker Engine config filesystem
+
+```
+notepad C:\ProgramData\docker\runDockerDaemon.cmd
+```
+
+Add your Registry to the start command:
+
+```
+docker daemon -D -b "Virtual Switch" -H 0.0.0.0:2375 --insecure-registry 192.168.254.134:5000
+```
+
+##### Restart Docker Engine
+
+```
+restart-service docker
+```
+
+##### Try to push
+
+```
+docker tag swarm:1.1.0 192.168.254.134:5000/swarm:1.1.0
+docker push 192.168.254.134:5000/swarm:1.1.0
+```
+
+But it does not work:
+```
+The push refers to a repository [192.168.254.134:5000/swarm]
+37c5e0a2d2c1: Pushed
+db2b4ea31ec2: Pushed
+5b34e87c941d: Pushed
+fcc5342d374c: Pushed
+e025755bc0c5: Pushing 23.78 MB/23.78 MB
+file integrity checksum failed for "Files/bootmgr"
+```
+
+The registry itself logs HTTP 202. It is only the last layer that makes trouble.
+
+
+### old Registry V1
+
+#### On your Mac
+```
+mkdir resources/registry-v1
+docker run -p 5000:5000 -v $(pwd)/resources/registry-v1:/tmp/registry registry:0.9.1
+docker-machine ip dev
+```
+
+Shows eg. 192.168.254.134
+
+#### In the TP4 VM
+##### Edit your Docker Engine config filesystem
+
+```
+notepad C:\ProgramData\docker\runDockerDaemon.cmd
+```
+
+Add your Registry to the start command:
+
+```
+docker daemon -D -b "Virtual Switch" -H 0.0.0.0:2375 --insecure-registry 192.168.254.134:5000
+```
+
+##### Restart Docker Engine
+
+```
+restart-service docker
+```
+
+##### Try to push
+
+```
+docker tag swarm:1.1.0 192.168.254.134:5000/swarm:1.1.0
+docker push 192.168.254.134:5000/swarm:1.1.0
+```
+
+But it does not work:
+```
+The push refers to a repository [192.168.254.134:5000/swarm]
+37c5e0a2d2c1: Waiting
+db2b4ea31ec2: Waiting
+5b34e87c941d: Waiting
+fcc5342d374c: Waiting
+e025755bc0c5: Waiting
+8e5aa99e987b: Pushing
+open C:\ProgramData\docker\image\windowsfilter\layerdb\sha256\8e5aa99e987b1573d2e5a094ccf4659680c4f897bf9717cd1d82e8390fe93aaa\tar-split.json.gz: The system cannot find the file specified.
+```
