@@ -1,7 +1,7 @@
 FROM windowsservercore
 
 COPY ./swarm.exe /swarm.exe
-COPY ./swarm.ps1 /swarm.ps1
+COPY ./run.ps1 /run.ps1
 
 ENV SWARM_HOST :2375
 
