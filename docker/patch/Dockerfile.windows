@@ -1,0 +1,57 @@
+# This file describes the standard way to build Docker, using docker on TP4
+#
+# Usage:
+#
+# # Assemble the full dev environment. This is slow the first time.
+# docker build -t docker -f Dockerfile.windows .
+#
+# # Mount your source in an interactive container for quick testing:
+# docker run -it -v ${pwd}\bundles:c:/go/src/github.com/docker/docker/bundles docker cmd
+#
+# # Build the docker binary in bundles\docker.exe
+# docker run -it -v ${pwd}\bundles:c:/go/src/github.com/docker/docker/bundles docker "powershell -file hack\make.ps1"
+#
+
+FROM windowsservercore
+
+ENV GO_VERSION 1.5.3
+
+RUN mkdir \go\bin \go\src
+WORKDIR /go
+ENV GOPATH C:/go;C:/go/src/github.com/docker/docker/vendor
+RUN setx PATH %PATH%;C:\PortableGit\bin;C:\PortableGit\usr\bin;C:\tools\go\bin;C:\go\bin
+
+RUN powershell -Command \
+    Sleep 2 ; \
+    iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')) ; \
+    choco install -y golang -version %GO_VERSION% ; \
+    wget https://github.com/git-for-windows/git/releases/download/v2.6.3.windows.1/PortableGit-2.6.3-64-bit.7z.exe -OutFile \gitinstaller.exe ; \
+    Start-Process -FilePath \gitinstaller.exe -ArgumentList '-y', '-gm2' -Wait ; \
+    rm \gitinstaller.exe
+
+ENV RSRC_COMMIT e48dbf1b7fc464a9e85fcec450dddf80816b76e0
+RUN powershell -Command \
+    Sleep 2 ; \
+    git clone https://github.com/akavel/rsrc.git /go/src/github.com/akavel/rsrc ; \
+    cd \go\src\github.com\akavel\rsrc ; \
+    git checkout -q $env:RSRC_COMMIT ; \
+    go install -v
+
+RUN setx PATH %PATH%;C:\bin
+RUN powershell -Command \
+    Sleep 2 ; \
+    choco install -y curl ; \
+    curl.exe -Lo /gcc.zip http://downloads.sourceforge.net/project/tdm-gcc/TDM-GCC%205%20series/5.1.0-tdm64-1/gcc-5.1.0-tdm64-1-core.zip ; \
+    curl.exe -Lo /runtime.zip http://downloads.sourceforge.net/project/tdm-gcc/MinGW-w64%20runtime/GCC%205%20series/mingw64runtime-v4-git20150618-gcc5-tdm64-1.zip ; \
+    curl.exe -Lo /binutils.zip http://downloads.sourceforge.net/project/tdm-gcc/GNU%20binutils/binutils-2.25-tdm64-1.zip ; \
+    Expand-Archive -Path \gcc.zip -DestinationPath \ -Force ; \
+    Expand-Archive -Path \runtime.zip -DestinationPath \ -Force ; \
+    Expand-Archive -Path \binutils.zip -DestinationPath \ -Force ; \
+    rm \gcc.zip ; \
+    rm \runtime.zip ; \
+    rm \binutils.zip
+
+WORKDIR /go/src/github.com/docker/docker
+
+# Upload docker source
+COPY . /go/src/github.com/docker/docker
