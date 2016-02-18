@@ -10,12 +10,23 @@ RUN setx PATH %PATH%;C:\git\cmd;C:\git\bin;C:\git\usr\bin;C:\tools\go\bin;C:\go\
 
 RUN powershell -Command \
     Sleep 2 ; \
-    wget https://github.com/git-for-windows/git/releases/download/v%GIT_VERSION%.windows.1/Git-%GIT_VERSION%-64-bit.exe -outfile gitinstaller.exe ; \
-    Start-Process .\gitinstaller.exe -ArgumentList '/VERYSILENT /SUPPRESSMSGBOXES /CLOSEAPPLICATIONS /DIR=c:\git' -Wait ; \
-    rm .\gitinstaller.exe
+    cd \ ; \
+    wget https://chocolatey.org/7za.exe -outfile 7za.exe ; \
+    wget https://github.com/git-for-windows/git/releases/download/v%GIT_VERSION%.windows.1/Git-%GIT_VERSION%-64-bit.tar.bz2 -outfile git.tar.bz2 ; \
+    .\7za.exe x git.tar.bz2 ; \
+    mkdir git ; \
+    cd git ; \
+    ..\7za.exe x ..\git.tar ; \
+    cd .. ; \
+    rm git.tar ; \
+    rm git.tar.bz2 ; \
+    rm 7za.exe
 
 RUN powershell -Command \
     Sleep 2 ; \
-    wget https://storage.googleapis.com/golang/go%GOLANG_VERSION%.windows-amd64.msi -outfile go.msi ; \
-    Start-Process .\go.msi -ArgumentList '/quiet' -Wait ; \
-    rm .\go.msi
+    cd \ ; \
+    wget https://chocolatey.org/7za.exe -outfile 7za.exe ; \
+    wget https://storage.googleapis.com/golang/go%GOLANG_VERSION%.windows-amd64.zip -outfile go.zip ; \
+    .\7za.exe x go.zip ; \
+    rm go.zip ; \
+    rm 7za.exe
