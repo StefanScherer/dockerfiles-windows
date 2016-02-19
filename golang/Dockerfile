@@ -1,6 +1,6 @@
 FROM windowsservercore
 
-ENV GOLANG_VERSION 1.6
+ENV GO_VERSION 1.6
 ENV GIT_VERSION 2.7.0
 
 RUN mkdir \go\bin \go\src
@@ -16,6 +16,6 @@ RUN powershell -Command \
 
 RUN powershell -Command \
     Sleep 2 ; \
-    wget https://storage.googleapis.com/golang/go%GOLANG_VERSION%.windows-amd64.msi -outfile go.msi ; \
+    wget https://storage.googleapis.com/golang/go%GO_VERSION%.windows-amd64.msi -outfile go.msi ; \
     Start-Process .\go.msi -ArgumentList '/quiet' -Wait ; \
     rm .\go.msi
