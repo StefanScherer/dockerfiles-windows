@@ -99,3 +99,9 @@ docker rm -vf $(docker ps -qa)
 ```
 
 Surprise!
+
+## Links
+
+### Basic networking PowerShell Cmdlets cheatsheet to replace `netsh`, `ipconfig`, `nslookup` and more
+  * http://www.thomasmaurer.ch/2016/02/basic-networking-powershell-cmdlets-cheatsheet-to-replace-netsh-ipconfig-nslookup-and-more/
+  * 
