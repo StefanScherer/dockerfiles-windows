@@ -1,5 +1,5 @@
 FROM windowsservercore
-ENV CONSUL_VERSION 0.6.3
+ENV CONSUL_VERSION 0.6.4
 
 RUN powershell -Command Sleep 2 ; \
     wget https://releases.hashicorp.com/consul/%CONSUL_VERSION%/consul_%CONSUL_VERSION%_windows_amd64.zip -OutFile consul.zip ; \
