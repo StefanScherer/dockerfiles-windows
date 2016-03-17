@@ -1,8 +1,8 @@
 FROM windowsservercore
 
 ENV NPM_CONFIG_LOGLEVEL info \
-    NODE_VERSION 5.7.0 \
-    NODE_SHA256 0567317ba66b7e3f86a1aaf32a54b6485dabff9493d9d651740eccbaedb56b91
+    NODE_VERSION 5.9.0 \
+    NODE_SHA256 f53fac35122dfaec568f998fc210d4ead423c7939c024cd51e240879efd6845b
 
 RUN powershell -Command \
     Sleep 2 ; \
