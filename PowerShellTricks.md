@@ -88,6 +88,14 @@ List files sorted by date, newest files at the end
 ls | sort LastWriteTime
 ```
 
+## `wc -l`
+
+Count the lines of stdin, like in `ls | wc -l`
+
+```powershell
+ls | measure
+```
+
 ## Docker commands
 
 ### Delete all containers
