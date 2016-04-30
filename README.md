@@ -1,12 +1,12 @@
 # dockerfiles-windows
-Various Dockerfiles for Windows. You probably have heard about Docker and that everyone uses Linux Containers. You can do this on Windows as well today with the Windows Server 2016 TP4 using Windows Containers.
+Various Dockerfiles for Windows. You probably have heard about Docker and that everyone uses Linux Containers. You can do this on Windows as well today with the Windows Server 2016 TP5 using Windows Containers.
 
 ## Getting started
 
-* Register to [evaluate Windows Server 2016 TP4](https://technet.microsoft.com/de-de/evalcenter/dn781243.aspx).
-* Get a Windows Server 2016 TP4 Virtual Machine
+* Register to [evaluate Windows Server 2016 TP5](https://technet.microsoft.com/de-de/evalcenter/dn781243.aspx).
+* Get a Windows Server 2016 TP4/TP5 Virtual Machine
   * **Packer and Vagrant**
-    * Use Packer with this [packer-windows](https://github.com/StefanScherer/packer-windows) templates to [build the ` windows_2016_docker` Vagrant box](https://github.com/StefanScherer/docker-windows-box#get-the-base-box).
+    * Use Packer with this [packer-windows](https://github.com/StefanScherer/packer-windows) templates to [build the ` windows_2016_tp5_docker` Vagrant box](https://github.com/StefanScherer/docker-windows-box#get-the-base-box).
     * Use Vagrant and this  [docker-windows-box](https://github.com/StefanScherer/docker-windows-box) Vagrantfile to have Docker and lots of Docker Tools installed.
   * **Azure**
     * Deploy TP4 VM to Azure with [`docker-windows-azure`](https://github.com/StefanScherer/docker-windows-azure) template
