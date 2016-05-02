@@ -2,9 +2,9 @@ FROM windowsservercore
 MAINTAINER scherer_stefan@icloud.com
 
 ENV MONGO_MAJOR=3.2 \
-    MONGO_VERSION=3.2.3
+    MONGO_VERSION=3.2.6
 
-RUN powershell -Command Sleep 2; \
+RUN powershell -Command \
     wget -Uri http://downloads.mongodb.org/win32/mongodb-win32-x86_64-%MONGO_VERSION%.zip -OutFile \mongodb.zip -UseBasicParsing ; \
     Expand-Archive -Path \mongodb.zip -DestinationPath \build -Force ; \
     rm \mongodb.zip ; \
