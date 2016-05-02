@@ -1,8 +1,7 @@
-FROM node:4.2.6
-ENV CONSUL_VERSION 0.6.3
+FROM stefanscherer/node-windows:6.0.0
+ENV CONSUL_VERSION 0.6.4
 
 RUN powershell -Command \
-    Sleep 2 ; \
     wget -uri https://releases.hashicorp.com/consul/%CONSUL_VERSION%/consul_%CONSUL_VERSION%_windows_amd64.zip -OutFile consul.zip ; \
     Expand-Archive -Path consul.zip -DestinationPath . -Force ; \
     Remove-Item consul.zip
