@@ -5,4 +5,4 @@ if not exist swarm.exe (
   docker cp swarm-builder:/go/bin/swarm.exe ./swarm.exe
 )
 docker build -t swarm .
-docker tag swarm:latest swarm:1.2.0
+docker tag swarm:latest swarm:1.2.1
