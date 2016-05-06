@@ -25,6 +25,9 @@
   * Windows Containers Quick Start - Docker
     * Building IIS container multiple ways: Docker run + commit, Dockerfile, Hyper-V with --isolation=hyperv
     * https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/manage_docker?f=255&MSPPError=-2147217396
+  * Windows Container Networking
+    * https://blogs.technet.microsoft.com/virtualization/2016/05/05/windows-container-networking/
+    * https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/container_networking
 
 ## Docker
   * Announcement https://www.docker.com/microsoft
