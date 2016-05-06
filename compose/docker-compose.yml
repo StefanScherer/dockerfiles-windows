@@ -1,9 +1,7 @@
 mongo:
-  image: mongo
-  net: none
+  image: stefanscherer/mongo-windows:3.2.6
 
 app:
   build: .
-  net: none
-#  links:
-#    - mongo
+  links:
+    - mongo

@@ -9,8 +9,14 @@ choco install -y docker-compose
 ## Run the containers
 
 ```
-docker-compose up
+docker-compose up --build
 ```
 
-At the moment I only got a `docker-compose.yml` working with `net: none` in the yml file.
-AFAIK there are no links at the moment so you need some other way for service discovery.
+At the moment the two containers start, but the app container does not have a hosts entry for the mongo container.
+I've added a sleep to exec into the container and check the c:\windows\system32\drivers\etc\hosts file.
+
+## Stop the setup
+
+```
+docker-compose kill
+```
