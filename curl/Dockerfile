@@ -1,0 +1,8 @@
+FROM windowsservercore
+MAINTAINER scherer_stefan@icloud.com
+
+RUN powershell -Command \
+    iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')); \
+    choco install -y curl
+
+ENTRYPOINT [ "C:\\ProgramData\\chocolatey\\bin\\curl.exe" ]
