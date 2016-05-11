@@ -8,7 +8,7 @@ See my [blog post](https://stefanscherer.github.io/build-docker-swarm-for-window
 
 Clone this repo and run the `build.bat` script.
 
-* Log into a Windows Server 2016 TP4 machine
+* Log into a Windows Server 2016 TP5 machine
 * Open a PowerShell window
 * Clone the sources
 * `wget -outfile src.zip https://github.com/StefanScherer/dockerfiles-windows/archive/master.zip`
