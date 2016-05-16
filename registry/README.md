@@ -22,7 +22,7 @@ docker run -d -p 5000:5000 --restart=always --name registry stefanscherer/regist
 
 ## Edit your Docker Engine config filesystem
 
-On the second TP5 machine add your local registry
+On the second TP5 machine add your local registry from the first TP5 machine. In this example the IP address of the first TP5 machine is 192.168.254.133.
 
 ```
 notepad C:\ProgramData\docker\runDockerDaemon.cmd
