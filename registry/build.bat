@@ -5,4 +5,4 @@ if not exist registry.exe (
   docker cp registry-builder:/go/src/github.com/docker/distribution/registry.exe ./registry.exe
 )
 docker build -t registry .
-docker tag registry:latest registry:2.3.0
+docker tag registry:latest registry:2.4.1-rc.2
