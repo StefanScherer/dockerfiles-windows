@@ -51,3 +51,7 @@ docker tag stefanscherer/registry-windows:2.4.1-rc.2 192.168.254.133:5000/regist
 ```
 docker push 192.168.254.133:5000/registry:2.4.1-rc.2
 ```
+
+## Check C:\registry
+
+On the first TP5 machine check the `C:\registry` folder and you will see some directories and files containing the images and meta information.
