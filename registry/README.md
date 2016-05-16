@@ -17,7 +17,7 @@ mkdir C:\registry
 On the first TP5 machine run the registry like this:
 
 ```
-docker run -d -p 5000:5000 --restart=always --name registry stefanscherer/registry-windows:2.4.1-rc.2
+docker run -d -p 5000:5000 --restart=always --name registry -v C:\registry:C:\registry stefanscherer/registry-windows:2.4.1-rc.2
 ```
 
 ## Edit your Docker Engine config filesystem
