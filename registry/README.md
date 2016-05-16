@@ -2,7 +2,7 @@
 
 Run your own Docker Registry in a Windows Docker container.
 
-As with TP5 there is still a problem contacting containers from your Docker host locally, I suggest to use two TP5 machines for now.
+As with TP5 there is still a problem contacting containers from your Docker host locally (see [issue #253](https://github.com/Microsoft/Virtualization-Documentation/issues/253) for some details), I suggest to use two TP5 machines for now.
 
 ## Create a folder on your host
 
