@@ -67,6 +67,8 @@
     * second video at https://ahmetalpbalkan.com/blog/azure-friday-docker-101/ shows Visual Studio Docker plugin
   * Setting the Stage: The Application Platform in Windows Server 2016, Taylor Brown, 2016-04-01
     * https://channel9.msdn.com/Events/Build/2016/B875
+  * Windows brings Docker Goodness - What does it mean for .NET developers?, Naeem Sarfraz, 2016-05-19
+    * https://channel9.msdn.com/Events/DDD/Scotland/Windows-brings-Docker-Goodness-What-does-it-mean-for-NET-developers
  
 ## Blog posts
   * Setup Windows Containers on Nano Server
