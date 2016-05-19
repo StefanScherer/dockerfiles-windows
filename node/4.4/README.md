@@ -1,12 +1,12 @@
 # Node
 
-A Windows Docker container with Node.js 4.4.3 installed.
+A Windows Docker container with Node.js 4.4.4 installed.
 
 ## Building
 
 ```
 docker build -t node .
-docker tag node:latest node:4.4.3
+docker tag node:latest node:4.4.4
 ```
 
 ## Onbuild
