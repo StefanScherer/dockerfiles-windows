@@ -70,7 +70,7 @@
   * Windows brings Docker Goodness - What does it mean for .NET developers?, Naeem Sarfraz, 2016-05-19
     * https://channel9.msdn.com/Events/DDD/Scotland/Windows-brings-Docker-Goodness-What-does-it-mean-for-NET-developers
     * Slides: http://de.slideshare.net/naeem_sarfraz/windows-brings-docker-goodness-what-does-it-mean-for-net-developers
-    * 
+
 ## Blog posts
   * Setup Windows Containers on Nano Server
     * http://www.thomasmaurer.ch/2015/12/setup-windows-containers-on-nano-server/
