@@ -1,7 +1,7 @@
 FROM stefanscherer/golang-windows:1.6.2
 
 ENV DOCKER_BUILDTAGS include_oss include_gcs
-ENV DISTRIBUTION_VERSION v2.4.1-rc.2
+ENV DISTRIBUTION_VERSION v2.4.1
 
 RUN powershell -Command \
     Sleep 2 ; \
