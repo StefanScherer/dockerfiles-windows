@@ -1,12 +1,37 @@
 # Build Docker Engine for Windows in Docker
 
-To build the Docker Engine for Windows from source with only TP4 and Docker
-on the host use this setup.
+To build the Docker Engine for Windows Server 2016 TP5 from source with only TP5
+with Docker and Git on the host use this setup.
 
 This `Dockerfile.windows` made it into the docker/docker repo with [PR #18348](https://github.com/docker/docker/pull/18348) but is now
 updated to fit into the Windows CI.
 
-But the basic idea was to just use TP4 and Docker and nothing else on the
-host machine to build the Docker Engine for Windows.
+But the basic idea was to just use TP5 and Docker and nothing else on the
+host machine  (ok, Git would be nice to clone this dockerfiles-windows repo) to
+build the Docker Engine for Windows.
 
 If you want to build Docker Engine on your own then just run `build.bat`.
+
+## Build a pull request
+
+If you are interested in a pull request and want to try it out before
+it gets merged, you can run `build.bat` with the pull request number.
+
+To build eg. this PR https://github.com/docker/docker/pull/22873 which fixes del/backspace issues for Linux/Mac terminals, run
+
+```cmd
+.\build.bat 22873
+```
+
+The binaries for Docker Client and Docker Daemon are copied into the `binary` sub directory.
+
+## Test the binaries
+
+Open an administrator PowerShell and run these commands to replace the Docker Client and Daemon. You may make a backup of your current binaries.
+
+```powershell
+stop-service docker
+copy binary\docker.exe C:\Windows\system32\docker.exe
+copy binary\dockerd.exe C:\Windows\system32\dockerd.exe
+start-service docker
+```
