@@ -28,6 +28,9 @@
   * Windows Container Networking
     * https://blogs.technet.microsoft.com/virtualization/2016/05/05/windows-container-networking/
     * https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/container_networking
+    * NAT
+      * "Set up a NAT network" - https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/setup_nat_network
+      * "What Happened to the “NAT” VMSwitch?" - https://blogs.technet.microsoft.com/virtualization/2016/05/14/what-happened-to-the-nat-vmswitch/
 
 ## Docker
   * Announcement https://www.docker.com/microsoft
