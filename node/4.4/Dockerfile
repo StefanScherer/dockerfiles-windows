@@ -1,8 +1,8 @@
 FROM windowsservercore
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 4.4.4
-ENV NODE_SHA256 3bfa87c9feb0107800740fd0a7f950b9259ba73a353274ba60a91d7b4a5279c5
+ENV NODE_VERSION 4.4.5
+ENV NODE_SHA256 7b2409605c871a40d60c187bd24f6f6ddf10590df060b7d905ef46b3b3aa7f81
 
 RUN powershell -Command \
     wget -Uri https://nodejs.org/dist/v%NODE_VERSION%/node-v%NODE_VERSION%-x64.msi -OutFile node.msi -UseBasicParsing ; \
