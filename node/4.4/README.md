@@ -1,6 +1,6 @@
 # Node
 
-A Windows Docker container with Node.js 4.4.5 installed.
+A Windows Server Core Docker container image with Node.js 4.4.5 installed.
 
 ## Building
 
