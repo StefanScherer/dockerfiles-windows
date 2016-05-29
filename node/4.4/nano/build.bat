@@ -1,5 +1,5 @@
 docker rm -vf node
-del /f /s /q nodejs
+rmdir nodejs /s /q
 docker run --name=node node:4.4.5 node --version
 docker cp "node:c:\Program Files\nodejs" nodejs
 docker rm -vf node
