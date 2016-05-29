@@ -21,7 +21,7 @@ var articles = [
 app.get('/', function (req, res) {
   // res.send('Hello from Express!');
   res.render('index', {
-    title: 'Foobar'
+    title: 'Hello from Windows container'
   });
 });
 
