@@ -6,3 +6,6 @@ if not exist swarm.exe (
 )
 docker build -t swarm .
 docker tag swarm:latest swarm:1.2.3
+
+docker build --isolation=hyperv -t swarm:nano -f Dockerfile.nano .
+docker tag swarm:nano swarm:1.2.3-nano
