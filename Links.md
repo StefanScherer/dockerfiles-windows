@@ -6,9 +6,13 @@
   * https://msdn.microsoft.com/virtualization/windowscontainers/containers_welcome
   * PowerShell Quick start - https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/manage_powershell
   * Docker Quick start - https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/manage_docker
+  * Work in Progress - https://msdn.microsoft.com/en-us/virtualization/windowscontainers/about/work_in_progress
 
-* Windows 10 + Hyper-V: Deploy a Windows Container Host to a New Hyper-V Virtual Machine
-  * https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/container_setup
+* Windows 10
+  * Insider 14352 + Containers
+    * https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/quick_start_windows_10
+  * Windows 10 + Hyper-V: Deploy a Windows Container Host to a New Hyper-V Virtual Machine
+    * https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/container_setup
 
 * Windows Server Containers- How we hot here and architecture deep dive - DockerCon Barcelona
   * http://de.slideshare.net/Docker/windows-server-containers-how-we-hot-here-and-architecture-deep-dive
