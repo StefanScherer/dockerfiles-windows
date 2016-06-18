@@ -1,2 +1,2 @@
 docker build -t java .
-docker tag java:latest java:7.0.79
+docker tag java:latest java:8.0.91
