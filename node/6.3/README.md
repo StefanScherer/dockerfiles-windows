@@ -1,6 +1,6 @@
 # Node
 
-A Windows Server Core Docker container image with Node.js 6.2.1 installed.
+A Windows Server Core Docker container image with Node.js 6.3.1 installed.
 
 **Notice: Node.js 6.x does not work in a Windows Docker container, see issue [nodejs/node#7044](https://github.com/nodejs/node/issues/7044)**.
 
@@ -8,7 +8,7 @@ A Windows Server Core Docker container image with Node.js 6.2.1 installed.
 
 ```
 docker build -t node .
-docker tag node:latest node:6.2.1
+docker tag node:latest node:6.3.1
 ```
 
 ## Onbuild
