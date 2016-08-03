@@ -1,4 +1,4 @@
-FROM windowsservercore
+FROM microsoft/windowsservercore:10.0.14300.1030
 
 ENV NPM_CONFIG_LOGLEVEL info
 ENV NODE_VERSION 4.4.7
