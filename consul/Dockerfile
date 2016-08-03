@@ -1,4 +1,4 @@
-FROM windowsservercore
+FROM microsoft/windowsservercore:10.0.14300.1030
 ENV CONSUL_VERSION 0.6.4
 
 RUN powershell -Command \

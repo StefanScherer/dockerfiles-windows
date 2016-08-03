@@ -1,4 +1,4 @@
-FROM windowsservercore
+FROM microsoft/windowsservercore:10.0.14300.1030
 MAINTAINER scherer_stefan@icloud.com
 
 ENV MONGO_MAJOR 3.2

@@ -1,4 +1,4 @@
-FROM windowsservercore
+FROM microsoft/windowsservercore:10.0.14300.1030
 
 COPY ./registry.exe /registry.exe
 COPY config.yml /config/config.yml

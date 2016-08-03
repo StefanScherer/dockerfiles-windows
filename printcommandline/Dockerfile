@@ -1,4 +1,4 @@
-FROM windowsservercore
+FROM microsoft/windowsservercore:10.0.14300.1030
 
 RUN powershell.exe -Command Sleep 2 ; wget -Uri https://github.com/StefanScherer/win-print-commandline/releases/download/1.0.3/printcommandline.exe -OutFile printcommandline.exe -UseBasicParsing
 RUN printcommandline.exe C:\Program Files

@@ -1,4 +1,4 @@
-FROM windowsservercore
+FROM microsoft/windowsservercore:10.0.14300.1030
 
 ENV GO_VERSION 1.6.2
 ENV GIT_VERSION 2.8.1
