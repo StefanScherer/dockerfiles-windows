@@ -6,4 +6,4 @@ if [ ! -f swarm.exe ]; then
   docker cp swarm-builder:/go/bin/swarm.exe ./swarm.exe
 fi
 docker build -t swarm .
-docker tag swarm:latest swarm:1.2.3
+docker tag swarm:latest swarm:1.2.4
