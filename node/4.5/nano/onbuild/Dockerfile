@@ -1,4 +1,4 @@
-FROM node:4.4.7-nano
+FROM node:4.5.0-nano
 
 RUN mkdir \app
 WORKDIR /app
