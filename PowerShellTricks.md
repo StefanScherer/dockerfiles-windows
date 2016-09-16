@@ -96,6 +96,14 @@ Count the lines of stdin, like in `ls | wc -l`
 ls | measure
 ```
 
+## `time another command`
+
+To measure the time that a command takes, use
+
+```powershell
+Measure-Command {docker run microsoft/nanoserver hostname}
+```
+
 ## Docker commands
 
 ### Delete all containers
