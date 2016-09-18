@@ -1,8 +1,18 @@
 # dockerfiles-windows
-Various Dockerfiles for Windows. You probably have heard about Docker and that everyone uses Linux Containers. You can do this on Windows as well today with the Windows Server 2016 TP5 using Windows Containers.
+Various Dockerfiles for Windows. You probably have heard about Docker and that everyone uses Linux Containers. You can do this on Windows as well today with the Windows 10 1607 or Windows Server 2016 TP5 using Windows Containers.
 
 ## Getting started
 
+### Windows 10
+* Physical Machine / Virtual Machine
+  * Install [Docker for Windows Beta 26](https://docs.docker.com/docker-for-windows/) on your Windows 10 1607 machine.
+* Get a Windows 10 Virtual Machine
+  * **Packer and Vagrant**
+    * Use Packer with this [packer-windows](https://github.com/StefanScherer/packer-windows) templates to [build the ` windows_10` Vagrant box](https://github.com/StefanScherer/docker-windows-beta#get-the-base-box).
+    * Use Vagrant and this  [docker-windows-box](https://github.com/StefanScherer/docker-windows-beta) Vagrantfile to have Docker for Windows and lots of Docker Tools installed.
+* Clone this repo and create some Docker images. Notice: You only can build Docker images based on `microsoft/nanoserver`.
+
+### Windows Server 2016 TP5
 * Register to [evaluate Windows Server 2016 TP5](https://technet.microsoft.com/de-de/evalcenter/dn781243.aspx).
 * Get a Windows Server 2016 TP5 Virtual Machine
   * **Packer and Vagrant**
