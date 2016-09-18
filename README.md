@@ -9,7 +9,7 @@ Various Dockerfiles for Windows. You probably have heard about Docker and that e
 * Get a Windows 10 Virtual Machine
   * **Packer and Vagrant**
     * Use Packer with this [packer-windows](https://github.com/StefanScherer/packer-windows) templates to [build the ` windows_10` Vagrant box](https://github.com/StefanScherer/docker-windows-beta#get-the-base-box).
-    * Use Vagrant and this  [docker-windows-box](https://github.com/StefanScherer/docker-windows-beta) Vagrantfile to have Docker for Windows and lots of Docker Tools installed.
+    * Use Vagrant and this  [docker-windows-beta](https://github.com/StefanScherer/docker-windows-beta) Vagrantfile to have Docker for Windows and lots of Docker Tools installed.
 * Clone this repo and create some Docker images. Notice: You only can build Docker images based on `microsoft/nanoserver`.
 
 ### Windows Server 2016 TP5
