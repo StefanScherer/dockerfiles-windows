@@ -36,6 +36,12 @@ This one is easy.
 wget -Uri $url -OutFile $localfile
 ```
 
+## Downloading a file (wget, curl)
+
+```powershell
+$wc = New-Object net.webclient; $wc.Downloadfile($url, $target)
+```
+
 ## `curl -u`
 
 To download a file with BasicAuth use this
