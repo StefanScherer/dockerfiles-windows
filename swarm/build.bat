@@ -5,7 +5,7 @@ if not exist swarm.exe (
   docker cp swarm-builder:/go/bin/swarm.exe ./swarm.exe
 )
 docker build -t swarm .
-docker tag swarm:latest swarm:1.2.4
+docker tag swarm:latest swarm:1.2.5
 
 docker build --isolation=hyperv -t swarm:nano -f Dockerfile.nano .
-docker tag swarm:nano swarm:1.2.4-nano
+docker tag swarm:nano swarm:1.2.5-nano
