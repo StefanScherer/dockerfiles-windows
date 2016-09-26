@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:10.0.14300.1030
+FROM microsoft/windowsservercore
 
 ENV SWARM_VERSION v1.2.4
 ENV GO_VERSION 1.5.3

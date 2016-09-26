@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:10.0.14300.1030
+FROM microsoft/windowsservercore
 
 COPY ./swarm.exe /swarm.exe
 

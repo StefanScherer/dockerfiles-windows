@@ -1,4 +1,4 @@
-FROM microsoft/nanoserver:10.0.14300.1030
+FROM microsoft/nanoserver
 
 COPY ./swarm.exe /swarm.exe
 

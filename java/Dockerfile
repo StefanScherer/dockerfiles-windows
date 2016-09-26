@@ -1,5 +1,5 @@
 # escape=`
-FROM microsoft/windowsservercore:10.0.14300.1030
+FROM microsoft/windowsservercore
 
 RUN powershell -Command `
     wget 'http://javadl.oracle.com/webapps/download/AutoDL?BundleId=210185' -Outfile 'C:\jreinstaller.exe' ; `
