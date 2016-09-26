@@ -1,5 +1,5 @@
 # dockerfiles-windows
-Various Dockerfiles for Windows. You probably have heard about Docker and that everyone uses Linux Containers. You can do this on Windows as well today with the Windows 10 1607 or Windows Server 2016 TP5 using Windows Containers.
+Various Dockerfiles for Windows. You probably have heard about Docker and that everyone uses Linux Containers. You can do this on Windows as well today with the Windows 10 1607 or Windows Server 2016 using Windows Containers.
 
 ## Getting started
 
@@ -10,14 +10,14 @@ Various Dockerfiles for Windows. You probably have heard about Docker and that e
   * **Packer and Vagrant**
     * Use Packer with this [packer-windows](https://github.com/StefanScherer/packer-windows) templates to [build the ` windows_10` Vagrant box](https://github.com/StefanScherer/docker-windows-beta#get-the-base-box).
     * Use Vagrant and this  [docker-windows-beta](https://github.com/StefanScherer/docker-windows-beta) Vagrantfile to have Docker for Windows and lots of Docker Tools installed.
-* Clone this repo and create some Docker images. Notice: You only can build Docker images based on `microsoft/nanoserver`.
+* Clone this repo and create some Docker images. Both `microsoft/nanoserver` and `microsoft/windowsservercore` base images can be used on Windows 10.
 
-### Windows Server 2016 TP5
-* Register to [evaluate Windows Server 2016 TP5](https://technet.microsoft.com/de-de/evalcenter/dn781243.aspx).
-* Get a Windows Server 2016 TP5 Virtual Machine
+### Windows Server 2016
+* Register to [evaluate Windows Server 2016](https://www.microsoft.com/evalcenter/evaluate-windows-server-2016).
+* Get a Windows Server 2016 Virtual Machine
   * **Packer and Vagrant**
-    * Use Packer with this [packer-windows](https://github.com/StefanScherer/packer-windows) templates to [build the ` windows_2016_tp5_docker` Vagrant box](https://github.com/StefanScherer/docker-windows-box#get-the-base-box).
-    * Use Vagrant and this  [docker-windows-box](https://github.com/StefanScherer/docker-windows-box) Vagrantfile to have Docker and lots of Docker Tools installed.
+    * Use Packer with this [packer-windows](https://github.com/StefanScherer/packer-windows) templates to [build the ` windows_2016_docker` Vagrant box](https://github.com/StefanScherer/docker-windows-box#get-the-base-box).
+    * Use Vagrant and this [docker-windows-box](https://github.com/StefanScherer/docker-windows-box) Vagrantfile to have Docker and lots of Docker Tools installed.
   * **Azure**
     * Deploy TP4 VM to Azure with [`docker-windows-azure`](https://github.com/StefanScherer/docker-windows-azure) template
     * Create a [Windows Server 2016 Core with Containers TP4](http://azure.microsoft.com/en/marketplace/partners/Microsoft/WindowsServer2016TechnicalPreviewwithContainers/) Virtual Machine
