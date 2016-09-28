@@ -1,8 +1,8 @@
 FROM microsoft/nanoserver
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 6.6.0
-ENV NODE_SHA256 5b1c49f8fd36bd9c277259773f42832db74c41f87033deaccfbd82e15330bae4
+ENV NODE_VERSION 4.6.0
+ENV NODE_SHA256 0782bd50251c2a159fba5b874c56fb4a6680f454cc16892cee8e62d17b7d6f60
 
 RUN powershell.exe -Command \
     $ErrorActionPreference = 'Stop' ; \

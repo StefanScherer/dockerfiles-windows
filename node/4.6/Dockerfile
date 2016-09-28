@@ -1,8 +1,8 @@
 FROM microsoft/windowsservercore
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 4.5.0
-ENV NODE_SHA256 16aab15b29e79746d1bae708f6a5dbed8ef3c87426a9408f7261163d0cda0f56
+ENV NODE_VERSION 4.6.0
+ENV NODE_SHA256 0782bd50251c2a159fba5b874c56fb4a6680f454cc16892cee8e62d17b7d6f60
 
 RUN powershell -Command \
     $ErrorActionPreference = 'Stop' ; \
