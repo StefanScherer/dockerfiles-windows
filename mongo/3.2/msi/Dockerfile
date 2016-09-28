@@ -1,8 +1,7 @@
 FROM microsoft/windowsservercore
-MAINTAINER scherer_stefan@icloud.com
 
 ENV MONGO_MAJOR 3.2
-ENV MONGO_VERSION 3.2.6
+ENV MONGO_VERSION 3.2.9
 
 RUN powershell -Command wget -Uri https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-%MONGO_VERSION%-signed.msi -OutFile mongodb.msi -UseBasicParsing
 
