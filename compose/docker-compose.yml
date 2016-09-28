@@ -1,5 +1,5 @@
 mongo:
-  image: stefanscherer/mongo-windows:3.2.6
+  image: stefanscherer/mongo-windows:3.2.9
 
 app:
   build: .
