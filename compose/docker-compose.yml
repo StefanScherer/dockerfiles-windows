@@ -1,7 +1,16 @@
-mongo:
-  image: stefanscherer/mongo-windows:3.2.9
+version: '2'
+services:
+  mongo:
+    image: stefanscherer/mongo-windows:3.2.9
 
-app:
-  build: .
-  links:
-    - mongo
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - "mongo"
+
+networks:
+  default:
+    external:
+      name: nat
