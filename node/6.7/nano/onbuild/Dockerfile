@@ -1,10 +1,10 @@
-FROM node:6.7.0-nano
+FROM node:6.7.0
 
 RUN mkdir \app
 WORKDIR /app
 
 ONBUILD COPY package.json package.json
-ONBUILD RUN npm install & rd /s /q %APPDATA%\npm-cache & for /d %G in ("%TEMP%\npm-*") do rd /s /q "%~G"
+ONBUILD RUN npm install ; Remove-Item $($env:APPDATA + '\npm-cache') -Force -Recurse ; Remove-Item $($env:TEMP + '\npm-*') -Force -Recurse
 ONBUILD COPY . .
 
 CMD [ "npm.cmd", "start" ]
