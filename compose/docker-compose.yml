@@ -2,6 +2,8 @@ version: '2'
 services:
   mongo:
     image: stefanscherer/mongo-windows:3.2.9
+    ports:
+      - 27017:27017
 
   app:
     build:
