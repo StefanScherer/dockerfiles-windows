@@ -1,7 +1,6 @@
 'use strict';
 
 const assert = require('assert');
-const dns = require('dns');
 
 const MongoClient = require('mongodb').MongoClient;
 
