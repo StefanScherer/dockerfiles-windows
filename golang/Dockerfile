@@ -1,6 +1,6 @@
 FROM microsoft/windowsservercore
 
-ENV GO_VERSION 1.6.2
+ENV GO_VERSION 1.7.1
 ENV GIT_VERSION 2.8.1
 
 RUN mkdir \go\bin \go\src
