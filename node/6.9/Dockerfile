@@ -3,8 +3,8 @@ FROM microsoft/windowsservercore
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 6.8.0
-ENV NODE_SHA256 f8ebc521d109bcc9d5b94ffef2922beb05e2e19fe8d7572333acf1b509082c3e
+ENV NODE_VERSION 6.9.0
+ENV NODE_SHA256 7c1c970d957c855c37ad16843ee5eb0f5369fbc42b24a5cd3dce18597dda087d
 
 RUN (New-Object System.Net.WebClient).DownloadFile('https://nodejs.org/dist/v{0}/node-v{0}-win-x64.zip' -f $env:NODE_VERSION, 'node.zip') ; \
     if ((Get-FileHash node.zip -Algorithm sha256).Hash -ne $env:NODE_SHA256) {exit 1} ; \
