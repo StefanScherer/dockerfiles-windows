@@ -1,7 +1,7 @@
 # dockertls
 
-Create TLS certs for Docker, inside a Docker container. This avoids installin OpenSSL directly on your machine.
-The script https://github.com/Microsoft/Virtualization-Documentation/blob/master/windows-server-container-tools/DockerTLS/DockerCertificateTools.ps1 will be used to create the certs.
+Create TLS certs for Docker, inside a Docker container. This avoids installing OpenSSL directly on your machine.
+Inspired by the script [DockerCertificateTools.ps1](https://github.com/Microsoft/Virtualization-Documentation/blob/master/windows-server-container-tools/DockerTLS/DockerCertificateTools.ps1) and enhanced to update or create the `daemon.json` for the Docker service.
 
 ## Usage
 
