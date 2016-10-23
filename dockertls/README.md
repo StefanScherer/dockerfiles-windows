@@ -35,7 +35,7 @@ mkdir $env:USERPROFILE\.docker
 docker run --rm `
   -e SERVER_NAME=$(hostname) `
   -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
-  -v "$(pwd)\programdata\docker:c:\programdata\docker" `
+  -v "c:\programdata\docker:c:\programdata\docker" `
   -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" dockertls
 ```
 
