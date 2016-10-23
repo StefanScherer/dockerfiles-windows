@@ -12,6 +12,7 @@ RUN [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityPro
 	Expand-Archive libressl.zip -DestinationPath $Env:Temp ; \
 	New-Item -ItemType Directory -Path $Env:LIBRESSLPATH ; \
 	Copy-Item $Env:Temp\libressl-$Env:VERSION-windows\x64\* $Env:LIBRESSLPATH\. ; \
+	Remove-Item $Env:LIBRESSLPATH\*.pdb ; \
 	$newPath = ('{0};{1}' -f $Env:LIBRESSLPATH, $Env:PATH); \
 	setx /M PATH $newPath; \
 	Remove-Item $Env:Temp\libressl-$Env:VERSION-windows, libressl.zip -Force -Recurse ; \
