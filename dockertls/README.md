@@ -5,14 +5,14 @@ The script https://github.com/Microsoft/Virtualization-Documentation/blob/master
 
 ## Usage
 
-## Test drive
+### Test drive
 
 Just run it in a clean environment creating two folders on your host:
 
 ```
 mkdir server
 mkdir client\.docker
-docker run `
+docker run --rm `
   -e SERVER_NAME=$(hostname) `
   -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
   -v "$(pwd)\server:c:\programdata\docker" `
@@ -22,6 +22,22 @@ dir server\config
 dir client\.docker
 ```
 
+### Create your certs
+
+Now create the certs and let the container
+
+1. copy the Server certs into Docker service config folder
+2. create or update the Docker service config file `daemon.json`
+3. copy the Client certs into your home directory.
+
+```
+mkdir $env:USERPROFILE\.docker
+docker run --rm `
+  -e SERVER_NAME=$(hostname) `
+  -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
+  -v "$(pwd)\programdata\docker:c:\programdata\docker" `
+  -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" dockertls
+```
 
 ## See also
 

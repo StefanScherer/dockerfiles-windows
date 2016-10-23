@@ -25,7 +25,7 @@ function createCerts($certsPath, $serverName, $ipAddresses) {
   & openssl req -subj "/CN=$serverName/" -sha256 -new -key server-key.pem -out server.csr
 
   Write-Host "`n=== Signing Server request"
-  "subjectAltName = " + (($ipAddresses.Split(' ') | ForEach-Object { "IP:$_" }) -join ',') | Out-File extfile.cnf -Encoding Ascii
+  "subjectAltName = " + (($ipAddresses.Split(',') | ForEach-Object { "IP:$_" }) -join ',') | Out-File extfile.cnf -Encoding Ascii
   cat extfile.cnf
   & openssl x509 -req -days 365 -sha256 -in server.csr -CA ca.pem -passin $caPass -CAkey ca-key.pem `
     -CAcreateserial -out server-cert.pem -extfile extfile.cnf
