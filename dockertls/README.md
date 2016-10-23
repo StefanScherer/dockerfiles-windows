@@ -65,5 +65,6 @@ docker version
 
 ## See also
 
-* https://docs.docker.com/engine/security/https/
-* https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-tools/DockerTLS
+* [Dockerfile](https://github.com/StefanScherer/dockerfiles-windows/blob/master/dockertls/Dockerfile)
+* [Protect the Docker daemon socket](https://docs.docker.com/engine/security/https/) docs at docker.com
+* [DockerTLS](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-tools/DockerTLS) in Microsoft/Virtualization-Documentation repo 
