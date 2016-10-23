@@ -39,6 +39,30 @@ docker run --rm `
   -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" dockertls
 ```
 
+Afterwards restart the Docker service in an administrator SHELL
+
+```
+restart-service docker
+```
+
+Now connect to the TLS secured Docker service with
+
+```
+docker --tlsverify `
+  --tlscacert=$env:USERPROFILE\.docker\ca.pem `
+  --tlscert=$env:USERPROFILE\.docker\cert.pem `
+  --tlskey=$env:USERPROFILE\.docker\key.pem `
+  -H=tcp://127.0.0.1:2376 version
+```
+
+Or just set some environment variables
+
+```
+$env:DOCKER_HOST="tcp://127.0.0.1:2376"
+$env:DOCKER_TLS_VERIFY="1"
+docker version
+```
+
 ## See also
 
 * https://docs.docker.com/engine/security/https/
