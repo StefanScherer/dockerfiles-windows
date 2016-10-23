@@ -1,16 +1,14 @@
-FROM stefanscherer/openssl-windows
+FROM microsoft/windowsservercore
 MAINTAINER scherer_stefan@icloud.com
 
+ENV chocolateyUseWindowsCompression false
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 
-RUN Invoke-WebRequest -Uri https://github.com/Microsoft/Virtualization-Documentation/raw/master/windows-server-container-tools/DockerTLS/DockerCertificateTools.ps1 -OutFile DockerCertificateTools.ps1
+RUN iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')); \
+    choco install -y openssl.light; \
+    $env:PATH = 'C:\Program Files\OpenSSL\bin;' + $env:PATH; \
+  	[Environment]::SetEnvironmentVariable('PATH', $env:PATH, [EnvironmentVariableTarget]::Machine)
 
-CMD . .\DockerCertificateTools.ps1 ; \
-    New-OpenSSLCertAuth ; \
-    New-ClientKeyandCert ; \
-    New-ServerKeyandCert -serverName $('{0}' -f $env:SERVER_NAME) -serverIPAddresses @( $($env:IP_ADDRESSES).Split(' ')) ; \
-    Copy C:\MyDockerKeys\ca-key.pem C:\certs ; \
-    Copy C:\MyDockerKeys\ca.pem C:\certs ; \
-    Copy C:\MyDockerKeys\cert.pem C:\certs ; \
-    Copy C:\MyDockerKeys\$($env:SERVER_NAME)_server-cert.pem C:\certs\server-cert.pem ; \
-    Copy C:\MyDockerKeys\$($env:SERVER_NAME)_server-key.pem C:\certs\server-key.pem
+COPY generate-certs.ps1 generate-certs.ps1
+
+CMD . .\generate-certs.ps1
