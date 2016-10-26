@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore
+FROM microsoft/nanoserver
 
 COPY ./registry.exe /registry.exe
 COPY config.yml /config/config.yml
