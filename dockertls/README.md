@@ -16,7 +16,7 @@ docker run --rm `
   -e SERVER_NAME=$(hostname) `
   -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
   -v "$(pwd)\server:c:\programdata\docker" `
-  -v "$(pwd)\client\.docker:c:\users\containeradministrator\.docker" dockertls
+  -v "$(pwd)\client\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
 dir server\certs.d
 dir server\config
 dir client\.docker
@@ -36,7 +36,7 @@ docker run --rm `
   -e SERVER_NAME=$(hostname) `
   -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
   -v "c:\programdata\docker:c:\programdata\docker" `
-  -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" dockertls
+  -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
 ```
 
 Afterwards restart the Docker service in an administrator SHELL
