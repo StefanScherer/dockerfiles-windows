@@ -10,6 +10,21 @@ powershell -Command $a = \"world\" ; $b = \"hello \"\"$a\"\"\" ; Write-Host \"'$
 
 You will see a PowerShell terminal with the output `'hello "world"'`.
 
+That's why you have to write it the same way in your `Dockerfile`
+
+```Dockerfile
+RUN powershell -Command $a = \"world\" ; $b = \"hello \"\"$a\"\"\" ; Write-Host \"'$b'\"
+```
+
+or with a good practice using the `SHELL` command
+
+```Dockerfile
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
+RUN $a = \"world\" ; $b = \"hello \"\"$a\"\"\" ; Write-Host \"'$b'\"
+```
+
+It is still not a PowerShell script, but a `powershell.exe -Command` call where you have to escape quotes.
+
 ## Output of `docker build`
 
 ```
