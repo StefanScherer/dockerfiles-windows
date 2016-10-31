@@ -1,35 +1,25 @@
-docker build -t node:4.6.1 4.6 || exit /b
-docker tag node:4.6.1 node:latest || exit /b
-docker tag node:4.6.1 node:4.6 || exit /b
-docker tag node:4.6.1 node:4 || exit /b
+call :build 4.6.1 4.6 4
+call :build 6.9.1 6.9 6
+call :build 7.0.0 7.0 7
 
-docker build -t node:4.6.1-onbuild 4.6/onbuild
-docker tag node:4.6.1-onbuild node:4.6-onbuild || exit /b
-docker tag node:4.6.1-onbuild node:4-onbuild || exit /b
+goto eof
+:build
+setlocal
+docker build -t node:%1 %2 || exit /b
+docker tag node:%1 node:latest || exit /b
+docker tag node:%1 node:%2 || exit /b
+docker tag node:%1 node:%3 || exit /b
 
-docker build -t node:4.6.1-nano 4.6/nano || exit /b
-docker tag node:4.6.1-nano node:latest-nano || exit /b
-docker tag node:4.6.1-nano node:4.6-nano || exit /b
-docker tag node:4.6.1-nano node:4-nano || exit /b
+docker build -t node:%1-onbuild %2/onbuild
+docker tag node:%1-onbuild node:%2-onbuild || exit /b
+docker tag node:%1-onbuild node:%3-onbuild || exit /b
 
-docker build -t node:4.6.1-nano-onbuild 4.6/nano/onbuild || exit /b
-docker tag node:4.6.1-nano-onbuild node:4.6-nano-onbuild || exit /b
-docker tag node:4.6.1-nano-onbuild node:4-nano-onbuild || exit /b
+docker build -t node:%1-nano %2/nano || exit /b
+docker tag node:%1-nano node:latest-nano || exit /b
+docker tag node:%1-nano node:%2-nano || exit /b
+docker tag node:%1-nano node:%3-nano || exit /b
 
-docker build -t node:6.9.1 6.9 || exit /b
-docker tag node:6.9.1 node:latest || exit /b
-docker tag node:6.9.1 node:6.9 || exit /b
-docker tag node:6.9.1 node:6 || exit /b
-
-docker build -t node:6.9.1-onbuild 6.9/onbuild
-docker tag node:6.9.1-onbuild node:6.9-onbuild || exit /b
-docker tag node:6.9.1-onbuild node:6-onbuild || exit /b
-
-docker build -t node:6.9.1-nano 6.9/nano || exit /b
-docker tag node:6.9.1-nano node:latest-nano || exit /b
-docker tag node:6.9.1-nano node:6.9-nano || exit /b
-docker tag node:6.9.1-nano node:6-nano || exit /b
-
-docker build -t node:6.9.1-nano-onbuild 6.9/nano/onbuild || exit /b
-docker tag node:6.9.1-nano-onbuild node:6.9-nano-onbuild || exit /b
-docker tag node:6.9.1-nano-onbuild node:6-nano-onbuild || exit /b
+docker build -t node:%1-nano-onbuild %2/nano/onbuild || exit /b
+docker tag node:%1-nano-onbuild node:%2-nano-onbuild || exit /b
+docker tag node:%1-nano-onbuild node:%3-nano-onbuild || exit /b
+endlocal
