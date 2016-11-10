@@ -120,6 +120,16 @@ dir | timestamp
 docker-compose up -d 2>&1 | timestamp
 ```
 
+## elapsed time of another command for each line of stdout
+
+To prepend the time elapsed time to each line of stdout ue this
+
+```powershell
+filter addtime {"$((new-timespan -start $start -end (Get-Date)).TotalSeconds): $_"}
+$start=(Get-Date) ; dir | addtime
+$start=(Get-Date) ; docker-compose up -d 2>&1 | addtime
+```
+
 
 ## Docker commands
 
