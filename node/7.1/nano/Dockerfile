@@ -3,8 +3,8 @@ FROM microsoft/nanoserver
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 7.0.0
-ENV NODE_SHA256 af130e7c5abb9be0ba96c35cfcd2002cc35535ddcda4d068b7647ce6d2ee1baf
+ENV NODE_VERSION 7.1.0
+ENV NODE_SHA256 b86f7a789b437a801dc675ef530d7728840f51601dd8e7734b418516fca6061b
 
 RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/node-v{0}-win-x64.zip' -f $env:NODE_VERSION) -OutFile 'node.zip' -UseBasicParsing ; \
     [System.IO.Compression.ZipFile]::ExtractToDirectory('C:\node.zip', 'C:\') ; \
