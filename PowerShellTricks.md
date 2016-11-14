@@ -102,13 +102,34 @@ Count the lines of stdin, like in `ls | wc -l`
 ls | measure
 ```
 
-## `time another command`
+## time another command
 
 To measure the time that a command takes, use
 
 ```powershell
 Measure-Command {docker run microsoft/nanoserver hostname}
 ```
+
+## time the stdout of another command
+
+To prepend the timestamp for each stdout line of another command use this
+
+```powershell
+filter timestamp {"$(Get-Date -Format o): $_"}
+dir | timestamp
+docker-compose up -d 2>&1 | timestamp
+```
+
+## elapsed time of another command for each line of stdout
+
+To prepend the time elapsed time to each line of stdout ue this
+
+```powershell
+filter addtime {"$((new-timespan -start $start -end (Get-Date)).TotalSeconds): $_"}
+$start=(Get-Date) ; dir | addtime
+$start=(Get-Date) ; docker-compose up -d 2>&1 | addtime
+```
+
 
 ## Docker commands
 
