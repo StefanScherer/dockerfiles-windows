@@ -1,9 +1,9 @@
-FROM microsoft/windowsservercore
-ENV CONSUL_VERSION 0.7.0
+FROM microsoft/nanoserver
+ENV CONSUL_VERSION 0.7.1
 
-RUN powershell -Command \
-    wget https://releases.hashicorp.com/consul/%CONSUL_VERSION%/consul_%CONSUL_VERSION%_windows_amd64.zip -OutFile consul.zip ; \
-    wget https://releases.hashicorp.com/consul/%CONSUL_VERSION%/consul_%CONSUL_VERSION%_web_ui.zip -OutFile webui.zip ; \
+RUN powershell -Command $ErrorActionPreference = 'Stop'; \
+    Invoke-WebRequest $('https://releases.hashicorp.com/consul/{0}/consul_{0}_windows_amd64.zip' -f $env:CONSUL_VERSION) -OutFile 'consul.zip' -UseBasicParsing ; \
+    Invoke-WebRequest $('https://releases.hashicorp.com/consul/{0}/consul_{0}_web_ui.zip' -f $env:CONSUL_VERSION) -OutFile 'webui.zip' -UseBasicParsing ; \
     Expand-Archive -Path consul.zip -DestinationPath . -Force ; \
     Expand-Archive -Path webui.zip -DestinationPath \dist -Force ; \
     rm consul.zip ; \
