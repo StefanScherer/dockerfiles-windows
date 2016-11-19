@@ -22,3 +22,15 @@ nanoserver.
 See pull request [docker-library/openjdk#88](https://github.com/docker-library/openjdk/pull/88)
 
 Checkout my pull request branch at https://github.com/StefanScherer/openjdk/tree/add-windows/8-jdk/windows
+
+
+There are several options where to obtain OpenJDK for Windows.
+
+* RedHat
+  * https://developers.redhat.com/products/openjdk/overview/
+
+* Azul Systems
+  * https://www.azul.com/downloads/zulu/zulu-windows/
+
+* ojdkbuild/ojdkbuild
+  * https://github.com/ojdkbuild/ojdkbuild
