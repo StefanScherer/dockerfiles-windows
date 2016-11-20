@@ -15,3 +15,12 @@ docker build -t msbuild .
 ```
 docker run -v "$(pwd):C:\code" msbuild msbuild yourproject.sln /p:Configuration=Release
 ```
+
+## Example
+
+```
+git clone https://github.com/StefanScherer/win-getaddrinfo
+cd win-getaddrinfo
+docker run -v "$(pwd):C:\code" microsoft/msbuild msbuild getaddrinfo.sln /p:Configuration=Release
+dir getaddrinfo.exe
+```
