@@ -23,4 +23,4 @@ function build {
 
 build 4.6.2 4.6 4
 build 6.9.1 6.9 6
-build 7.1.0 7.1 7
+build 7.2.0 7.2 7
