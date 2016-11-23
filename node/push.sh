@@ -34,4 +34,4 @@ function push {
 
 push 4.6.2 4.6 4
 push 6.9.1 6.9 6
-push 7.1.0 7.1 7
+push 7.2.0 7.2 7

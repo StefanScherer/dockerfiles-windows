@@ -21,6 +21,6 @@ function build {
   docker tag node:$1-nano-onbuild node:$3-nano-onbuild
 }
 
-build 4.6.2 4.6 4
-build 6.9.1 6.9 6
+#build 4.6.2 4.6 4
+#build 6.9.1 6.9 6
 build 7.2.0 7.2 7
