@@ -27,6 +27,9 @@ function update_version() {
   find build* -type f -exec sed -i "" "s/$curr/$latest/g" {} +
   find build* -type f -exec sed -i "" "s/$curr_major_minor/$latest_major_minor/g" {} +
   find build* -type f -exec sed -i "" "s/$curr_major/$latest_major/g" {} +
+  find push* -type f -exec sed -i "" "s/$curr/$latest/g" {} +
+  find push* -type f -exec sed -i "" "s/$curr_major_minor/$latest_major_minor/g" {} +
+  find push* -type f -exec sed -i "" "s/$curr_major/$latest_major/g" {} +
 
   mv ${curr_major_minor} ${latest_major_minor}
 }
