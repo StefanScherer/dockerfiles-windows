@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 function update_version() {
   version=$1
@@ -21,8 +22,6 @@ function update_version() {
   latest_major="${a[0]}"
   latest_major_minor="${a[0]}.${a[1]}"
  
-  set -x
-  set -e
   find ${curr_major_minor} -type f -exec sed -i "" "s/ENV NODE_SHA256.*/ENV NODE_SHA256 $sha/g" {} +
   find ${curr_major_minor} -type f -exec sed -i "" "s/$curr/$latest/g" {} +
   find build* -type f -exec sed -i "" "s/$curr/$latest/g" {} +
