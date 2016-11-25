@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore
+FROM microsoft/nanoserver
 
 ENV MONGO_VERSION=3.2.11
 
