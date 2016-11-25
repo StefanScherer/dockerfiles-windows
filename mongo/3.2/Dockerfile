@@ -1,14 +1,13 @@
 FROM microsoft/windowsservercore
 
-ENV MONGO_MAJOR=3.2 \
-    MONGO_VERSION=3.2.9
+ENV MONGO_VERSION=3.2.11
 
 COPY build /
 
-# The VOLUME keyword is not supported on Windows yet
-# VOLUME /data/db
+RUN mkdir C:\data\db & setx /m PATH %PATH%;C:\mongodb\bin
 
-# The EXPOSE keyword is not supported on Windows yet
-# EXPOSE 27017
+VOLUME C:\\data\\db
 
-CMD ["C:/mongodb/bin/mongod.exe"]
+EXPOSE 27017
+
+CMD ["mongod.exe"]
