@@ -1,6 +1,6 @@
 # NanoServerApiScan
 
-Build a Docker image with the NanoServerApiScan tool.
+Build a Docker image with the NanoServerApiScan tool. If you developed a 64-bit application, tool, or agent for Windows Server in C/C++, you can use NanoServerApiScan to check if your app will also run on Nano Server. Remember that Nano Server is 64-bit only and won’t run 32-bit binaries.
 
 ## Usage
 
