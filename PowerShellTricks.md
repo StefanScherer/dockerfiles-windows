@@ -146,7 +146,7 @@ Surprise!
 ## Get Windows version
 
 ```powershell
-PS C:\Users\vagrant> $(gin).WindowsBuildLabEx
+PS C:\Users\vagrant> $(gp "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").BuildLabEx
 14393.447.amd64fre.rs1_release_inmarket.161102-0100
 PS C:\Users\vagrant> winver
 ```
