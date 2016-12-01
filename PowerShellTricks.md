@@ -143,6 +143,14 @@ docker rm -vf $(docker ps -qa)
 
 Surprise!
 
+## Get Windows version
+
+```powershell
+PS C:\Users\vagrant> $(gp "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").BuildLabEx
+14393.447.amd64fre.rs1_release_inmarket.161102-0100
+PS C:\Users\vagrant> winver
+```
+
 ## Links
 
 ### Basic networking PowerShell Cmdlets cheatsheet to replace `netsh`, `ipconfig`, `nslookup` and more
