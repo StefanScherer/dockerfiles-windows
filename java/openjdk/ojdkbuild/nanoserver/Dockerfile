@@ -1,6 +1,6 @@
 FROM microsoft/nanoserver
 
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV JAVA_VERSION 1.8.0.111-1
 ENV JAVA_ZIP_VERSION 1.8.0-openjdk-1.8.0.111-1.b15

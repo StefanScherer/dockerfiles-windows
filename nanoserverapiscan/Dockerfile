@@ -1,7 +1,7 @@
 # escape=`
 FROM microsoft/windowsservercore
 
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 RUN (New-Object System.Net.WebClient).DownloadFile('https://msdnshared.blob.core.windows.net/media/2016/04/NanoServerApiScan.zip', 'NanoServerApiScan.zip') ; `
     Expand-Archive NanoServerApiScan.zip -DestinationPath C:\tool ; `

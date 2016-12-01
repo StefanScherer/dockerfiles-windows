@@ -1,6 +1,6 @@
 FROM stefanscherer/golang-windows:1.8beta1
 
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV DOCKER_BUILDTAGS include_oss include_gcs
 ENV DISTRIBUTION_VERSION v2.6.0-rc.1

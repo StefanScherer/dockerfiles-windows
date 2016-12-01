@@ -1,6 +1,6 @@
 FROM microsoft/windowsservercore
 
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV VERSION 2.5.0
 

@@ -1,7 +1,7 @@
 # escape=`
 FROM microsoft/windowsservercore
 
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 # Install Windows SDK 10 - avoids installing 'Windows IP Over USB-x86_en-us.msi'
 # Workaround for https://github.com/PowerShell/PowerShell/issues/2571

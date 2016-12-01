@@ -1,6 +1,6 @@
 FROM microsoft/windowsservercore
 
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV JAVA_VERSION 8.19.0.1-jdk8.0.112
 ENV JAVA_MD5 70bbe971a9a6995a9e909b709ae52b34

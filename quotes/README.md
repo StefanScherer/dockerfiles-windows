@@ -19,7 +19,7 @@ RUN powershell -Command $a = \"world\" ; $b = \"hello \"\"$a\"\"\" ; Write-Host 
 or with a good practice using the `SHELL` command
 
 ```Dockerfile
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 RUN $a = \"world\" ; $b = \"hello \"\"$a\"\"\" ; Write-Host \"'$b'\"
 ```
 

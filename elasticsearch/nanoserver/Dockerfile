@@ -1,6 +1,6 @@
 FROM stefanscherer/openjdk-windows:8-nanoserver
 
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV ELASTICSEARCH_VERSION 5.0.1
 ENV ELASTICSEARCH_HOME C:\\elasticsearch-${ELASTICSEARCH_VERSION}

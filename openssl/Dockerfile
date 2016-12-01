@@ -2,7 +2,7 @@ FROM microsoft/windowsservercore
 MAINTAINER scherer_stefan@icloud.com
 
 ENV chocolateyUseWindowsCompression false
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 RUN iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')); \
     choco install -y openssl.light

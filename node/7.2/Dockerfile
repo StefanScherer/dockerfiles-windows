@@ -1,6 +1,6 @@
 FROM microsoft/windowsservercore
 
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV NPM_CONFIG_LOGLEVEL info
 ENV NODE_VERSION 7.2.0
