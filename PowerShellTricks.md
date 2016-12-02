@@ -37,6 +37,14 @@ wget -Uri $url -OutFile $localfile
 ```
 
 ## Downloading a file (wget, curl)
+`Invoke-WebRequest` works for both windowsservercore and nanoserver. 
+
+```powershell
+$ProgressPreference = 'SilentlyContinue'
+Invoke-WebRequest $url -OutFile $target -UseBasicParsing 
+```
+
+Only for windowsservercore, you can also use
 
 ```powershell
 $wc = New-Object net.webclient; $wc.Downloadfile($url, $target)
@@ -57,6 +65,7 @@ $WebClient.DownloadFile( $url, $localfile )
 To extract a ZIP file use this
 
 ```powershell
+$ProgressPreference = 'SilentlyContinue'
 Expand-Archive -Path $zip -DestinationPath $dest -Force
 ```
 
