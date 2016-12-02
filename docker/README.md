@@ -17,10 +17,11 @@ If you want to build Docker Engine on your own then just run `build.bat`.
 If you are interested in a pull request and want to try it out before
 it gets merged, you can run `build.bat` with the pull request number.
 
-To build eg. this PR https://github.com/docker/docker/pull/22873 which fixes del/backspace issues for Linux/Mac terminals, run
+To build eg. this PR https://github.com/docker/docker/pull/28964 which switches
+to `make.ps1`, run
 
 ```cmd
-.\build.bat 22873
+.\build.bat 28964
 ```
 
 The binaries for Docker Client and Docker Daemon are copied into the `binary` sub directory.
@@ -30,8 +31,8 @@ The binaries for Docker Client and Docker Daemon are copied into the `binary` su
 Open an administrator PowerShell and run these commands to replace the Docker Client and Daemon. You may make a backup of your current binaries.
 
 ```powershell
-stop-service docker
-copy binary\docker.exe C:\Windows\system32\docker.exe
-copy binary\dockerd.exe C:\Windows\system32\dockerd.exe
-start-service docker
+Stop-Service docker
+copy binary\docker.exe "C:\Program Files\docker\docker.exe"
+copy binary\dockerd.exe "C:\Program Files\docker\dockerd.exe"
+Start-Service docker
 ```
