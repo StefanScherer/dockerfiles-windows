@@ -38,6 +38,14 @@ Porting Dockerfiles from Linux to Windows I found it useful to use PowerShell at
 ## Feedback and Pull Requests are welcome
 If you have some improvements, bug fixes, some new Dockerfiles or more PowerShell tricks, just send me a PR. If you have questions or problems, open an issue for discussion.
 
+## Troubleshooting
+
+If you have trouble running Windows Containers you should have a look at https://msdn.microsoft.com/en-us/virtualization/windowscontainers/troubleshooting
+
+```powershell
+Invoke-WebRequest https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/master/windows-server-container-tools/Debug-ContainerHost/Debug-ContainerHost.ps1 -UseBasicParsing | Invoke-Expression
+```
+
 ## License
 
 MIT - for more details see the [LICENSE](./LICENSE) file.
