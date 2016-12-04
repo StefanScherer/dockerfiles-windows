@@ -1,14 +1,12 @@
 $ErrorActionPreference = 'Stop';
+
+if ( $env:APPVEYOR_PULL_REQUEST_NUMBER -Or ! $env:APPVEYOR_REPO_BRANCH.Equals("master")) {
+  Write-Host Nothing to deploy.
+  Exit 0
+}
+
 $files = ""
-Write-Host Starting build
-
-Write-Host Updating base images
-docker pull microsoft/windowsservercore
-docker pull microsoft/nanoserver
-
-Write-Host Removing old images
-docker rmi $(docker images --filter "since=microsoft/nanoserver" -q)
-docker system prune -f
+Write-Host Starting deploy
 
 if ( $env:APPVEYOR_PULL_REQUEST_NUMBER ) {
   Write-Host Pull request $env:APPVEYOR_PULL_REQUEST_NUMBER
