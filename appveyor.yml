@@ -1,0 +1,12 @@
+version: 1.0.{build}
+install:
+  - choco install -y docker -pre
+  - choco install -y curl
+  - curl.exe -s http://whatismijnip.nl
+  - docker version
+  - docker system prune -f
+
+build_script:
+  - ps: .\build.ps1
+
+test: off
