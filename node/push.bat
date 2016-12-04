@@ -2,7 +2,7 @@ call :push 4.6.2 4.6 4
 call :push 6.9.1 6.9 6
 call :push 7.2.0 7.2 7
 
-goto eof
+goto :eof
 :push
 setlocal
 docker tag node:%1 stefanscherer/node-windows:%1 || exit /b
