@@ -23,17 +23,17 @@ $files | ForEach-Object {
   if ($_.Contains("Dockerfile")) {
     $dir = $_ -replace "\/Dockerfile.*", ""
     $dir = $dir -replace "/", "\"
-    if (Test-Path "$dir\build.bat") {
+    if (Test-Path "$dir\push.bat") {
       Write-Host Building in directory $dir
       pushd $dir
-      . .\build.bat
+      . .\push.bat
       popd
     } else {
       $dir = $dir -replace "\\[^\\]+", ""
-      if (Test-Path "$dir\build.bat") {
+      if (Test-Path "$dir\push.bat") {
         Write-Host Building in directory $dir
         pushd $dir
-        . .\build.bat
+        . .\push.bat
         popd
       }
     }
