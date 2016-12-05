@@ -43,3 +43,5 @@ $files | ForEach-Object {
     }
   }
 }
+
+docker images
