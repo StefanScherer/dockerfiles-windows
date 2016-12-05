@@ -4,7 +4,7 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 
 ENV VERSION 2.5.0
 
-ENV LIBRESSLPATH C:\\libressl
+ENV LIBRESSLPATH C:\libressl
 
 # Remark: openbsd's SSL seems to be wonky (ironically)
 RUN [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]'Ssl3,Tls,Tls11,Tls12' ; \
