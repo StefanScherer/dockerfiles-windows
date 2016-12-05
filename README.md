@@ -1,4 +1,6 @@
 # dockerfiles-windows
+[![Build status](https://ci.appveyor.com/api/projects/status/adxm3egqc5md3fe3/branch/master?svg=true)](https://ci.appveyor.com/project/StefanScherer/dockerfiles-windows/branch/master)
+
 Various Dockerfiles for Windows. You probably have heard about Docker and that everyone uses Linux Containers. You can do this on Windows as well today with the Windows 10 1607 or Windows Server 2016 using Windows Containers.
 
 ## Getting started
