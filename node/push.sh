@@ -32,6 +32,6 @@ function push {
   docker push stefanscherer/node-windows:$3-nano-onbuild
 }
 
-push 4.6.2 4.6 4
-push 6.9.1 6.9 6
+push 4.7.0 4.7 4
+push 6.9.2 6.9 6
 push 7.2.0 7.2 7
