@@ -24,5 +24,5 @@ cd C:\code
 Now run the DSC configuration
 
 ```
-Start-DscConfiguration . -verbose -wait
+Start-DSCConfiguration . -verbose -wait
 ```
