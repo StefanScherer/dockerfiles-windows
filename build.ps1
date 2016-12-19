@@ -8,8 +8,9 @@ docker pull microsoft/nanoserver
 
 Write-Host Removing old images
 $ErrorActionPreference = 'SilentlyContinue';
-docker rmi -f $(docker images --filter "since=microsoft/nanoserver" -q)
+docker rmi $(docker images --no-trunc --format '{{.Repository}}:{{.Tag}}' | sls -notmatch -pattern '(REPOSITORY|microsoft\/(windowsservercore|nanoserver))')
 $ErrorActionPreference = 'Stop';
+Write-Host Prune system
 docker system prune -f
 
 if ( $env:APPVEYOR_PULL_REQUEST_NUMBER ) {
