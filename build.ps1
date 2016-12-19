@@ -22,27 +22,32 @@ if ( $env:APPVEYOR_PULL_REQUEST_NUMBER ) {
 }
 
 Write-Host Changed files:
-Write-host $files
+
+$dirs = @{}
 
 $files | ForEach-Object {
-  if ($_.Contains("Dockerfile")) {
-    $dir = $_ -replace "\/Dockerfile.*", ""
-    $dir = $dir -replace "/", "\"
+  Write-Host $_
+  $dir = $_ -replace "\/[^\/]+$", ""
+  $dir = $dir -replace "/", "\"
+  dir $dir
+  if (Test-Path "$dir\build.bat") {
+    Write-Host "Storing $dir for build"
+    $dirs.Set_Item($dir, 1)
+  } else {
+    $dir = $dir -replace "\\[^\\]+$", ""
     if (Test-Path "$dir\build.bat") {
-      Write-Host Building in directory $dir
-      pushd $dir
-      . .\build.bat
-      popd
-    } else {
-      $dir = $dir -replace "\\[^\\]+", ""
-      if (Test-Path "$dir\build.bat") {
-        Write-Host Building in directory $dir
-        pushd $dir
-        . .\build.bat
-        popd
-      }
+      Write-Host "Storing $dir for build"
+      $dirs.Set_Item($dir, 1)
     }
   }
+}
+
+$dirs.GetEnumerator() | Sort-Object Name | ForEach-Object {
+  $dir = $_.Name
+  Write-Host Building in directory $dir
+  pushd $dir
+  . .\build.bat
+  popd
 }
 
 docker images
