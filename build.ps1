@@ -29,7 +29,6 @@ $files | ForEach-Object {
   Write-Host $_
   $dir = $_ -replace "\/[^\/]+$", ""
   $dir = $dir -replace "/", "\"
-  dir $dir
   if (Test-Path "$dir\build.bat") {
     Write-Host "Storing $dir for build"
     $dirs.Set_Item($dir, 1)
