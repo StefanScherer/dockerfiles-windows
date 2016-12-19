@@ -1,7 +1,7 @@
 # OpenJDK for Windows
 
 Build a Docker image with OpenJDK for Windows.
-The ojdkbuild https://github.com/ojdkbuild/ojdkbuild is used for these images.
+The [ojdkbuild](https://github.com/ojdkbuild/ojdkbuild) is used for these images.
 
 ## Build the Windows images
 
