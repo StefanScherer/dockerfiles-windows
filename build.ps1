@@ -8,8 +8,7 @@ docker pull microsoft/nanoserver
 
 Write-Host Removing old images
 $ErrorActionPreference = 'SilentlyContinue';
-docker rmi $(docker images --no-trunc | sls -notmatch -pattern '(REPOSITORY|microsoft\/(windowsservercore|nanoserver))' | Foreac
-h {($_ -split '\s+',4)[0]})
+docker rmi $(docker images --no-trunc | sls -notmatch -pattern '(REPOSITORY|microsoft\/(windowsservercore|nanoserver))' | Foreach {($_ -split '\s+',4)[0]})
 $ErrorActionPreference = 'Stop';
 Write-Host Prune system
 docker system prune -f
