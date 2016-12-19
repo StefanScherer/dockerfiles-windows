@@ -63,6 +63,34 @@ $env:DOCKER_TLS_VERIFY="1"
 docker version
 ```
 
+## Managing Multiple Hosts
+
+## First Host
+For the first host you must create an empty directory to hold the Certificate Authority Private Keys.
+Ideally the key and password should be kept separate and only provided when additional certificates are created.
+```
+mkdir $env:SystemDrive\DockerSSLCARoot
+mkdir $env:USERPROFILE\.docker
+docker run --rm `
+  -e SERVER_NAME=$(hostname) `
+  -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
+  -v "$env:SystemDrive\DockerSSLCARoot:c:\DockerSSLCARoot" `
+  -v "$env:ALLUSERSPROFILE\docker:$env:ALLUSERSPROFILE\docker" `
+  -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
+```
+## Subsequent Hosts
+For subsequent hosts you first need to copy over the DockerSSLCARoot directory from the first host.
+```
+Copy-Item -Path <somesecurelocation>\DockerSSLCARoot c:\DockerSSLCARoot
+mkdir $env:USERPROFILE\.docker
+docker run --rm `
+  -e SERVER_NAME=$(hostname) `
+  -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
+  -v "$env:SystemDrive\DockerSSLCARoot:c:\DockerSSLCARoot" `
+  -v "$env:ALLUSERSPROFILE\docker:$env:ALLUSERSPROFILE\docker" `
+  -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
+```
+
 ## See also
 
 * [Dockerfile](https://github.com/StefanScherer/dockerfiles-windows/blob/master/dockertls/Dockerfile)
