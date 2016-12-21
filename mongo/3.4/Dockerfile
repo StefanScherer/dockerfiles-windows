@@ -1,6 +1,6 @@
 FROM microsoft/windowsservercore
 
-ENV MONGO_VERSION=3.4.0
+ENV MONGO_VERSION=3.4.1
 
 COPY build /
 
