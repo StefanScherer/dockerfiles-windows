@@ -4,7 +4,6 @@ mkdir build
 
 docker cp mongobuilder:/mongodb build
 docker cp mongobuilder:/windows/system32/msvcp140.dll build/mongodb/bin
-docker cp mongobuilder:/windows/system32/msvcr140.dll build/mongodb/bin
 docker cp mongobuilder:/windows/system32/vcruntime140.dll build/mongodb/bin
 del build\mongodb\bin\*.pdb
 
