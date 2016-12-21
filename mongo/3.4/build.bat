@@ -1,5 +1,3 @@
-#!/bin/bash
-set -e
 docker build -t mongobuilder -f Dockerfile.build .
 docker rm -f mongobuilder
 docker create --name=mongobuilder mongobuilder
@@ -8,6 +6,7 @@ mkdir build
 
 docker cp mongobuilder:/mongodb build
 docker cp mongobuilder:/windows/system32/msvcp140.dll build/mongodb/bin
+docker cp mongobuilder:/windows/system32/msvcr140.dll build/mongodb/bin
 docker cp mongobuilder:/windows/system32/vcruntime140.dll build/mongodb/bin
 rm -f build/mongodb/bin/*.pdb
 
