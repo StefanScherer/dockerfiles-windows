@@ -42,16 +42,62 @@ Error: ENOENT: no such file or directory, lstat 'c:\ContainerMappedDirectories'
 
 ## Compile Node.js from source and run tests
 
+This takes very long, you may skip this and compile and test libuv.
+
 ```powershell
 docker build -t nodetest node
 ```
 
 ## Compile libuv
 
+Now compile and test libuv inside a container.
+
 ```powershell
 docker build -t libuvtest libuv
 ```
 
-## TODO
+### Run tests inside the container
 
-* Run the tests on a mounted volume
+We can re-run the tests with the container image.
+
+```powershell
+docker run -it libuvtest cmd
+cd libuv
+Debug\run-tests.exe
+```
+
+All tests pass. Output: [libuv-run-tests-1-inside-container.txt](./libuv-run-tests-1-inside-container.txt)
+
+### Run tests in a copied container
+
+The next step should proof that copying the files to the host and back into an
+empty container does not break the tests.
+
+We copy the `C:\libuv` from the first container image `libuvtest`to the host and
+then into a new container and build a new container image `copy` with it.
+
+```powershell
+docker create --name libuvtest libuvtest
+docker cp libuvtest:/libuv libuv
+docker create --name copy microsoft/windowsservercore
+docker cp libuv copy:/libuv
+docker commit copy copy
+docker run -it copy cmd
+cd libuv
+Debug\run-tests.exe
+```
+
+All tests still pass. Output: [libuv-run-tests-2-inside-copied-container.txt](./libuv-run-tests-2-inside-copied-container.txt)
+
+### Run tests in a host mounted volume
+
+Now let's mount the directory `libuv` as `C:\libuv` in another empty container
+and run the same tests directly on the mounted volume.
+
+```powershell
+docker run -it -v "$(pwd)\libuv:C:\libuv" microsoft/windowsservercore cmd
+cd libuv
+Debug\run-tests.exe
+```
+
+There are errors. Output: [libuv-run-tests-3-in-mounted-volume.txt](./libuv-run-tests-3-in-mounted-volume.txt)
