@@ -13,7 +13,6 @@ docker tag mongo:latest mongo:3.4.1
 docker build -t mongo:nano -f nano/Dockerfile .
 docker tag mongo:nano mongo:3.4.1-nano
 
-# check images
 echo "Check windowsservercore"
 docker run mongo mongod.exe -version
 echo "Check nanoserver"
