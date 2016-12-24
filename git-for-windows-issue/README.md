@@ -1,6 +1,7 @@
 # Git for Windows issue
 
 This is a test setup to test Git for Windows in a Windows Docker container.
+See https://github.com/git-for-windows/git/issues/1007
 
 ## Build the Docker image
 
