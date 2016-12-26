@@ -38,8 +38,7 @@ RUN .\configure_iis.ps1; \
     Remove-Item configure_iis.ps1;
 
 # Expose the Site
-RUN powershell -NoProfile -Command Import-module IISAdministration; \
-    New-IISSite -Name "www" -PhysicalPath C:\www -BindingInformation "*:80:";
+RUN New-WebSite -Name "www" -PhysicalPath C:\www -Port 80
 
 # Change working directory to web root
 WORKDIR /www
