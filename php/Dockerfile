@@ -10,7 +10,7 @@ WORKDIR /Users/ContainerAdministrator/Downloads
 # Visual C++ 2015 Redistributable
 # workaround: the .exe command completes early and does not finish the install, so added 10s sleep to the end to allow time to finish
 RUN Invoke-WebRequest 'https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/vc_redist.x64.exe' -OutFile 'vc_redist.x64.exe'; \
-	.\vc_redist.x64.exe /install /passive /norestart; \
+    .\vc_redist.x64.exe /install /passive /norestart; \
     Start-Sleep -s 10; \
     Remove-Item vc_redist.x64.exe;
 
@@ -19,7 +19,7 @@ RUN Invoke-WebRequest $('http://windows.php.net/downloads/releases/php-{0}-nts-W
     if ((Get-FileHash php.zip -Algorithm sha1).Hash -ne $env:PHP_SHA1) {exit 1} ; \
     Expand-Archive -Path php.zip -DestinationPath c:\php; \
     [Environment]::SetEnvironmentVariable('PATH', $env:Path + ';C:\php', [EnvironmentVariableTarget]::Machine); \
-	$env:PATH = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \
+    $env:PATH = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \
     Remove-Item php.zip; \
     php --version;
 
@@ -38,8 +38,7 @@ RUN .\configure_iis.ps1; \
     Remove-Item configure_iis.ps1;
 
 # Expose the Site
-RUN powershell -NoProfile -Command Import-module IISAdministration; \
-    New-IISSite -Name "www" -PhysicalPath C:\www -BindingInformation "*:80:";
+RUN New-WebSite -Name "www" -PhysicalPath C:\www -Port 80
 
 # Change working directory to web root
 WORKDIR /www
