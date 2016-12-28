@@ -45,7 +45,7 @@ If you have some improvements, bug fixes, some new Dockerfiles or more PowerShel
 
 ## Troubleshooting
 
-If you have trouble running Windows Containers you should have a look at https://msdn.microsoft.com/en-us/virtualization/windowscontainers/troubleshooting
+If you have trouble running Windows Containers you should have a look at https://docs.microsoft.com/virtualization/windowscontainers/troubleshooting
 
 ```powershell
 Invoke-WebRequest https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/master/windows-server-container-tools/Debug-ContainerHost/Debug-ContainerHost.ps1 -UseBasicParsing | Invoke-Expression
