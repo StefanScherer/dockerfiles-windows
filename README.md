@@ -33,7 +33,10 @@ Various Dockerfiles for Windows. You probably have heard about Docker and that e
   * Image what will happen when [Kitematic meets Windows Containers](http://blog.hypriot.com/post/kitematic-meets-windows-docker/).
   * **More Dockerfiles for Windows:** [Buc Rogers: Dockerfiles-for-Windows](https://github.com/brogersyh/Dockerfiles-for-windows)
   * **Windows Server Containers Examples**: https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/windowsservercore
-
+  * **Networking**
+    * [Windows Container Networking](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/container-networking)
+    * [Docker Compose and Networking blog post](https://blogs.technet.microsoft.com/virtualization/2016/10/18/use-docker-compose-and-service-discovery-on-windows-to-scale-out-your-multi-service-container-application/)
+   
 ## PowerShell tricks
 Porting Dockerfiles from Linux to Windows I found it useful to use PowerShell at some points. Here are some [PowerShell tricks](PowerShellTricks.md) that were useful for me.
 
