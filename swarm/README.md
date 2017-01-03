@@ -1,9 +1,9 @@
 # swarm
-https://hub.docker.com/r/stefanscherer/swarm-windows/
-
 Build the Docker Swarm binary and a Docker image the "Docker way" within a Docker container.
 
 See my [blog post](https://stefanscherer.github.io/build-docker-swarm-for-windows-the-docker-way/) for further details.
+
+The Docker image is available at https://hub.docker.com/r/stefanscherer/swarm-windows/
 
 ## build
 
