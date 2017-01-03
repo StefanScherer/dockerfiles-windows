@@ -6,14 +6,13 @@ environment:
     secure: DWlZYy4BAD1B2oovKAqeUQc8N1fNtr78Yd/hwX6AwQrqCHnyC+Tt/SjjzeWEje0P
 install:
   - choco install -y docker -pre
-  - choco install -y curl
-  - curl.exe -s http://whatismijnip.nl
   - docker version
 
 build_script:
   - ps: .\build.ps1
 
+test_script:
+  - ps: .\test.ps1
+
 deploy_script:
   - ps: .\deploy.ps1
-
-test: off
