@@ -28,4 +28,4 @@ RUN powershell -Command \
     git clone https://github.com/docker/swarm 2>&1 ; \
     cd swarm ; \
     git checkout %SWARM_VERSION% 2>&1 ; \
-    Start-Process -FilePath godep.exe -ArgumentList go, install, . -Wait
+    godep.exe go install . 2>&1
