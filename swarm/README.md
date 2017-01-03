@@ -1,5 +1,5 @@
 # swarm
-[![](https://badge.imagelayers.io/stefanscherer/swarm-windows.svg)](https://imagelayers.io/?images=stefanscherer/swarm-windows:latest 'Get your own badge on imagelayers.io')
+https://hub.docker.com/r/stefanscherer/swarm-windows/
 
 Build the Docker Swarm binary and a Docker image the "Docker way" within a Docker container.
 
