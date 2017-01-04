@@ -31,7 +31,7 @@ function createCA(){
 }
 
 # https://docs.docker.com/engine/security/https/
-function createCerts($certsPath, $serverName, $ipAddresses) {
+function createCerts($serverCertsPath, $serverName, $ipAddresses, $clientCertsPath) {
   Write-Host "`n=== Reading in CA Private Key Password"
   $Global:caPrivateKeyPass = Get-Content -Path $Global:caPrivateKeyPassFile
 
@@ -58,18 +58,18 @@ function createCerts($certsPath, $serverName, $ipAddresses) {
   & openssl x509 -req -days 365 -sha256 -in client.csr -CA $Global:caPublicKeyFile -passin $Global:caPrivateKeyPass -CAkey $Global:caPrivateKeyFile `
     -CAcreateserial -out cert.pem -extfile extfile.cnf
 
-  Write-Host "`n=== Copying Server certifcates to $certPath"
-  copy $Global:caPublicKeyFile $certsPath\ca.pem
-  copy server-cert.pem $certsPath\server-cert.pem
-  copy server-key.pem $certsPath\server-key.pem
+  Write-Host "`n=== Copying Server certificates to $serverCertsPath"
+  copy $Global:caPublicKeyFile $serverCertsPath\ca.pem
+  copy server-cert.pem $serverCertsPath\server-cert.pem
+  copy server-key.pem $serverCertsPath\server-key.pem
 
-  Write-Host "`n=== Copying Client certifcates to $userPath"
-  copy $Global:caPublicKeyFile $userPath\ca.pem
-  copy cert.pem $userPath\cert.pem
-  copy key.pem $userPath\key.pem
+  Write-Host "`n=== Copying Client certificates to $clientCertsPath"
+  copy $Global:caPublicKeyFile $clientCertsPath\ca.pem
+  copy cert.pem $clientCertsPath\cert.pem
+  copy key.pem $clientCertsPath\key.pem
 }
 
-function updateConfig($daemonJson, $certsPath) {
+function updateConfig($daemonJson, $serverCertsPath) {
   $config = @{}
   if (Test-Path $daemonJson) {
     $config = (Get-Content $daemonJson) -join "`n" | ConvertFrom-Json
@@ -78,35 +78,126 @@ function updateConfig($daemonJson, $certsPath) {
   $config = $config | Add-Member(@{ `
     hosts = @("tcp://0.0.0.0:2376", "npipe://"); `
     tlsverify = $true; `
-    tlscacert = "$certsPath\ca.pem"; `
-    tlscert = "$certsPath\server-cert.pem"; `
-    tlskey = "$certsPath\server-key.pem" `
+    tlscacert = "$serverCertsPath\ca.pem"; `
+    tlscert = "$serverCertsPath\server-cert.pem"; `
+    tlskey = "$serverCertsPath\server-key.pem" `
     }) -Force -PassThru
 
   Write-Host "`n=== Creating / Updating $daemonJson"
   $config | ConvertTo-Json | Set-Content $daemonJson -Encoding Ascii
 }
 
+function createMachineConfig ($machineName, $machineHome, $machinePath, $machineIp) {
+  $machineConfigJson = "$machinePath\config.json"
+
+  $config = @"
+{
+    "ConfigVersion": 3,
+    "Driver": {
+        "IPAddress": "$machineIp",
+        "MachineName": "$machineName",
+        "SSHUser": "none",
+        "SSHPort": 3389,
+        "SSHKeyPath": "",
+        "StorePath": "$machineHome/.docker/machine",
+        "SwarmMaster": false,
+        "SwarmHost": "",
+        "SwarmDiscovery": "",
+        "EnginePort": 2376,
+        "SSHKey": ""
+    },
+    "DriverName": "generic",
+    "HostOptions": {
+        "Driver": "",
+        "Memory": 0,
+        "Disk": 0,
+        "EngineOptions": {
+            "ArbitraryFlags": [],
+            "Dns": null,
+            "GraphDir": "",
+            "Env": [],
+            "Ipv6": false,
+            "InsecureRegistry": [],
+            "Labels": [],
+            "LogLevel": "",
+            "StorageDriver": "",
+            "SelinuxEnabled": false,
+            "TlsVerify": true,
+            "RegistryMirror": [],
+            "InstallURL": "https://get.docker.com"
+        },
+        "SwarmOptions": {
+            "IsSwarm": false,
+            "Address": "",
+            "Discovery": "",
+            "Agent": false,
+            "Master": false,
+            "Host": "tcp://0.0.0.0:3376",
+            "Image": "swarm:latest",
+            "Strategy": "spread",
+            "Heartbeat": 0,
+            "Overcommit": 0,
+            "ArbitraryFlags": [],
+            "ArbitraryJoinFlags": [],
+            "Env": null,
+            "IsExperimental": false
+        },
+        "AuthOptions": {
+            "CertDir": "$machineHome/.docker/machine/machines/$machineName",
+            "CaCertPath": "$machineHome/.docker/machine/machines/$machineName/ca.pem",
+            "CaPrivateKeyPath": "$machineHome/.docker/machine/machines/$machineName/ca-key.pem",
+            "CaCertRemotePath": "",
+            "ServerCertPath": "$machineHome/.docker/machine/machines/$machineName/server.pem",
+            "ServerKeyPath": "$machineHome/.docker/machine/machines/$machineName/server-key.pem",
+            "ClientKeyPath": "$machineHome/.docker/machine/machines/$machineName/key.pem",
+            "ServerCertRemotePath": "",
+            "ServerKeyRemotePath": "",
+            "ClientCertPath": "$machineHome/.docker/machine/machines/$machineName/cert.pem",
+            "ServerCertSANs": [],
+            "StorePath": "$machineHome/.docker/machine/machines/$machineName"
+        }
+    },
+    "Name": "$machineName"
+}
+"@
+
+  Write-Host "`n=== Creating / Updating $machineConfigJson"
+  $config | Set-Content $machineConfigJson -Encoding Ascii
+
+  Write-Host "`n=== Copying Client certificates to $machinePath"
+  copy $Global:caPublicKeyFile $machinePath\ca.pem
+  copy cert.pem $machinePath\cert.pem
+  copy key.pem $machinePath\key.pem
+}
 
 $dockerData = "$env:ProgramData\docker"
 $serverName = $env:SERVER_NAME
 $ipAddresses = $env:IP_ADDRESSES
 $userPath = "$env:USERPROFILE\.docker"
 
-
 ensureDirs @("$dockerData\certs.d", "$dockerData\config", "$userPath", $Global:DockerSSLCARoot)
 
 #Test the CA Root path to see if an existing set of CA keys was provided
-if (  !(Test-Path -Path $Global:caPrivateKeyPassFile) -or 
+if (  !(Test-Path -Path $Global:caPrivateKeyPassFile) -or
       !( Test-Path -Path $Global:caPrivateKeyFile) -or
-      !( Test-Path -Path $Global:caPrivateKeyPassFile) 
+      !( Test-Path -Path $Global:caPrivateKeyPassFile)
    )
 {
   createCA
 }
 
-createCerts "$dockerData\certs.d" $serverName $ipAddresses
-updateConfig "$dockerData\config\daemon.json" "$dockerData\certs.d" "$userPath"
+createCerts "$dockerData\certs.d" $serverName $ipAddresses "$userPath"
+updateConfig "$dockerData\config\daemon.json" "$dockerData\certs.d"
+
+$machineHome = $env:MACHINE_HOME
+$machineName = $env:MACHINE_NAME
+$machineIp = $env:MACHINE_IP
+
+if ($machineName) {
+  $machinePath = "C:\machine\.docker\machine\machines\$machineName"
+  ensureDirs @($machinePath)
+  createMachineConfig $machineName $machineHome $machinePath $machineIp
+}
 
 Write-Host "`n=== Finished"
 Write-Host "Now restart Docker service with the following command:"
