@@ -6,8 +6,7 @@ ENV VERSION 2.5.0
 
 ENV LIBRESSLPATH C:\libressl
 
-# Remark: openbsd's SSL seems to be wonky (ironically)
-RUN [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]'Ssl3,Tls,Tls11,Tls12' ; \
+RUN [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]'Tls12' ; \
 	Invoke-WebRequest "https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-$Env:VERSION-windows.zip" -OutFile libressl.zip -UseBasicParsing ; \
 	Expand-Archive libressl.zip -DestinationPath $Env:Temp ; \
 	New-Item -ItemType Directory -Path $Env:LIBRESSLPATH ; \
