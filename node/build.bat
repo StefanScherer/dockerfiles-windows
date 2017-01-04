@@ -1,5 +1,5 @@
-call :build 4.7.0 4.7 4
-call :build 6.9.2 6.9 6
+call :build 4.7.1 4.7 4
+call :build 6.9.3 6.9 6
 call :build 7.3.0 7.3 7
 
 goto :eof
