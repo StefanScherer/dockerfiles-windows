@@ -1,5 +1,5 @@
-call :push 4.7.0 4.7 4
-call :push 6.9.2 6.9 6
+call :push 4.7.1 4.7 4
+call :push 6.9.3 6.9 6
 call :push 7.3.0 7.3 7
 
 goto :eof

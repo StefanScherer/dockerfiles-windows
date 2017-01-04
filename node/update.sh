@@ -31,7 +31,9 @@ function update_version() {
   find push* -type f -exec sed -i "" "s/$curr_major_minor/$latest_major_minor/g" {} +
   find push* -type f -exec sed -i "" "s/$curr_major/$latest_major/g" {} +
 
-  mv ${curr_major_minor} ${latest_major_minor}
+  if [ "$curr_major_minor" != "$latest_major_minor" ]; then
+    mv ${curr_major_minor} ${latest_major_minor}
+  fi
 }
 
 update_version 7
