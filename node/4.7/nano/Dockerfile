@@ -4,7 +4,7 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 
 ENV NPM_CONFIG_LOGLEVEL info
 ENV NODE_VERSION 4.7.1
-ENV NODE_SHA256 3e0f646ae187cfd44d553bbcc86d8b892a21bb6e37999507081dbf0bd320a336
+ENV NODE_SHA256 306e843bd80ce26536a72e43dca472f67a9f04d7b919e3dfce1fab2dab15aed2
 
 RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/node-v{0}-win-x64.zip' -f $env:NODE_VERSION) -OutFile 'node.zip' -UseBasicParsing ; \
     if ((Get-FileHash node.zip -Algorithm sha256).Hash -ne $env:NODE_SHA256) {exit 1} ; \
