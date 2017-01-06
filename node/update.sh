@@ -23,13 +23,13 @@ function update_version() {
   latest_major_minor="${a[0]}.${a[1]}"
  
   find ${curr_major_minor} -type f -exec sed -i "" "s/ENV NODE_SHA256.*/ENV NODE_SHA256 $sha/g" {} +
-  find ${curr_major_minor} -type f -exec sed -i "" "s/$curr/$latest/g" {} +
-  find build* -type f -exec sed -i "" "s/$curr/$latest/g" {} +
-  find build* -type f -exec sed -i "" "s/$curr_major_minor/$latest_major_minor/g" {} +
-  find build* -type f -exec sed -i "" "s/$curr_major/$latest_major/g" {} +
-  find push* -type f -exec sed -i "" "s/$curr/$latest/g" {} +
-  find push* -type f -exec sed -i "" "s/$curr_major_minor/$latest_major_minor/g" {} +
-  find push* -type f -exec sed -i "" "s/$curr_major/$latest_major/g" {} +
+  find ${curr_major_minor} -type f -exec sed -i "" "s/${curr//./\\.}/$latest/g" {} +
+  find build* -type f -exec sed -i "" "s/${curr//./\\.}/$latest/g" {} +
+  find build* -type f -exec sed -i "" "s/${curr_major_minor//./\\.}/$latest_major_minor/g" {} +
+  find build* -type f -exec sed -i "" "s/${curr_major//./\\.}/$latest_major/g" {} +
+  find push* -type f -exec sed -i "" "s/${curr//./\\.}/$latest/g" {} +
+  find push* -type f -exec sed -i "" "s/${curr_major_minor//./\\.}/$latest_major_minor/g" {} +
+  find push* -type f -exec sed -i "" "s/${curr_major//./\\.}/$latest_major/g" {} +
 
   if [ "$curr_major_minor" != "$latest_major_minor" ]; then
     mv ${curr_major_minor} ${latest_major_minor}
