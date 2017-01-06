@@ -3,7 +3,7 @@ environment:
   DOCKER_USER:
     secure: LjNiW/ZWrfVIJn3Mc9foeg==
   DOCKER_PASS:
-    secure: DWlZYy4BAD1B2oovKAqeUQc8N1fNtr78Yd/hwX6AwQrqCHnyC+Tt/SjjzeWEje0P
+    secure: 4gsl5WiqIztEWhL5fuhp9X0qT/mKg9fYzKYUUPf5WStIuNddv0fvIKGmvvyuFzzd
 install:
   - choco install -y docker -pre
   - docker version
