@@ -19,6 +19,6 @@ RUN Invoke-WebRequest $('https://www.python.org/ftp/python/{0}/python-{0}-embed-
     Remove-Item get-pip.py ; \
     Remove-Item getpip.py
 
-#RUN pip install --no-cache-dir virtualenv
+RUN pip install --no-cache-dir virtualenv
 
 CMD [ "python.exe" ]
