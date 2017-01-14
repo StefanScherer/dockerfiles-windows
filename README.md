@@ -34,8 +34,10 @@ Various Dockerfiles for Windows. You probably have heard about Docker and that e
   * **More Dockerfiles for Windows:** [Buc Rogers: Dockerfiles-for-Windows](https://github.com/brogersyh/Dockerfiles-for-windows)
   * **Windows Server Containers Examples**: https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/windowsservercore
   * **Networking**
-    * [Windows Container Networking](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/container-networking)
-    * [Docker Compose and Networking blog post](https://blogs.technet.microsoft.com/virtualization/2016/10/18/use-docker-compose-and-service-discovery-on-windows-to-scale-out-your-multi-service-container-application/)
+    * [Windows NAT (WinNAT) — Capabilities and limitations](https://blogs.technet.microsoft.com/virtualization/2016/05/25/windows-nat-winnat-capabilities-and-limitations/), 2016-05-25
+    * [Windows Container Networking](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/container-networking), 2016-08-22
+    * [Docker Compose and Networking blog post](https://blogs.technet.microsoft.com/virtualization/2016/10/18/use-docker-compose-and-service-discovery-on-windows-to-scale-out-your-multi-service-container-application/), 2016-10-18
+    * [Published Ports On Windows Containers Don't Do Loopback](https://blog.sixeyed.com/published-ports-on-windows-containers-dont-do-loopback/), 2016-10-20
    
 ## PowerShell tricks
 Porting Dockerfiles from Linux to Windows I found it useful to use PowerShell at some points. Here are some [PowerShell tricks](PowerShellTricks.md) that were useful for me.
