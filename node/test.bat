@@ -6,6 +6,6 @@ goto :eof
 :test
 setlocal
 docker run node:%1 node --version
-docker run node:%1 npm --version
+docker run node:%1 npm.cmd --version
 docker run node:%1-nano node --version
-docker run node:%1-nano npm --version
+docker run node:%1-nano npm.cmd --version
