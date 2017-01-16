@@ -50,7 +50,7 @@ If you have some improvements, bug fixes, some new Dockerfiles or more PowerShel
 If you have trouble running Windows Containers you should have a look at https://docs.microsoft.com/virtualization/windowscontainers/troubleshooting
 
 ```powershell
-Invoke-WebRequest https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/master/windows-server-container-tools/Debug-ContainerHost/Debug-ContainerHost.ps1 -UseBasicParsing | Invoke-Expression
+Invoke-WebRequest https://aka.ms/Debug-ContainerHost.ps1 -UseBasicParsing | Invoke-Expression
 ```
 
 ## License
