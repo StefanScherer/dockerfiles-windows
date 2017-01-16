@@ -79,8 +79,6 @@ docker run --rm `
   -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
 ```
 
-
-
 ## Managing Multiple Hosts
 
 ### First Host
