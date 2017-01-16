@@ -2,7 +2,7 @@ FROM microsoft/windowsservercore
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV VERSION 2.5.0
+ENV VERSION 2.4.4
 
 ENV LIBRESSLPATH C:\libressl
 
