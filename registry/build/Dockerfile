@@ -3,7 +3,7 @@ FROM golang:1.8-nanoserver
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV DOCKER_BUILDTAGS include_oss include_gcs
-ENV DISTRIBUTION_VERSION v2.6.0-rc.2
+ENV DISTRIBUTION_VERSION v2.6.0
 
 ENV GIT_VERSION 2.11.0
 ENV GIT_DOWNLOAD_URL https://github.com/git-for-windows/git/releases/download/v${GIT_VERSION}.windows.1/MinGit-${GIT_VERSION}-64-bit.zip
