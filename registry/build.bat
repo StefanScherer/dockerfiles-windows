@@ -5,4 +5,4 @@ docker cp registry-builder:/gopath/src/github.com/docker/distribution/registry.e
 
 echo Building registry image
 docker build -t registry .
-docker tag registry:latest registry:2.6.0-rc.2
+docker tag registry:latest registry:2.6.0
