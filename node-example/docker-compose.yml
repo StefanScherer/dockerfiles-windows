@@ -3,7 +3,7 @@ version: "2.1"
 services:
   web:
     build: .
-    command: nodemon --debug=5858
+    command: nodemon.cmd --debug=5858 app.js
     volumes:
       - .:c:\code
     ports:

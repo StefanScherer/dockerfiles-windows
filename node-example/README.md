@@ -34,4 +34,28 @@ RUN set-itemproperty -path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manag
 WORKDIR 'G:\\'
 ```
 
-Only disadvantage at the moment is that eg. nodemon does not recognize code changes on the host.
+Now you can work from your Windows Docker host with these commands.
+
+First we build the Docker image that installs nodemon to watch for file modifications.
+
+```
+docker-compose build
+```
+
+Now we install the Node.js dependencies of your app. As we do not have Node.js installed on our Docker host
+we run npm install inside a container.
+
+```
+docker run -v "$(pwd):c:\code" nodeexample_web npm.cmd install
+```
+
+You will see a new folder `node_modules` also on the Docker host.
+
+Now run the application with
+
+```
+docker-compose up
+```
+
+You can change the the file `app.js` on your Windows Docker host and nodemon will restart
+the application after the change.
