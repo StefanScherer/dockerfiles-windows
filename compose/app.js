@@ -7,7 +7,7 @@ const MongoClient = require('mongodb').MongoClient;
 const sleep = 10;
 console.log('Sleeping',sleep,"seconds before connecting to MongoDB...");
 
-var host = "mongo."; // append a dot right now
+var host = "mongo";
 
 setTimeout(() => {
   // Connection URL
