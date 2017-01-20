@@ -1,3 +1,3 @@
-FROM stefanscherer/node-windows:6.7.0-onbuild
+FROM stefanscherer/node-windows:6.9.4-nano-onbuild
 
 CMD [ "node", "app.js" ]

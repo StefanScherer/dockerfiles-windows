@@ -1,7 +1,7 @@
-version: '2'
+version: '2.1'
 services:
   mongo:
-    image: stefanscherer/mongo-windows:3.2.9
+    image: stefanscherer/mongo-windows:3.4.1-nano
     ports:
       - 27017:27017
 
