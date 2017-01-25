@@ -1,1 +1,1 @@
-docker run traefik --help
+docker run traefik --help 2>&1
