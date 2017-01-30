@@ -1,7 +1,7 @@
 FROM microsoft/nanoserver
 
 # ADD https://github.com/containous/traefik/releases/download/v1.1.2/traefik_windows-amd64 /traefik.exe
-ADD https://github.com/StefanScherer/traefik/releases/download/v1.1.2-windows/traefik_windows-amd64 /traefik.exe
+ADD https://github.com/StefanScherer/traefik/releases/download/v1.1.2-windows-open/traefik_windows-amd64 /traefik.exe
 
 VOLUME C:/etc/traefik
 VOLUME C:/etc/ssl
