@@ -2,7 +2,7 @@
 
 [Træfɪk](https://github.com/containous/traefik) is a modern HTTP reverse proxy and load balancer made to deploy microservices with ease. It supports several backends ([Docker :whale:](https://www.docker.com/), [Swarm :whale::whale:](https://github.com/docker/swarm), [Mesos/Marathon](https://mesosphere.github.io/marathon/), [Consul](https://www.consul.io/), [Etcd](https://coreos.com/etcd/), [Zookeeper](https://zookeeper.apache.org), [BoltDB](https://github.com/boltdb/bolt), Rest API, file...) to manage its configuration automatically and dynamically.
 
-# Example usage
+## Example usage
 
 Grab a [sample configuration file](https://raw.githubusercontent.com/containous/traefik/master/traefik.sample.toml) and rename it to `traefik.toml`. Enable `docker` provider and web UI:
 
@@ -59,6 +59,39 @@ The web UI [http://localhost:8080](http://localhost:8080) will give you an overv
 
 ![Web UI Providers](https://traefik.io/web.frontend.png)
 
-# Documentation
+## Documentation
 
 You can find the complete documentation [here](https://docs.traefik.io).
+
+## Use with Let's Encrypt
+
+Edit the config files:
+* Change the `email` to your email address
+* Change `yourdomain.com` in both `traefik.toml` and `docker-compose.yml` to your registered domain name.
+
+For example in Azure add a inbound rule for port 443 to your Windows VM.
+
+Put the public IP address of your Azure VM to your `A` record of the DNS settings for your registered domain.
+
+Put sub domains as `CNAME` as well, eg. `whoami`.
+
+Add a firewall exception for the ports exposed by your containers.
+You need eg. port 8000 for the whoami containers so that traefik can talk to all the whoami containers.
+
+Run `docker-compose up` and the `acme.json` file will be created and stored on your Docker host to keep the certificates. As there is a rate limit of 20 requests per week you should store this file on your host to persist it.
+
+Now try curling the whoami
+
+```
+curl https://whoami.yourdomain.com
+```
+
+You should see two different Id's if you repeat the curl command.
+
+Now scale the service
+
+```
+docker-compose scale whoami1=10
+```
+
+And run curl again several times. Now more containers will respond.
