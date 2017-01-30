@@ -1,26 +1,35 @@
 version: '2.1'
 services:
   traefik:
-    image: traefik
+    image: stefanscherer/traefik-windows
     # we need the IP of the vEthernet (HNS Internal NIC)
-    command: --docker.endpoint=tcp://172.31.80.1:2375 --logLevel=DEBUG
+    command: --docker.endpoint=tcp://172.27.224.1:2375 --logLevel=DEBUG
     ports:
-      - "80:80"
       - "8080:8080"
+      - "443:443"
     volumes:
       - .:C:/etc/traefik
+#      - C:/Users/vagrant/.docker:C:/etc/ssl
 
   whoami1:
     image: stefanscherer/whoami-windows
     labels:
       - "traefik.backend=whoami"
-      - "traefik.frontend.rule=Host:whoami.docker.local"
+      - "traefik.frontend.entryPoints=https"
+      - "traefik.frontend.rule=Host:whoami.yourdomain.com"
 
   whoami2:
     image: stefanscherer/whoami-windows
     labels:
       - "traefik.backend=whoami"
-      - "traefik.frontend.rule=Host:whoami.docker.local"
+      - "traefik.frontend.entryPoints=https"
+      - "traefik.frontend.rule=Host:whoami.yourdomain.com"
+
+#  portainer:
+#    image: portainer/portainer
+#    labels:
+#      - "traefik.backend=portainer"
+#      - "traefik.frontend.rule=Host:portainer.yourdomain.com"
 
 networks:
   default:
