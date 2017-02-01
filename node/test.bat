@@ -1,6 +1,6 @@
-call :test 4.7.2
-call :test 6.9.4
-call :test 7.4.0
+call :test 4.7.3
+call :test 6.9.5
+call :test 7.5.0
 
 goto :eof
 :test
