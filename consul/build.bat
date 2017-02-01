@@ -1,2 +1,2 @@
 docker build -t consul .
-docker tag consul:latest consul:0.7.2
+docker tag consul:latest consul:0.7.3
