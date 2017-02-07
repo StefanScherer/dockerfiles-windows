@@ -1,0 +1,27 @@
+################################################################
+# Web configuration backend
+################################################################
+[web]
+address = ":8080"
+################################################################
+# Docker configuration backend
+################################################################
+[docker]
+domain = "docker.local"
+watch = true
+# Use Swarm Mode services as data provider
+#
+# Optional
+# Default: false
+#
+#swarmmode = true
+
+################################################################
+# Enable docker TLS connection
+# use -v path-on-host-to-tls-certs:C:\etc\ssl and the certs
+# will appear in drive S:
+################################################################
+[docker.tls]
+ca = "S:/ca.pem"
+cert = "S:/cert.pem"
+key = "S:/key.pem"
