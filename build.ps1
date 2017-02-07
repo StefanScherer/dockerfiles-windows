@@ -6,13 +6,6 @@ Write-Host Updating base images
 docker pull microsoft/windowsservercore
 docker pull microsoft/nanoserver
 
-Write-Host Removing old images
-$ErrorActionPreference = 'SilentlyContinue';
-docker rmi $(docker images --no-trunc --format '{{.Repository}}:{{.Tag}}' | sls -notmatch -pattern '(REPOSITORY|microsoft\/(windowsservercore|nanoserver))')
-$ErrorActionPreference = 'Stop';
-Write-Host Prune system
-docker system prune -f
-
 if ( $env:APPVEYOR_PULL_REQUEST_NUMBER ) {
   Write-Host Pull request $env:APPVEYOR_PULL_REQUEST_NUMBER
   $files = $(git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master))
