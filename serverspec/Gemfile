@@ -1,0 +1,4 @@
+source 'https://rubygems.org'
+gem "serverspec"
+gem "json_pure"
+gem "serverspec-extended-types"
