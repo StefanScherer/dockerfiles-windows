@@ -1,0 +1,4 @@
+*.md
+spec/
+Dockerfile
+.dockerignore
