@@ -8,6 +8,8 @@ environment:
     secure: 4gsl5WiqIztEWhL5fuhp9X0qT/mKg9fYzKYUUPf5WStIuNddv0fvIKGmvvyuFzzd
 install:
   - docker version
+  - ps: install-package -name docker -ProviderName DockerMsftProvider -MinimumVersion 1.13.1 -force
+  - docker version
 
 build_script:
   - ps: .\build.ps1
