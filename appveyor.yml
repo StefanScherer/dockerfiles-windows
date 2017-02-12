@@ -9,7 +9,7 @@ environment:
 install:
   - docker version
   - ps: Install-Package -Name docker -ProviderName DockerMsftProvider -Verbose -Update -Force
-#  - ps: start-service docker
+  - ps: start-service docker
   - docker version
 
 build_script:
