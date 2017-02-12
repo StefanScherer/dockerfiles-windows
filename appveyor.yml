@@ -8,8 +8,15 @@ environment:
     secure: 4gsl5WiqIztEWhL5fuhp9X0qT/mKg9fYzKYUUPf5WStIuNddv0fvIKGmvvyuFzzd
 install:
   - docker version
-  - ps: Install-Package -Name docker -ProviderName DockerMsftProvider -Verbose -Update -Force
-  - ps: start-service docker
+  # the official way to update to Docker 1.13.1 CS
+  # - ps: Install-Package -Name docker -ProviderName DockerMsftProvider -Verbose -Update -Force
+  # - ps: Start-Service docker
+  # the faster way to update to Docker 1.13.1 CS
+  - ps: $ProgressPreference = 'SilentlyContinue'
+  - ps: Invoke-WebRequest -Outfile $env:TEMP\docker-1.13.1.zip https://dockermsft.blob.core.windows.net/dockercontainer/docker-1-13-1.zip -UseBasicParsing
+  - ps: Stop-Service docker
+  - ps: Expand-Archive $env:TEMP\docker-1.13.1.zip -DestinationPath $env:ProgramFiles
+  - ps: Start-Service docker
   - docker version
 
 build_script:
