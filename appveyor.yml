@@ -13,10 +13,10 @@ install:
   # - ps: Start-Service docker
   # the faster way to update to Docker 1.13.1 CS
   - ps: >-
-      $ProgressPreference = 'SilentlyContinue'
-      Invoke-WebRequest -Outfile $env:TEMP\docker-1.13.1.zip https://dockermsft.blob.core.windows.net/dockercontainer/docker-1-13-1.zip -UseBasicParsing
-      Stop-Service docker
-      Expand-Archive $env:TEMP\docker-1.13.1.zip -DestinationPath $env:ProgramFiles -Force
+      $ProgressPreference = 'SilentlyContinue';
+      Invoke-WebRequest -Outfile $env:TEMP\docker-1.13.1.zip https://dockermsft.blob.core.windows.net/dockercontainer/docker-1-13-1.zip -UseBasicParsing;
+      Stop-Service docker;
+      Expand-Archive $env:TEMP\docker-1.13.1.zip -DestinationPath $env:ProgramFiles -Force;
       Start-Service docker
   - docker version
 
