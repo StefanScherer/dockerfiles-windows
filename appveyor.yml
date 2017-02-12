@@ -8,7 +8,9 @@ environment:
     secure: 4gsl5WiqIztEWhL5fuhp9X0qT/mKg9fYzKYUUPf5WStIuNddv0fvIKGmvvyuFzzd
 install:
   - docker version
+  - ps: $ProgressPreference = 'SilentlyContinue'
   - ps: install-package -name docker -ProviderName DockerMsftProvider -MinimumVersion 1.13.1 -force
+  - ps: start-service docker
   - docker version
 
 build_script:
