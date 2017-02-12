@@ -8,7 +8,7 @@ environment:
     secure: 4gsl5WiqIztEWhL5fuhp9X0qT/mKg9fYzKYUUPf5WStIuNddv0fvIKGmvvyuFzzd
 install:
   - docker version
-  - ps: Install-Package -Name docker -ProviderName DockerMsftProvider -Verbose -Update
+  - ps: Install-Package -Name docker -ProviderName DockerMsftProvider -Verbose -Update -Force
 #  - ps: start-service docker
   - docker version
 
