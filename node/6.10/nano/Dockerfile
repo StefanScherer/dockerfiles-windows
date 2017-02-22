@@ -3,8 +3,8 @@ FROM microsoft/nanoserver
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 6.9.5
-ENV NODE_SHA256 145d74288387fa929eb87ebec45696d108fb3432073e0c8ec55248e03f988e6c
+ENV NODE_VERSION 6.10.0
+ENV NODE_SHA256 39c809fe02863963a4bb1eaa0daec59abcc92c0331447c3d3e06392a7f72b79c
 
 RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/node-v{0}-win-x64.zip' -f $env:NODE_VERSION) -OutFile 'node.zip' -UseBasicParsing ; \
 		if ((Get-FileHash node.zip -Algorithm sha256).Hash -ne $env:NODE_SHA256) {exit 1} ; \
