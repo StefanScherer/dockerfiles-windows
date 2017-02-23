@@ -1,7 +1,16 @@
 package main
 
-import "net/http"
+import (
+	"fmt"
+	"net/http"
+	"os"
+)
 
 func main() {
-	panic(http.ListenAndServe(":8080", http.FileServer(http.Dir("."))))
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	fmt.Println("Proudly serving content on port", port)
+	panic(http.ListenAndServe(fmt.Sprintf(":%s", port), http.FileServer(http.Dir("."))))
 }
