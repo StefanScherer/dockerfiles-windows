@@ -46,5 +46,9 @@ start http://$(docker inspect -f '{{ .NetworkSettings.Networks.nat.IPAddress }}'
 
 or use the IP address of your Docker host if accessing from a remote machine.
 
+### Change the port
+
+The webserver application is listenting on port 8080. You can modify that by setting the environment variable `PORT` to another port number.
+
 ## License
 MIT
