@@ -1,13 +1,12 @@
-FROM microsoft/windowsservercore
-MAINTAINER scherer_stefan@icloud.com
+FROM microsoft/nanoserver
 
-ENV chocolateyUseWindowsCompression false
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-RUN powershell -Command \
-    iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')); \
-    choco install -y curl
+ENV CURL_VERSION 7.53.0
 
-# REMARK: Temporary workaround for Windows DNS client weirdness
-RUN powershell -command set-itemproperty -path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name ServerPriorityTimeLimit -Value 0 -Type DWord
+RUN Invoke-WebRequest $('https://dl.uxnr.de/build/curl/curl_winssl_msys2_mingw64_stc/curl-{0}/curl-{0}.zip' -f $env:CURL_VERSION) -OutFile 'curl.zip' -UseBasicParsing ; \
+    Expand-Archive curl.zip -DestinationPath C:\ ; \
+    Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name ServerPriorityTimeLimit -Value 0 -Type DWord ; \
+    Remove-Item -Path curl.zip
 
-ENTRYPOINT [ "C:\\ProgramData\\chocolatey\\bin\\curl.exe" ]
+ENTRYPOINT [ "C:\\src\\curl.exe" ]

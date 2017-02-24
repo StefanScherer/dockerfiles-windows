@@ -1,0 +1,1 @@
+docker run curl --help
