@@ -1,12 +1,12 @@
 # Node
 
-A Windows Server Core Docker container image with Node.js 7.6.0 installed.
+A Windows Server Core Docker container image with Node.js 7.7.0 installed.
 
 ## Building
 
 ```
 docker build -t node .
-docker tag node:latest node:7.6.0
+docker tag node:latest node:7.7.0
 ```
 
 ## Onbuild
