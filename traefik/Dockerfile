@@ -6,7 +6,7 @@ VOLUME C:/etc/traefik
 VOLUME C:/etc/ssl
 
 EXPOSE 80
-ENTRYPOINT ["/traefik", "--configfile=T:/traefik.toml"]
+ENTRYPOINT ["/traefik", "--configfile=C:/etc/traefik/traefik.toml"]
 
 # Metadata
 LABEL org.label-schema.vendor="Containous" \
