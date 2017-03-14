@@ -6,7 +6,7 @@ ENV HOME /jenkins
 ENV JENKINS_VERSION 2.50
 ENV JENKINS_HOME /jenkins
 RUN mkdir \jenkins
-RUN Invoke-WebRequest -Uri https://updates.jenkins-ci.org/download/war/2.0/jenkins.war -UseBasicParsing -OutFile /jenkins.war
+RUN Invoke-WebRequest -Uri $('https://updates.jenkins-ci.org/download/war/{0}/jenkins.war' -f $env:JENKINS_VERSION) -UseBasicParsing -OutFile /jenkins.war
 
 VOLUME C:\\jenkins
 
