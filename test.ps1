@@ -18,12 +18,12 @@ $files | ForEach-Object {
   Write-Host $_
   $dir = $_ -replace "\/[^\/]+$", ""
   $dir = $dir -replace "/", "\"
-  if (Test-Path "$dir\test.bat") {
+  if (Test-Path "$dir\test.ps1") {
     Write-Host "Storing $dir for test"
     $dirs.Set_Item($dir, 1)
   } else {
     $dir = $dir -replace "\\[^\\]+$", ""
-    if (Test-Path "$dir\test.bat") {
+    if (Test-Path "$dir\test.ps1") {
       Write-Host "Storing $dir for test"
       $dirs.Set_Item($dir, 1)
     }
@@ -34,6 +34,6 @@ $dirs.GetEnumerator() | Sort-Object Name | ForEach-Object {
   $dir = $_.Name
   Write-Host Testing in directory $dir
   pushd $dir
-  . .\test.bat
+  .\test.ps1
   popd
 }
