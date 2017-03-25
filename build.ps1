@@ -2,9 +2,6 @@ $ErrorActionPreference = 'Stop';
 $files = ""
 Write-Host Starting build
 
-Write-Host Disable Windows Defender
-Set-MpPreference -DisableRealtimeMonitoring $true
-
 Write-Host Updating base images
 docker pull microsoft/windowsservercore
 docker pull microsoft/nanoserver
