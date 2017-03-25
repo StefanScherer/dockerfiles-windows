@@ -15,6 +15,7 @@ RUN if ((Get-FileHash mongodb.msi -Algorithm sha256).Hash -ne $env:MONGO_DOWNLOA
       exit 1; `
     }
 RUN Start-Process msiexec.exe -ArgumentList '/i', 'mongodb.msi', '/quiet', '/norestart', 'INSTALLLOCATION=C:\mongodb', 'ADDLOCAL=Server,Client,MonitoringTools,ImportExportTools,MiscellaneousTools' -NoNewWindow -Wait
+RUN Remove-Item C:\mongodb\bin\*.pdb
 
 FROM microsoft/nanoserver
 
