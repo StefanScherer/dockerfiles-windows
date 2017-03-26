@@ -12,10 +12,11 @@ To add your own static files and run it as a Windows container use this Dockerfi
 ### Dockerfile
 
 ```Dockerfile
+# escape=`
 FROM stefanscherer/webserver-windows
 
 COPY . C:\site
-WORKDIR C:\\site
+WORKDIR C:\site
 
 EXPOSE 8080
 ```
