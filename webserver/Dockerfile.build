@@ -1,6 +1,0 @@
-FROM golang:nanoserver
-
-COPY . /code
-WORKDIR /code
-
-RUN go build webserver.go
