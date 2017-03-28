@@ -1,1 +1,1 @@
-docker run traefik --help 2>&1
+docker run --entrypoint traefik traefik version
