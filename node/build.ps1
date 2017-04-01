@@ -1,3 +1,11 @@
+Write-Host Updating Docker engine to master for PR docker/docker#31257
+Stop-Service docker
+$wc = New-Object net.webclient
+$wc.Downloadfile("https://master.dockerproject.org/windows/amd64/dockerd.exe", "$env:ProgramFiles\docker\dockerd.exe")
+$wc.Downloadfile("https://master.dockerproject.org/windows/amd64/docker.exe", "$env:ProgramFiles\docker\docker.exe")
+Start-Service docker
+docker version
+
 function buildVersion($majorMinorPatch, $majorMinor, $major) {
   docker build -t node:$majorMinorPatch $majorMinor
   docker tag node:$majorMinorPatch node:latest
