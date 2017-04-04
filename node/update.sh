@@ -12,8 +12,6 @@ function update_version() {
   fi
 
   echo "Updating $curr -> $latest"
-  sha=$(curl -s https://nodejs.org/dist/latest-v${version}.x/SHASUMS256.txt | grep win-x64.zip | sed 's/ .*//')
-  echo "New SHA256 $sha"
 
   a=( ${curr//./ } )
   curr_major="${a[0]}"
@@ -22,7 +20,6 @@ function update_version() {
   latest_major="${a[0]}"
   latest_major_minor="${a[0]}.${a[1]}"
 
-  find ${curr_major_minor} -type f -exec sed -i "" "s/ENV NODE_SHA256.*/ENV NODE_SHA256 $sha/g" {} +
   find ${curr_major_minor} -type f -exec sed -i "" "s/${curr//./\\.}/$latest/g" {} +
   find build* -type f -exec sed -i "" "s/${curr//./\\.}/$latest/g" {} +
   find build* -type f -exec sed -i "" "s/${curr_major_minor//./\\.}/$latest_major_minor/g" {} +

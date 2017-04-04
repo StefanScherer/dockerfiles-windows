@@ -29,6 +29,6 @@ function pushVersion($majorMinorPatch, $majorMinor, $major) {
   docker push stefanscherer/node-windows:$major-nano-onbuild
 }
 
-pushVersion "4.8.1" "4.8" "4"
-pushVersion "6.10.1" "6.10" "6"
+pushVersion "4.8.2" "4.8" "4"
+pushVersion "6.10.2" "6.10" "6"
 pushVersion "7.8.0" "7.8" "7"
