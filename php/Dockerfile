@@ -2,9 +2,6 @@ FROM microsoft/iis:windowsservercore
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV PHP_VERSION 7.1.3
-ENV PHP_SHA1 4000132114cecdec82c83b09aed6a962ed928e0b
-
 WORKDIR /Users/ContainerAdministrator/Downloads
 
 # Visual C++ 2015 Redistributable
@@ -13,8 +10,14 @@ RUN Invoke-WebRequest 'https://download.microsoft.com/download/9/3/F/93FCF1E7-E6
     Remove-Item vc_redist.x64.exe;
 
 # Install PHP
-RUN Invoke-WebRequest $('http://windows.php.net/downloads/releases/php-{0}-nts-Win32-VC14-x64.zip' -f $env:PHP_VERSION) -OutFile 'php.zip'; \
-    if ((Get-FileHash php.zip -Algorithm sha1).Hash -ne $env:PHP_SHA1) {exit 1} ; \
+RUN $download_page = Invoke-WebRequest -Uri 'http://windows.php.net/download';
+    $re      = 'php-\d.+-nts.+x64\.zip$';
+    $url     = $download_page.links | ? href -match $re  | % href | select -First 1;
+    $filename = $url.Substring(20);
+    $checksums = Invoke-WebRequest -Uri 'http://windows.php.net/downloads/releases/sha1sum.txt';
+    $checksums.Content.Split("`n") | Select-String -Pattern "([0-9A-F]+)\s+$filename" | %{ $sum = $_.Matches[0].Groups[1].Value.ToUpper() };
+    Invoke-WebRequest -Uri "http://windows.php.net$($url)" -OutFile php.zip;
+    if ((Get-FileHash php.zip -Algorithm sha1).Hash -ne $sum) {exit 1} ;
     Expand-Archive -Path php.zip -DestinationPath c:\php; \
     [Environment]::SetEnvironmentVariable('PATH', $env:Path + ';C:\php', [EnvironmentVariableTarget]::Machine); \
     $env:PATH = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \
