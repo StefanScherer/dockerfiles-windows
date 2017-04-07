@@ -8,10 +8,8 @@ ENV PHP_SHA1 85c0215337b08f9d49c233c16475c15f17b66ac1
 WORKDIR /Users/ContainerAdministrator/Downloads
 
 # Visual C++ 2015 Redistributable
-# workaround: the .exe command completes early and does not finish the install, so added 10s sleep to the end to allow time to finish
 RUN Invoke-WebRequest 'https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/vc_redist.x64.exe' -OutFile 'vc_redist.x64.exe'; \
-    .\vc_redist.x64.exe /install /passive /norestart; \
-    Start-Sleep -s 10; \
+    Start-Process '.\vc_redist.x64.exe' '/install /passive /norestart' -Wait; \
     Remove-Item vc_redist.x64.exe;
 
 # Install PHP
