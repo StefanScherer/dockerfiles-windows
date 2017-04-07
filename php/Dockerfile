@@ -3,7 +3,7 @@ FROM microsoft/iis:windowsservercore
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV PHP_VERSION 7.1.3
-ENV PHP_SHA1 85c0215337b08f9d49c233c16475c15f17b66ac1
+ENV PHP_SHA1 4000132114cecdec82c83b09aed6a962ed928e0b
 
 WORKDIR /Users/ContainerAdministrator/Downloads
 
