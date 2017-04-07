@@ -10,7 +10,7 @@ RUN Invoke-WebRequest 'https://download.microsoft.com/download/9/3/F/93FCF1E7-E6
     Remove-Item vc_redist.x64.exe;
 
 # Install PHP
-RUN $download_page = Invoke-WebRequest -Uri 'http://windows.php.net/download'; \
+RUN $download_page = Invoke-WebRequest -UseBasicParsing -Uri 'http://windows.php.net/download'; \
     $re      = 'php-\d.+-nts.+x64\.zip$'; \
     $url     = $download_page.links | ? href -match $re  | % href | select -First 1; \
     $filename = $url.Substring(20); \
