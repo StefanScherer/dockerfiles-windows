@@ -14,11 +14,11 @@ RUN $download_page = Invoke-WebRequest -UseBasicParsing -Uri 'http://windows.php
     $re      = 'php-\d.+-nts.+x64\.zip$'; \
     $url     = $download_page.links | ? href -match $re  | % href | select -First 1; \
     $filename = $url.Substring(20); \
-    $checksums = Invoke-WebRequest -Uri 'http://windows.php.net/downloads/releases/sha1sum.txt'; \
+    $checksums = Invoke-WebRequest -UseBasicParsing -Uri 'http://windows.php.net/downloads/releases/sha1sum.txt'; \
     $sumpattern = '([0-9A-F]+)\s+'+$filename; \
     $checksums.Content.Split(\"`n\") | Select-String -Pattern $sumpattern | %{ $sum = $_.Matches[0].Groups[1].Value.ToUpper() }; \
     $fullurl = 'http://windows.php.net' + $url; \
-    Invoke-WebRequest -Uri $fullurl -OutFile php.zip; \
+    Invoke-WebRequest -UseBasicParsing -Uri $fullurl -OutFile php.zip; \
     if ((Get-FileHash php.zip -Algorithm sha1).Hash -ne $sum) {exit 1} ; \
     Expand-Archive -Path php.zip -DestinationPath c:\php; \
     [Environment]::SetEnvironmentVariable('PATH', $env:Path + ';C:\php', [EnvironmentVariableTarget]::Machine); \
