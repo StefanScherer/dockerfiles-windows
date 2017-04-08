@@ -1,8 +1,11 @@
-echo Building registry binary
-docker build -t registry-builder build
-docker create --name registry-builder registry-builder
-docker cp registry-builder:/gopath/src/github.com/docker/distribution/registry.exe ./registry.exe
+Write-Host Updating Docker engine to master
+Stop-Service docker
+$wc = New-Object net.webclient
+$wc.Downloadfile("https://master.dockerproject.org/windows/amd64/dockerd.exe", "$env:ProgramFiles\docker\dockerd.exe")
+$wc.Downloadfile("https://master.dockerproject.org/windows/amd64/docker.exe", "$env:ProgramFiles\docker\docker.exe")
+Start-Service docker
+docker version
 
-echo Building registry image
+Write-Host Building registry binary and image
 docker build -t registry .
-docker tag registry:latest registry:2.6.0
+docker tag registry:latest registry:2.6.1
