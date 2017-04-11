@@ -2,7 +2,7 @@ FROM microsoft/nanoserver
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV VERSION 2.4.4
+ENV VERSION 2.5.3
 
 ENV LIBRESSLPATH C:\libressl
 
