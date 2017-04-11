@@ -2,7 +2,7 @@ FROM microsoft/nanoserver
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV PYTHON_VERSION 3.6.0
+ENV PYTHON_VERSION 3.6.1
 ENV PYTHON_PIP_VERSION 9.0.1
 
 RUN Invoke-WebRequest $('https://www.python.org/ftp/python/{0}/python-{0}-embed-amd64.zip' -f $env:PYTHON_VERSION) -OutFile 'python.zip' -UseBasicParsing ; \
