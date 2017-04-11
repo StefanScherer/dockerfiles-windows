@@ -1,4 +1,4 @@
-rem docker build -t python .
+# docker build -t python .
 
 docker rm -f pythonbuild36 2>&1
 docker pull python:3.6-windowsservercore
