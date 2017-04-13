@@ -1,4 +1,4 @@
-FROM golang:nanoserver
+FROM golang:nanoserver as gobuild
 
 COPY . /code
 WORKDIR /code
@@ -7,7 +7,7 @@ RUN go build webserver.go
 
 FROM microsoft/nanoserver
 
-COPY --from=0 /code/webserver.exe /webserver.exe
+COPY --from=gobuild /code/webserver.exe /webserver.exe
 
 EXPOSE 8080
 

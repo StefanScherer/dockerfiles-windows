@@ -1,5 +1,5 @@
 # escape=`
-FROM microsoft/windowsservercore
+FROM microsoft/windowsservercore as msi
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -19,9 +19,9 @@ RUN Remove-Item C:\mongodb\bin\*.pdb
 
 FROM microsoft/nanoserver
 
-COPY --from=0 C:\mongodb\ C:\mongodb\
-COPY --from=0 C:\windows\system32\msvcp140.dll C:\mongodb\bin
-COPY --from=0 C:\windows\system32\vcruntime140.dll C:\mongodb\bin
+COPY --from=msi C:\mongodb\ C:\mongodb\
+COPY --from=msi C:\windows\system32\msvcp140.dll C:\mongodb\bin
+COPY --from=msi C:\windows\system32\vcruntime140.dll C:\mongodb\bin
 
 RUN mkdir C:\data\db & setx /m PATH %PATH%;C:\mongodb\bin
 
