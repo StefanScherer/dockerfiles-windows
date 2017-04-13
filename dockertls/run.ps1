@@ -1,4 +1,6 @@
-mkdir ~\.docker
+if (!(Test-Path ~\.docker)) {
+  mkdir ~\.docker
+}
 $ips = ((Get-NetIPAddress -AddressFamily IPv4).IPAddress) -Join ','
 docker container run --rm `
   -e SERVER_NAME=$env:FQDN `
