@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore
+FROM microsoft/windowsservercore as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -37,7 +37,7 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 
 ENV NPM_CONFIG_LOGLEVEL info
 
-COPY --from=0 /nodejs /nodejs
+COPY --from=download /nodejs /nodejs
 
 RUN New-Item $($env:APPDATA + '\npm') ; \
     $env:PATH = 'C:\nodejs;{0}\npm;{1}' -f $env:APPDATA, $env:PATH ; \

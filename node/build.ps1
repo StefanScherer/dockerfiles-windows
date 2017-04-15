@@ -1,10 +1,4 @@
-Write-Host Updating Docker engine to master for PR docker/docker#31257
-Stop-Service docker
-$wc = New-Object net.webclient
-$wc.Downloadfile("https://master.dockerproject.org/windows/amd64/dockerd.exe", "$env:ProgramFiles\docker\dockerd.exe")
-$wc.Downloadfile("https://master.dockerproject.org/windows/amd64/docker.exe", "$env:ProgramFiles\docker\docker.exe")
-Start-Service docker
-docker version
+. $PSScriptRoot\..\update-docker-rc.ps1
 
 function buildVersion($majorMinorPatch, $majorMinor, $major) {
   docker build -t node:$majorMinorPatch $majorMinor
@@ -30,4 +24,4 @@ function buildVersion($majorMinorPatch, $majorMinor, $major) {
 
 buildVersion "4.8.2" "4.8" "4"
 buildVersion "6.10.2" "6.10" "6"
-buildVersion "7.8.0" "7.8" "7"
+buildVersion "7.9.0" "7.9" "7"

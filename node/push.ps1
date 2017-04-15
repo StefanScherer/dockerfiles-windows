@@ -31,4 +31,4 @@ function pushVersion($majorMinorPatch, $majorMinor, $major) {
 
 pushVersion "4.8.2" "4.8" "4"
 pushVersion "6.10.2" "6.10" "6"
-pushVersion "7.8.0" "7.8" "7"
+pushVersion "7.9.0" "7.9" "7"

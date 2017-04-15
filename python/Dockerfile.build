@@ -5,7 +5,7 @@ COPY tmp /Python
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV PYTHON_VERSION 3.6.0
+ENV PYTHON_VERSION 3.6.1
 ENV PYTHON_PIP_VERSION 9.0.1
 
 RUN $env:PATH = 'C:\Python;C:\Python\Scripts;{0}' -f $env:PATH ; \
