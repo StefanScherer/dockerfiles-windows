@@ -1,1 +1,1 @@
-docker run consul:0.8.0 --version
+docker run consul:0.8.1 --version
