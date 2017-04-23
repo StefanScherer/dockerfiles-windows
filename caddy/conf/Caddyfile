@@ -1,0 +1,9 @@
+:80 {
+  log stdout
+  root C:\wwwroot
+  ext .html
+  rewrite / {
+	 regexp .*
+	  to /index.html
+  }
+}
