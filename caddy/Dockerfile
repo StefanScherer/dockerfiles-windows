@@ -11,10 +11,13 @@ WORKDIR C:\caddy
 
 EXPOSE 80 443
 
+# Set the volume where the  Caddyfile will e mounted to
 VOLUME C:\caddy\conf
 
+# Set the volume where the web resources will be mounted to
 VOLUME C:\wwwroot
 
 ENTRYPOINT [ "C:\\caddy\\caddy.exe" ]
 
+# Run caddy pointing to the mounted Caddyfile
 CMD [ "-conf", "C:\\caddy\\conf\\Caddyfile" ]
