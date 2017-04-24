@@ -1,6 +1,13 @@
 # Caddy
 
+> Caddy is the HTTP/2 web server with automatic HTTPS.
+
 Caddy is an awesome standalone [web server](https://caddyserver.com)
+
+## Caddy Documentation
+
+* [User Guide](https://caddyserver.com/docs)
+* [Examples](https://github.com/caddyserver/examples)
 
 ## Run the container
 
