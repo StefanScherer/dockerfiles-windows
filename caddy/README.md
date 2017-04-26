@@ -1,4 +1,5 @@
 # Caddy
+[![This image on DockerHub](https://img.shields.io/docker/pulls/stefanscherer/caddy-windows.svg)](https://hub.docker.com/r/stefanscherer/caddy-windows/)
 
 > Caddy is the HTTP/2 web server with automatic HTTPS.
 
