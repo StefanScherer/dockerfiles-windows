@@ -1,9 +1,14 @@
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 
+$version = "17.05.0-ce-rc1"
+if ($(docker --version).StartsWith("Docker version $version")) {
+  Write-Host Already updated.
+  exit 0;
+}
+
 Write-Host "Stopping docker service"
 Stop-Service docker
-$version = "17.05.0-ce-rc1"
 
 Write-Host "Downloading docker-$version.zip"
 $wc = New-Object net.webclient
