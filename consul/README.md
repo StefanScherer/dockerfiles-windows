@@ -1,4 +1,5 @@
 # consul
+[![This image on DockerHub](https://img.shields.io/docker/pulls/stefanscherer/consul-windows.svg)](https://hub.docker.com/r/stefanscherer/consul-windows/)
 
 Run Consul Agent with Web UI in a Windows Docker Container.
 
