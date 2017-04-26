@@ -1,4 +1,5 @@
 # registry
+[![This image on DockerHub](https://img.shields.io/docker/pulls/stefanscherer/registry-windows.svg)](https://hub.docker.com/r/stefanscherer/registry-windows/)
 
 Run your own Docker Registry in a Windows Docker container.
 
