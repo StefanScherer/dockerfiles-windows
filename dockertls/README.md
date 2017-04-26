@@ -1,4 +1,5 @@
 # dockertls
+[![This image on DockerHub](https://img.shields.io/docker/pulls/stefanscherer/dockertls-windows.svg)](https://hub.docker.com/r/stefanscherer/dockertls-windows/)
 
 Create TLS certs for Docker, inside a Docker container. This avoids installing OpenSSL directly on your machine.
 Inspired by the script [DockerCertificateTools.ps1](https://github.com/Microsoft/Virtualization-Documentation/blob/master/windows-server-container-tools/DockerTLS/DockerCertificateTools.ps1) and enhanced to update or create the `daemon.json` for the Docker service.
