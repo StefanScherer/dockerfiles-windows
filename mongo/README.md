@@ -1,5 +1,5 @@
 # Optimizing the size of the MongoDB Windows Container
-[![](https://images.microbadger.com/badges/version/stefanscherer/mongo-windows.svg)](https://microbadger.com/images/stefanscherer/mongo-windows "Get your own version badge on microbadger.com")
+[![This image on DockerHub](https://img.shields.io/docker/pulls/stefanscherer/mongo-windows.svg)](https://hub.docker.com/r/stefanscherer/mongo-windows/)
 
 ## With MSI
 
