@@ -1,4 +1,7 @@
-# Node.js in a Windows Docker image
+# Node.js
+[![This image on DockerHub](https://img.shields.io/docker/pulls/stefanscherer/node-windows.svg)](https://hub.docker.com/r/stefanscherer/node-windows/)
+
+Node.js in a Windows Docker image
 
 See also Docker Hub https://hub.docker.com/r/stefanscherer/node-windows/
 
