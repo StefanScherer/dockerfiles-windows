@@ -1,9 +1,6 @@
 # webserver - a minimal webserver to build small Windows Docker images with some HTML content
 
 * [Dockerfile](https://github.com/StefanScherer/dockerfiles-windows/blob/master/webserver/Dockerfile)
-  * [Dockerfile.build](https://github.com/StefanScherer/dockerfiles-windows/blob/master/webserver/Dockerfile.build)
-  * [webserver.go](https://github.com/StefanScherer/dockerfiles-windows/blob/master/webserver/webserver.go)
-  * [build.sh](https://github.com/StefanScherer/dockerfiles-windows/blob/master/webserver/build.sh)
 
 ## Usage
 
