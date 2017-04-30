@@ -1,8 +1,10 @@
 FROM golang:1.8-windowsservercore
-WORKDIR /compile
+RUN mv /go /go1.8.1
+WORKDIR /
 RUN git clone https://github.com/golang/go
-WORKDIR /compile/go/src
-ENV GOROOT_BOOTSTRAP C:/go
+WORKDIR /go/src
+ENV GOROOT_BOOTSTRAP C:/go1.8.1
 ENV CGO_ENABLED 0
-RUN cmd /C all.bat
-RUN cp ..\bin\*.exe \go\bin
+RUN git fetch https://go.googlesource.com/go refs/changes/34/41834/3 ; \
+    git checkout FETCH_HEAD
+RUN cmd /C make.bat
