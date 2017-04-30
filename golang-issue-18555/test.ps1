@@ -6,5 +6,5 @@ Write-Host Current dir after running the go build:
 Write-Host The webserver dir after running the go build:
 dir ..\webserver
 if (!(Test-Path ..\webserver\webserver.exe)) {
-  Write-Error webserver.exe is missing, go build didn't work in container
+  Write-Error "webserver.exe is missing, go build didn't work in container"
 }
