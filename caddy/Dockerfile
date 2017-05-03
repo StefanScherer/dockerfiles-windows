@@ -1,6 +1,6 @@
 # escape=`
 FROM microsoft/nanoserver
-ENV CADDY_VERSION 0.10.0
+ENV CADDY_VERSION 0.10.1
 RUN powershell -Command $ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue'; `
     Invoke-WebRequest $('https://github.com/mholt/caddy/releases/download/v{0}/caddy_v{0}_windows_amd64.zip' -f $env:CADDY_VERSION) -OutFile 'caddy.zip' -UseBasicParsing ; `
     Expand-Archive -Path caddy.zip -DestinationPath C:\caddy -Force ; `
