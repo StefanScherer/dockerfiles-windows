@@ -11,4 +11,4 @@ function testVersion($majorMinorPatch) {
 
 testVersion "4.8.3"
 testVersion "6.10.3"
-testVersion "7.9.0"
+testVersion "7.10.0"
