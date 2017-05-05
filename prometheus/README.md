@@ -5,7 +5,7 @@
 $ mkdir -p data
 $ docker run -d -p 9090:9090 \
   -v C:$(pwd)/data:C:/prometheus -v C:$(pwd):C:/config \
-  prometheus -config.file=/config/prometheus.yml \
+  stefanscherer/prometheus-windows -config.file=/config/prometheus.yml \
   -storage.local.path=/prometheus \
   -web.console.libraries=/etc/prometheus/console_libraries \
   -web.console.templates=/etc/prometheus/consoles
