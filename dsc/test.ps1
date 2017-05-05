@@ -1,4 +1,4 @@
-Configuration DemoWebSeite
+Configuration DemoWebSite
 {
   Node $(hostname)
   {
@@ -10,5 +10,6 @@ Configuration DemoWebSeite
   }
 }
 
-# create .mof file
-DemoWebSeite -OutputPath c:\code
+DemoWebSite -OutputPath .\demo
+Start-DscConfiguration -Wait -Verbose -Path .\demo -Force
+Remove-Item .\demo -Force -Recurse

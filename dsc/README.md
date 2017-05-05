@@ -1,40 +1,19 @@
 # Desired State Configuration - DSC
 
-## Build dsc base image
+## Build an image and install software with PowerShell DSC
 
 ```
 docker build -t dsc .
 ```
 
-### Run example
-
-Run an interactive Windows container to test DSC in a clean environment.
-
 ```
-docker run -it -v "$(pwd):c:\code" dsc powershell
-```
-
-Create the mof file for this container node:
-
-```
-cd C:\code
-.\test.ps1
+$ docker history dsc
+IMAGE               CREATED              CREATED BY                                      SIZE                COMMENT
+7b58a23478f9        23 seconds ago       cmd /S /C powershell .\test.ps1                 269 MB              
+efb8dc939bf5        About a minute ago   cmd /S /C #(nop) COPY file:56bbc9d994e00b0...   41.2 kB             
+590c0c2590e4        3 weeks ago          Install update 10.0.14393.1066                  2.47 GB             
+<missing>           5 months ago         Apply image 10.0.14393.0                        7.68 GB             
 ```
 
-Now run the DSC configuration
 
-```
-Start-DSCConfiguration . -verbose -wait
-```
-
-## Is it useful inside containers?
-
-Pushing the dsc base image to Docker hub shows that you need about 290 MByte to have DSC installed.
-
-```
-$ docker push stefanscherer/dsc
-The push refers to a repository [docker.io/stefanscherer/dsc]
-bc61b38bd60a: Pushing 247.3 MB/293.6 MB
-b9454c3094c6: Skipped foreign layer 
-3fd27ecef6a3: Skipped foreign layer 
-```
+More infos can be found at https://github.com/artisticcheese/artisticcheesecontainer/wiki
