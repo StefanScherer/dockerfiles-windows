@@ -1,3 +1,9 @@
-docker run -d -p 9090:9090 prometheus
-Start-Sleep 10
-docker logs $(docker ps -ql)
+docker run --name caddy -d -p 9090:9090 prometheus
+Start-Sleep -Seconds 5
+$req = Invoke-WebRequest http://$(docker inspect -f '{{ .NetworkSettings.Networks.nat.IPAddress }}' prometheus):9090/graph -UseBasicParsing
+$code = $req.statuscode
+$content = $req.content
+if($code -ne 200 -or !($content.Contains('prometheus.io'))){
+  throw "Prometheus test failed!"
+}
+docker logs prometheus
