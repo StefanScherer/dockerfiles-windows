@@ -1,4 +1,4 @@
-. $PSScriptRoot\..\update-docker-rc.ps1
+. $PSScriptRoot\..\update-docker-ce.ps1
 
 Write-Host Building registry binary and image
 docker build -t registry .

@@ -1,4 +1,4 @@
-. $PSScriptRoot\..\update-docker-rc.ps1
+. $PSScriptRoot\..\update-docker-ce.ps1
 
 function buildVersion($majorMinorPatch, $majorMinor, $major) {
   docker build -t node:$majorMinorPatch $majorMinor
