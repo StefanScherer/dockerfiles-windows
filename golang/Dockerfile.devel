@@ -1,6 +1,20 @@
-FROM golang:1.8-nanoserver
+FROM golang:1.8-windowsservercore AS build
+RUN mv /go /go1.8.1
+WORKDIR /
+RUN git clone https://github.com/golang/go
+WORKDIR /go/src
+ENV GOROOT_BOOTSTRAP C:/go1.8.1
+ENV CGO_ENABLED 0
+RUN cmd /C make.bat
 
+FROM microsoft/nanoserver
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+ENV GOPATH C:\\gopath
+RUN $newPath = ('{0}\bin;C:\go\bin;{1}' -f $env:GOPATH, $env:PATH); \
+  Write-Host ('Updating PATH: {0}' -f $newPath); \
+  setx /M PATH $newPath;
+COPY --from=build /go /go
+WORKDIR $GOPATH
 
 ENV GIT_VERSION 2.12.2
 ENV GIT_DOWNLOAD_URL https://github.com/git-for-windows/git/releases/download/v${GIT_VERSION}.windows.2/MinGit-${GIT_VERSION}.2-64-bit.zip
