@@ -3,6 +3,8 @@
 This is a test setup to test Git for Windows in a Windows Docker container.
 See https://github.com/git-for-windows/git/issues/1007
 
+**Update**: It seems to be fixed with git-for-windows 2.13.0
+
 ## Build the Docker image
 
 For simplicity I use Chocolatey to install Git for Windows.

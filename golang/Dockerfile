@@ -2,9 +2,9 @@ FROM golang:1.8-nanoserver
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV GIT_VERSION 2.12.2
-ENV GIT_DOWNLOAD_URL https://github.com/git-for-windows/git/releases/download/v${GIT_VERSION}.windows.2/MinGit-${GIT_VERSION}.2-64-bit.zip
-ENV GIT_SHA256 3918cd9ab42c9a22aa3934463fdb536485c84e6876e9aaab74003deb43a08a36
+ENV GIT_VERSION 2.13.0
+ENV GIT_DOWNLOAD_URL https://github.com/git-for-windows/git/releases/download/v${GIT_VERSION}.windows.1/MinGit-${GIT_VERSION}-64-bit.zip
+ENV GIT_SHA256 20acda973eca1df056ad08bec6e05c3136f40a1b90e2a290260dfc36e9c2c800
 
 RUN Invoke-WebRequest -UseBasicParsing $env:GIT_DOWNLOAD_URL -OutFile git.zip; \
     if ((Get-FileHash git.zip -Algorithm sha256).Hash -ne $env:GIT_SHA256) {exit 1} ; \
