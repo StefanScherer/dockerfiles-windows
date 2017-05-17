@@ -17,9 +17,10 @@ if [ $1 != ""  ]; then
   git checkout pr$1
   image=dockerpr$1
 fi
-docker rm -f $image
+docker rm -f $image || true
+DOCKER_GITCOMMIT=(git rev-parse --short HEAD)
 docker build -t $image -f Dockerfile.windows .
-docker run --name $image $image 'hack\make.ps1' -Binary
+docker run -e DOCKER_GITCOMMIT=$DOCKER_GITCOMMIT --name $image $image 'hack\make.ps1' -Binary
 docker cp $image:C:/go/src/github.com/docker/docker/bundles/docker.exe ../binary/docker.exe
 docker cp $image:C:/go/src/github.com/docker/docker/bundles/dockerd.exe ../binary/dockerd.exe
 popd
