@@ -5,7 +5,7 @@ A feature-rich and versatile storage testing tool, Diskspd (version 2.0.17) comb
 
 * [Dockerfile](https://github.com/StefanScherer/dockerfiles-windows/blob/master/diskspd/Dockerfile)
 
-See also https://gallery.technet.microsoft.com/DiskSpd-a-robust-storage-6cd2f223
+See also https://aka.ms/diskspd
 
 ## Examples
 
