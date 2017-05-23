@@ -1,4 +1,4 @@
-FROM golang:1.8-nanoserver as gobuild
+FROM stefanscherer/golang-windows:devel as gobuild
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
