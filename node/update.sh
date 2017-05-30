@@ -36,6 +36,5 @@ function update_version() {
   fi
 }
 
-update_version 7
+update_version 8
 update_version 6
-update_version 4
