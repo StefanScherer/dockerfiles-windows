@@ -1,0 +1,41 @@
+version: '3.1'
+
+services:
+
+  main:
+    image: jenkins
+    ports:
+      - ${UI_PORT:-8080}:8080
+      - ${AGENTS_PORT:-50000}:50000
+    volumes:
+      - /vagrant/jenkins_home:/var/jenkins_home
+    deploy:
+      # endpoint_mode: dnsrr
+      placement:
+        constraints:
+          - 'node.role == manager'
+          #          - 'node.platform.os == linux'
+
+  linux:
+    image: vfarcic/jenkins-swarm-agent
+    environment:
+      - COMMAND_OPTIONS=-master http://main:8080 -labels 'docker' -labels 'linux' -executors 5 -username vagrant -password vagrant
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /vagrant/workspace:/workspace
+    deploy:
+      placement:
+        constraints:
+          - 'node.platform.os == linux'
+
+  windows:
+    image: stefanscherer/jenkins-swarm-agent-windows
+    environment:
+      - PARAMS=-master http://192.168.36.2:8080 -labels 'windows' -executors 5 -username vagrant -password vagrant
+    #volumes:
+      #- /var/run/docker.sock:/var/run/docker.sock
+      #- /vagrant/workspace:/workspace
+    deploy:
+      placement:
+        constraints:
+          - 'node.platform.os == windows'
