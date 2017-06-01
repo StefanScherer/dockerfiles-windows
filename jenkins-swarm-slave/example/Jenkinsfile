@@ -1,0 +1,56 @@
+pipeline {
+  agent {
+    label "linux"
+  }
+
+  stages {
+    stage("Unit") {
+      steps {
+        sh "ls"
+      }
+    }
+    stage("Staging") {
+      steps {
+        sh "ls"
+      }
+    }
+    stage("Integration") {
+      steps {
+        parallel linux: {
+          node('linux') {
+            echo "Now on Linux"
+            sh "ls"
+          }
+        },
+        windows: {
+          node('windows') {
+            echo "Now on Windows"
+            bat "dir"
+          }
+        }
+      }
+    }
+    stage("Publish") {
+      steps {
+        sh "ls"
+      }
+    }
+    stage("Prod-like") {
+      steps {
+        echo "A production-like cluster is yet to be created"
+        // sh "DOCKER_HOST=tcp://${env.PROD_LIKE_IP}:2375 docker service update --image localhost:5000/go-demo:2.${env.BUILD_NUMBER} go-demo_main"
+        // sh "HOST_IP=${env.TEST_IP} docker-compose -f docker-compose-test-local.yml run --rm production"
+      }
+    }
+    stage("Production") {
+      steps {
+        echo "A production cluster is yet to be created"
+      }
+    }
+  }
+  post {
+    always {
+      sh "ls"
+    }
+  }
+}
