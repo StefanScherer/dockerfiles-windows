@@ -4,7 +4,7 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 RUN Invoke-WebRequest 'http://www.7-zip.org/a/7z1604-x64.msi' -OutFile '7z.msi' -UseBasicParsing
 RUN Start-Process msiexec.exe -ArgumentList '/i', '7z.msi', '/quiet', '/norestart' -NoNewWindow -Wait
 
-ENV PROMETHEUS_VERSION 1.6.3
+ENV PROMETHEUS_VERSION 1.7.0
 
 RUN Invoke-WebRequest $('https://github.com/prometheus/prometheus/releases/download/v{0}/prometheus-{0}.windows-amd64.tar.gz' -f $env:PROMETHEUS_VERSION) -OutFile 'prometheus.tar.gz' -UseBasicParsing
 RUN & 'C:\Program Files\7-Zip\7z.exe' x prometheus.tar.gz
