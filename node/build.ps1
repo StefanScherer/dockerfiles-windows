@@ -22,5 +22,5 @@ function buildVersion($majorMinorPatch, $majorMinor, $major) {
   docker tag node:$majorMinorPatch-nano-onbuild node:$major-nano-onbuild
 }
 
-buildVersion "6.10.3" "6.10" "6"
+buildVersion "6.11.0" "6.11" "6"
 buildVersion "8.0.0" "8.0" "8"
