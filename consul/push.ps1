@@ -1,4 +1,5 @@
-docker tag consul:0.8.1 stefanscherer/consul-windows:0.8.1
-docker tag consul:0.8.1 stefanscherer/consul-windows:latest
-docker push stefanscherer/consul-windows:0.8.1
+$version=$(select-string -Path Dockerfile -Pattern "ENV CONSUL_VERSION").ToString().split()[-1]
+docker tag consul stefanscherer/consul-windows:$version
+docker tag consul stefanscherer/consul-windows:latest
+docker push stefanscherer/consul-windows:$version
 docker push stefanscherer/consul-windows:latest
