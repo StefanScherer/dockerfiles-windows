@@ -1,6 +1,6 @@
 # escape=`
 FROM microsoft/nanoserver
-ENV CONSUL_VERSION 0.8.1
+ENV CONSUL_VERSION 0.8.4
 
 RUN powershell -Command $ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue'; `
     Invoke-WebRequest $('https://releases.hashicorp.com/consul/{0}/consul_{0}_windows_amd64.zip' -f $env:CONSUL_VERSION) -OutFile 'consul.zip' -UseBasicParsing ; `
