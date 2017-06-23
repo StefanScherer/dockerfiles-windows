@@ -3,7 +3,7 @@ FROM microsoft/windowsservercore as msi
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV MONGO_VERSION 3.4.4
+ENV MONGO_VERSION 3.4.5
 ENV MONGO_DOWNLOAD_URL http://downloads.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-${MONGO_VERSION}-signed.msi
 ENV MONGO_DOWNLOAD_SHA256 73d1121a1fe58fe29c4fb7b6f4b79a4d33afa666f357960419ef83635396f977
 

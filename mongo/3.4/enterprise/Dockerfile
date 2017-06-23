@@ -3,9 +3,9 @@ FROM microsoft/windowsservercore as msi
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV MONGO_VERSION 3.4.4
+ENV MONGO_VERSION 3.4.5
 ENV MONGO_DOWNLOAD_URL https://downloads.mongodb.com/win32/mongodb-win32-x86_64-enterprise-windows-64-${MONGO_VERSION}-signed.msi
-ENV MONGO_DOWNLOAD_SHA256 7e71a612f1e6d7105e273b1e976564fe4ff10d86192b197c891fdf546a6e552f
+ENV MONGO_DOWNLOAD_SHA256 cda1c8d547fc6051d7bbe2953f9a75bced846ac64a733726f8443835db5b2901
 
 RUN Write-Host ('Downloading {0} ...' -f $env:MONGO_DOWNLOAD_URL)
 RUN Invoke-WebRequest -Uri $env:MONGO_DOWNLOAD_URL -OutFile 'mongodb.msi'
