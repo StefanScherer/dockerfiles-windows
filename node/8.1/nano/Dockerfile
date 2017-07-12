@@ -1,5 +1,5 @@
 # escape=`
-FROM microsoft/windowsservercore as download
+FROM microsoft/windowsservercore-insider as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -21,7 +21,7 @@ RUN @( `
       gpg --keyserver ha.pool.sks-keyservers.net --recv-keys $_ ; `
     }
 
-ENV NODE_VERSION 8.1.3
+ENV NODE_VERSION 8.1.4
 
 RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/SHASUMS256.txt.asc' -f $env:NODE_VERSION) -OutFile 'SHASUMS256.txt.asc' -UseBasicParsing ; `
     gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc
@@ -32,16 +32,16 @@ RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/node-v{0}-win-x64.zip' -f 
     Expand-Archive node.zip -DestinationPath C:\ ; `
     Rename-Item -Path $('C:\node-v{0}-win-x64' -f $env:NODE_VERSION) -NewName 'C:\nodejs'
 
-FROM microsoft/nanoserver
+FROM microsoft/nanoserver-insider
 
 ENV NPM_CONFIG_LOGLEVEL info
 
 COPY --from=download /nodejs /nodejs
 
-RUN setx /M PATH "%PATH%;C:\nodejs;%APPDATA%\npm"
+RUN setx PATH "%PATH%;C:\nodejs;%APPDATA%\npm"
 
-# does not work: docker run node:8.1.3 node --version
-# works only with cmd: docker run node:8.1.3 cmd /c node --version
+# does not work: docker run node:8.1.4 node --version
+# works only with cmd: docker run node:8.1.4 cmd /c node --version
 # ENV PATH C:\Windows\system32;C:\Windows;C:\Users\ContainerAdministrator\AppData\Local\Microsoft\WindowsApps;C:\nodejs;C:\Users\ContainerAdministrator\AppData\Roaming\npm
 
 CMD [ "node.exe" ]

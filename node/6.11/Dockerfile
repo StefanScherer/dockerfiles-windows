@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore as download
+FROM microsoft/windowsservercore-insider as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -20,7 +20,7 @@ RUN @( \
       gpg --keyserver ha.pool.sks-keyservers.net --recv-keys $_ ; \
     }
 
-ENV NODE_VERSION 6.11.0
+ENV NODE_VERSION 6.11.1
 
 RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/SHASUMS256.txt.asc' -f $env:NODE_VERSION) -OutFile 'SHASUMS256.txt.asc' -UseBasicParsing ; \
     gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc
@@ -31,7 +31,7 @@ RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/node-v{0}-win-x64.zip' -f 
     Expand-Archive node.zip -DestinationPath C:\ ; \
     Rename-Item -Path $('C:\node-v{0}-win-x64' -f $env:NODE_VERSION) -NewName 'C:\nodejs'
 
-FROM microsoft/windowsservercore
+FROM microsoft/windowsservercore-insider
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
