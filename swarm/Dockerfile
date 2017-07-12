@@ -1,6 +1,6 @@
 FROM golang:windowsservercore AS build
 
-ENV SWARM_VERSION v1.2.7
+ENV SWARM_VERSION v1.2.8
 
 RUN mkdir src\github.com\docker
 WORKDIR /go/src/github.com/docker
