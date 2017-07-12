@@ -1,2 +1,2 @@
-docker run swarm:1.2.7 --help
-docker run swarm:1.2.7 create
+docker run swarm:1.2.8 --help
+docker run swarm:1.2.8 create
