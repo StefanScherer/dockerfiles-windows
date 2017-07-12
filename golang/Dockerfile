@@ -19,17 +19,14 @@ RUN $url = ('https://golang.org/dl/go{0}.windows-amd64.zip' -f $env:GOLANG_VERSI
 	Write-Host 'Expanding ...'; \
 	Expand-Archive go.zip -DestinationPath C:\; \
 	\
-	Write-Host 'Verifying install ("go version") ...'; \
-	go version; \
-	\
 	Write-Host 'Removing ...'; \
 	Remove-Item go.zip -Force; \
 	\
 	Write-Host 'Complete.';
 
-ENV GIT_VERSION 2.13.0
+ENV GIT_VERSION 2.13.2
 ENV GIT_DOWNLOAD_URL https://github.com/git-for-windows/git/releases/download/v${GIT_VERSION}.windows.1/MinGit-${GIT_VERSION}-64-bit.zip
-ENV GIT_SHA256 20acda973eca1df056ad08bec6e05c3136f40a1b90e2a290260dfc36e9c2c800
+ENV GIT_SHA256 302a72d72c5c881f8d34183485f0e86721b7a89f2090977f3795ab89670d9c1d
 
 RUN Invoke-WebRequest -UseBasicParsing $env:GIT_DOWNLOAD_URL -OutFile git.zip; \
     if ((Get-FileHash git.zip -Algorithm sha256).Hash -ne $env:GIT_SHA256) {exit 1} ; \
