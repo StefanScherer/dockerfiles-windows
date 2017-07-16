@@ -1,4 +1,5 @@
-docker tag dockertls stefanscherer/dockertls-windows:2.4.4
+$version=$(select-string -Path Dockerfile -Pattern "ENV VERSION").ToString().split()[-1]
+docker tag dockertls stefanscherer/dockertls-windows:$version
 docker tag dockertls stefanscherer/dockertls-windows
-docker push stefanscherer/dockertls-windows:2.4.4
+docker push stefanscherer/dockertls-windows:$version
 docker push stefanscherer/dockertls-windows
