@@ -19,7 +19,7 @@ function addPortMapping() {
 
 function runRegistry() {
   mkdir C:\registry
-  docker run -d -p 5000:5000 --restart=always --name registry -v C:\registry:C:\registry registry:2.6.1
+  docker run -d -p 5000:5000 --restart=always --name registry -v C:\registry:C:\registry registry:2.6.2
 }
 
 
@@ -29,8 +29,8 @@ runRegistry
 addPortMapping
 
 Write-Host Pushing an image to local registry
-docker tag registry:2.6.1 127.0.0.1:5000/registry:2.6.1
-docker push 127.0.0.1:5000/registry:2.6.1
+docker tag registry:2.6.2 127.0.0.1:5000/registry:2.6.2
+docker push 127.0.0.1:5000/registry:2.6.2
 
 Write-Host Checking if local registry files are stored on host
 dir C:\registry\docker\registry\v2\repositories\registry\
