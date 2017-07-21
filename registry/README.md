@@ -18,7 +18,7 @@ mkdir C:\registry
 On the first Windows Server 2016 machine run the registry like this:
 
 ```
-docker run -d -p 5000:5000 --restart=always --name registry -v C:\registry:C:\registry stefanscherer/registry-windows:2.6.1
+docker run -d -p 5000:5000 --restart=always --name registry -v C:\registry:C:\registry stefanscherer/registry-windows:2.6.2
 ```
 
 ## Edit your Docker Engine config file
@@ -51,13 +51,13 @@ restart-service docker
 ## Tag a Docker image
 
 ```
-docker tag stefanscherer/registry-windows:2.6.1 192.168.254.133:5000/registry:2.6.1
+docker tag stefanscherer/registry-windows:2.6.2 192.168.254.133:5000/registry:2.6.2
 ```
 
 ## Push a Docker image
 
 ```
-docker push 192.168.254.133:5000/registry:2.6.1
+docker push 192.168.254.133:5000/registry:2.6.2
 ```
 
 ## Check C:\registry
