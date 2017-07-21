@@ -8,29 +8,31 @@ function addRegistryToDaemonJson() {
     $config = (Get-Content $daemonJson) -join "`n" | ConvertFrom-Json
   }
   $config = $config | Add-Member(@{ `
-    'insecure-registries' = @("127.0.0.1:5000"); `
+    'insecure-registries' = @("myregistry:5000"); `
   }) -Force -PassThru
   $config | ConvertTo-Json | Set-Content $daemonJson -Encoding Ascii
 }
 
-function addPortMapping() {
-  netsh interface portproxy add v4tov4 listenport=5000 listenaddress=127.0.0.1 connectport=5000 connectaddress=$(docker inspect -f '{{ .NetworkSettings.Networks.nat.IPAddress }}' registry)
+function addHosts() {
+  $ip = $(docker inspect -f '{{ .NetworkSettings.Networks.nat.IPAddress }}' registry)
+  "" | Out-File -Encoding Ascii -Append C:\Windows\system32\drivers\etc\hosts
+  "$ip myregistry" | Out-File -Encoding Ascii -Append C:\Windows\system32\drivers\etc\hosts
 }
 
 function runRegistry() {
-  mkdir C:\registry
-  docker run -d -p 5000:5000 --restart=always --name registry -v C:\registry:C:\registry registry:2.6.1
+  if (!(Test-Path C:\registry)) { mkdir C:\registry }
+  docker run -d -p 5000:5000 --restart=always --name registry -v C:\registry:C:\registry registry:2.6.2
 }
 
 
 addRegistryToDaemonJson
 restart-service docker
 runRegistry
-addPortMapping
+addHosts
 
 Write-Host Pushing an image to local registry
-docker tag registry:2.6.1 127.0.0.1:5000/registry:2.6.1
-docker push 127.0.0.1:5000/registry:2.6.1
+docker tag registry:2.6.2 myregistry:5000/registry:2.6.2
+docker push myregistry:5000/registry:2.6.2
 
 Write-Host Checking if local registry files are stored on host
 dir C:\registry\docker\registry\v2\repositories\registry\
