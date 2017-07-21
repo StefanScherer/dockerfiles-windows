@@ -15,7 +15,8 @@ function addRegistryToDaemonJson() {
 
 function addHosts() {
   $ip = $(docker inspect -f '{{ .NetworkSettings.Networks.nat.IPAddress }}' registry)
-  Write-Host "$ip myregistry" | Out-File -Encoding Ascii -Append C:\Windows\system32\drivers\etc\hosts
+  "" | Out-File -Encoding Ascii -Append C:\Windows\system32\drivers\etc\hosts
+  "$ip myregistry" | Out-File -Encoding Ascii -Append C:\Windows\system32\drivers\etc\hosts
 }
 
 function runRegistry() {
