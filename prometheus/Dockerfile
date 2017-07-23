@@ -1,14 +1,17 @@
 # escape=`
 FROM microsoft/windowsservercore AS tar
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
-RUN Invoke-WebRequest 'http://www.7-zip.org/a/7z1604-x64.msi' -OutFile '7z.msi' -UseBasicParsing
-RUN Start-Process msiexec.exe -ArgumentList '/i', '7z.msi', '/quiet', '/norestart' -NoNewWindow -Wait
+
+ENV MHOLT_ARCHIVER_VERSION 2.0
+ENV MHOLT_ARCHIVER_SHA256 c23eab86a8f77e446f2b5dbb03305ac9acfb5187108a0090a4bcb3d908fa9785
+
+RUN Invoke-WebRequest $('https://github.com/mholt/archiver/releases/download/v{0}/archiver_windows_amd64.exe' -f $env:MHOLT_ARCHIVER_VERSION) -OutFile archiver.exe -UseBasicParsing ; `
+    if ((Get-FileHash archiver.exe -Algorithm sha256).Hash -ne $env:MHOLT_ARCHIVER_SHA256) { Write-Error 'SHA256 mismatch' }
 
 ENV PROMETHEUS_VERSION 1.7.0
 
 RUN Invoke-WebRequest $('https://github.com/prometheus/prometheus/releases/download/v{0}/prometheus-{0}.windows-amd64.tar.gz' -f $env:PROMETHEUS_VERSION) -OutFile 'prometheus.tar.gz' -UseBasicParsing
-RUN & 'C:\Program Files\7-Zip\7z.exe' x prometheus.tar.gz
-RUN & 'C:\Program Files\7-Zip\7z.exe' x prometheus.tar
+RUN .\archiver.exe open prometheus.tar.gz
 RUN Rename-Item -Path $('C:\prometheus-{0}.windows-amd64' -f $env:PROMETHEUS_VERSION) -NewName 'C:\download'
 
 FROM microsoft/nanoserver
