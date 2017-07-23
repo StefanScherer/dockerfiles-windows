@@ -3,7 +3,7 @@ FROM microsoft/windowsservercore-insider as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV GPG_VERSION 2.3.3
+ENV GPG_VERSION 2.3.4
 
 RUN Invoke-WebRequest $('https://files.gpg4win.org/gpg4win-vanilla-{0}.exe' -f $env:GPG_VERSION) -OutFile 'gpg4win.exe' -UseBasicParsing ; `
     Start-Process .\gpg4win.exe -ArgumentList '/S' -NoNewWindow -Wait
@@ -21,7 +21,7 @@ RUN @( `
       gpg --keyserver ha.pool.sks-keyservers.net --recv-keys $_ ; `
     }
 
-ENV NODE_VERSION 8.1.4
+ENV NODE_VERSION 8.2.1
 
 RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/SHASUMS256.txt.asc' -f $env:NODE_VERSION) -OutFile 'SHASUMS256.txt.asc' -UseBasicParsing ; `
     gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc
@@ -32,16 +32,40 @@ RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/node-v{0}-win-x64.zip' -f 
     Expand-Archive node.zip -DestinationPath C:\ ; `
     Rename-Item -Path $('C:\node-v{0}-win-x64' -f $env:NODE_VERSION) -NewName 'C:\nodejs'
 
+ENV YARN_VERSION 0.27.5
+
+RUN @( `
+    '6A010C5166006599AA17F08146C2130DFD2497F5' `
+    ) | foreach { `
+      gpg --keyserver ha.pool.sks-keyservers.net --recv-keys $_ ; `
+    }
+
+RUN $asc =  $('yarn-v{0}.tar.gz.asc' -f $env:YARN_VERSION) ; `
+    $tarGz =  $('yarn-v{0}.tar.gz' -f $env:YARN_VERSION) ; `
+    Invoke-WebRequest $('https://yarnpkg.com/downloads/{0}/yarn-v{0}.tar.gz.asc' -f $env:YARN_VERSION) -OutFile $asc -UseBasicParsing ; `
+    Invoke-WebRequest $('https://yarnpkg.com/downloads/{0}/yarn-v{0}.tar.gz' -f $env:YARN_VERSION) -OutFile $tarGz -UseBasicParsing ; `
+    gpg --batch --verify $asc $tarGz
+
+ENV MHOLT_ARCHIVER_VERSION 2.0
+ENV MHOLT_ARCHIVER_SHA256 c23eab86a8f77e446f2b5dbb03305ac9acfb5187108a0090a4bcb3d908fa9785
+
+RUN Invoke-WebRequest $('https://github.com/mholt/archiver/releases/download/v{0}/archiver_windows_amd64.exe' -f $env:MHOLT_ARCHIVER_VERSION) -OutFile archiver.exe -UseBasicParsing ; `
+    if ((Get-FileHash archiver.exe -Algorithm sha256).Hash -ne $env:MHOLT_ARCHIVER_SHA256) { Write-Error 'SHA256 mismatch' }
+
+RUN .\archiver.exe open yarn-v$($env:YARN_VERSION).tar.gz ; `
+    mv dist yarn
+
 FROM microsoft/nanoserver-insider
 
 ENV NPM_CONFIG_LOGLEVEL info
 
 COPY --from=download /nodejs /nodejs
+COPY --from=download /yarn /yarn
 
-RUN setx PATH "%PATH%;C:\nodejs;%APPDATA%\npm"
+RUN setx PATH "%PATH%;C:\nodejs;C:\yarn\bin;%APPDATA%\npm"
 
-# does not work: docker run node:8.1.4 node --version
-# works only with cmd: docker run node:8.1.4 cmd /c node --version
+# does not work: docker run node:8.2.1 node --version
+# works only with cmd: docker run node:8.2.1 cmd /c node --version
 # ENV PATH C:\Windows\system32;C:\Windows;C:\Users\ContainerAdministrator\AppData\Local\Microsoft\WindowsApps;C:\nodejs;C:\Users\ContainerAdministrator\AppData\Roaming\npm
 
 CMD [ "node.exe" ]
