@@ -13,7 +13,11 @@ On the first Windows Server 2016 we setup a local folder to persist your images.
 mkdir C:\registry
 ```
 
-## Run registry in container
+## Run insecure registry without TLS
+
+If you don't have SSL certificates for your domain and don't wont to use self-signed certificates you can just setup you registry as follows
+
+### Run registry in container
 
 On the first Windows Server 2016 machine run the registry like this:
 
@@ -21,9 +25,9 @@ On the first Windows Server 2016 machine run the registry like this:
 docker run -d -p 5000:5000 --restart=always --name registry -v C:\registry:C:\registry stefanscherer/registry-windows:2.6.2
 ```
 
-## Edit your Docker Engine config file
+### Edit your Docker Engine config file
 
-On the second Windows Server 2016 machine add your local registry from the first Windows Server 2016 machine. In this example the IP address of the first Windows Server 2016 machine is 192.168.254.133.
+On the second Windows Server 2016 machine add your local registry from the first Windows Server 2016 machine. In this example the IP address of the first Windows Server 2016 machine is 192.168.254.133. We need to add this as we didn't use certificates to secure the registry.
 
 ```
 notepad C:\ProgramData\docker\config\daemon.json
@@ -42,20 +46,43 @@ dockerd --unregister-service
 dockerd --register-service -G docker -H npipe:// --insecure-registry 192.168.254.133:5000
 ```
 
-## Restart Docker Engine
+### Restart Docker Engine
 
 ```
 restart-service docker
 ```
 
+## Run secure registry with TLS in container
+
+If you have SSL certificates for your domain that you can use (a .crt and a .key without password), then you can secure your registry by running it as follows, assuming that your certificate files are stored in c:\certs and name domain.crt and domain.unencrypte.key:
+
+```docker run -d --restart=always -p 443:5000 -v C:\registry:C:\registry  --name registry -v C:\certs\:c:\certs -e REGISTRY_HTTP_TLS_CERTIFICATE=c:\certs\domain.crt -e REGISTRY_HTTP_TLS_KEY=c:\certs\domain.unencrypted.key stefanscherer/registry-windows:2.6.2```
+
+If you only have a .pfx file with a password you can find a good how-to about getting the files you need [here](https://www.markbrilman.nl/2011/08/howto-convert-a-pfx-to-a-seperate-key-crt-file/)
+
+
 ## Tag a Docker image
 
+You now have a registry in place, secure or insecure, and you can run the following to tag a Docker image
+
+For an insecure registry use
+```
+docker tag stefanscherer/registry-windows:2.6.2 192.168.254.133:5000/registry:2.6.2
+```
+
+For a secure registry use
 ```
 docker tag stefanscherer/registry-windows:2.6.2 192.168.254.133:5000/registry:2.6.2
 ```
 
 ## Push a Docker image
 
+Again, for an insecure registry use
+```
+docker push 192.168.254.133:5000/registry:2.6.2
+```
+
+And for a secure registry use
 ```
 docker push 192.168.254.133:5000/registry:2.6.2
 ```
