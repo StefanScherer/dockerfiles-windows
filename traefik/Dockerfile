@@ -1,6 +1,8 @@
 FROM microsoft/nanoserver
 
-ADD https://github.com/containous/traefik/releases/download/v1.3.4/traefik_windows-amd64 /traefik.exe
+ENV TRAEFIK_VERSION 1.3.4
+
+ADD https://github.com/containous/traefik/releases/download/v${TRAEFIK_VERSION}/traefik_windows-amd64 /traefik.exe
 
 VOLUME C:/etc/traefik
 VOLUME C:/etc/ssl
@@ -13,5 +15,5 @@ LABEL org.label-schema.vendor="Containous" \
       org.label-schema.url="https://traefik.io" \
       org.label-schema.name="Traefik" \
       org.label-schema.description="A modern reverse-proxy" \
-      org.label-schema.version="v1.3.4" \
+      org.label-schema.version="v${TRAEFIK_VERSION}" \
       org.label-schema.docker.schema-version="1.0"
