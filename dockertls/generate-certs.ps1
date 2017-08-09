@@ -31,7 +31,7 @@ function createCA(){
 }
 
 # https://docs.docker.com/engine/security/https/
-function createCerts($serverCertsPath, $serverName, $ipAddresses, $clientCertsPath) {
+function createCerts($serverCertsPath, $serverName, $alternativeNames, $ipAddresses, $clientCertsPath) {
   Write-Host "`n=== Reading in CA Private Key Password"
   $Global:caPrivateKeyPass = Get-Content -Path $Global:caPrivateKeyPassFile
 
@@ -42,7 +42,22 @@ function createCerts($serverCertsPath, $serverName, $ipAddresses, $clientCertsPa
   & openssl req -subj "/CN=$serverName/" -sha256 -new -key server-key.pem -out server.csr
 
   Write-Host "`n=== Signing Server request"
-  "subjectAltName = " + (($ipAddresses.Split(',') | ForEach-Object { "IP:$_" }) -join ',') + ",DNS.1:$serverName" | Out-File extfile.cnf -Encoding Ascii
+  $san = @()
+
+  if (-not [string]::IsNullOrWhiteSpace($ipAddresses))
+  {
+    $san += ($ipAddresses.Split(',') | ForEach-Object { "IP:$_" })
+  }
+
+  $nameCount = 1
+  $san += "DNS.$($nameCount):$serverName"
+
+  if (-not [string]::IsNullOrWhiteSpace($alternativeNames))
+  {
+    $san += ($alternativeNames.Split(',') | ForEach-Object { $nameCount += 1; "DNS.$($nameCount):$_"; })
+  }
+
+  "subjectAltName = " + ($san -join ',') | Out-File extfile.cnf -Encoding Ascii
   cat extfile.cnf
   & openssl x509 -req -days 365 -sha256 -in server.csr -CA $Global:caPublicKeyFile -passin $Global:caPrivateKeyPass -CAkey $Global:caPrivateKeyFile `
     -CAcreateserial -out server-cert.pem -extfile extfile.cnf
@@ -172,6 +187,7 @@ function createMachineConfig ($machineName, $machineHome, $machinePath, $machine
 
 $dockerData = "$env:ProgramData\docker"
 $serverName = $env:SERVER_NAME
+$alternativeNames = $env:ALTERNATIVE_NAMES
 $ipAddresses = $env:IP_ADDRESSES
 $userPath = "$env:USERPROFILE\.docker"
 
@@ -186,7 +202,7 @@ if (  !(Test-Path -Path $Global:caPrivateKeyPassFile) -or
   createCA
 }
 
-createCerts "$dockerData\certs.d" $serverName $ipAddresses "$userPath"
+createCerts "$dockerData\certs.d" $serverName $alternativeNames $ipAddresses "$userPath"
 updateConfig "$dockerData\config\daemon.json" "$dockerData\certs.d"
 
 $machineHome = $env:MACHINE_HOME
