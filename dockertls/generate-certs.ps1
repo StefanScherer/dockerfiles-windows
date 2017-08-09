@@ -31,7 +31,7 @@ function createCA(){
 }
 
 # https://docs.docker.com/engine/security/https/
-function createCerts($serverCertsPath, $serverName, $additionalServerNames, $ipAddresses, $clientCertsPath) {
+function createCerts($serverCertsPath, $serverName, $alternativeNames, $ipAddresses, $clientCertsPath) {
   Write-Host "`n=== Reading in CA Private Key Password"
   $Global:caPrivateKeyPass = Get-Content -Path $Global:caPrivateKeyPassFile
 
@@ -43,10 +43,20 @@ function createCerts($serverCertsPath, $serverName, $additionalServerNames, $ipA
 
   Write-Host "`n=== Signing Server request"
   $san = @()
-  $san += ($ipAddresses.Split(',') | ForEach-Object { "IP:$_" })
+
+  if (-not [string]::IsNullOrWhiteSpace($ipAddresses))
+  {
+    $san += ($ipAddresses.Split(',') | ForEach-Object { "IP:$_" })
+  }
+
   $nameCount = 1
   $san += "DNS.$($nameCount):$serverName"
-  $san += ($additionalServerNames.Split(',') | ForEach-Object { $nameCount += 1;  "DNS.$($nameCount):$_"; })
+
+  if (-not [string]::IsNullOrWhiteSpace($alternativeNames))
+  {
+    $san += ($alternativeNames.Split(',') | ForEach-Object { $nameCount += 1; "DNS.$($nameCount):$_"; })
+  }
+
   "subjectAltName = " + ($san -join ',') | Out-File extfile.cnf -Encoding Ascii
   cat extfile.cnf
   & openssl x509 -req -days 365 -sha256 -in server.csr -CA $Global:caPublicKeyFile -passin $Global:caPrivateKeyPass -CAkey $Global:caPrivateKeyFile `
