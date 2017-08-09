@@ -42,7 +42,12 @@ function createCerts($serverCertsPath, $serverName, $additionalServerNames, $ipA
   & openssl req -subj "/CN=$serverName/" -sha256 -new -key server-key.pem -out server.csr
 
   Write-Host "`n=== Signing Server request"
-  "subjectAltName = " + (($ipAddresses.Split(',') | ForEach-Object { "IP:$_" }) -join ',') + ",DNS.1:$serverName" | Out-File extfile.cnf -Encoding Ascii
+  $san = @()
+  $san += ($ipAddresses.Split(',') | ForEach-Object { "IP:$_" })
+  $nameCount = 1
+  $san += "DNS.$($nameCount):$serverName"
+  $san += ($additionalServerNames.Split(',') | ForEach-Object { $nameCount += 1;  "DNS.$($nameCount):$_"; })
+  "subjectAltName = " + ($san -join ',') | Out-File extfile.cnf -Encoding Ascii
   cat extfile.cnf
   & openssl x509 -req -days 365 -sha256 -in server.csr -CA $Global:caPublicKeyFile -passin $Global:caPrivateKeyPass -CAkey $Global:caPrivateKeyFile `
     -CAcreateserial -out server-cert.pem -extfile extfile.cnf
@@ -172,7 +177,7 @@ function createMachineConfig ($machineName, $machineHome, $machinePath, $machine
 
 $dockerData = "$env:ProgramData\docker"
 $serverName = $env:SERVER_NAME
-$additionalNames = $env:ADDITIONAL_NAMES
+$alternativeNames = $env:ALTERNATIVE_NAMES
 $ipAddresses = $env:IP_ADDRESSES
 $userPath = "$env:USERPROFILE\.docker"
 
@@ -187,7 +192,7 @@ if (  !(Test-Path -Path $Global:caPrivateKeyPassFile) -or
   createCA
 }
 
-createCerts "$dockerData\certs.d" $serverName $additionalNames $ipAddresses "$userPath"
+createCerts "$dockerData\certs.d" $serverName $alternativeNames $ipAddresses "$userPath"
 updateConfig "$dockerData\config\daemon.json" "$dockerData\certs.d"
 
 $machineHome = $env:MACHINE_HOME
