@@ -31,7 +31,7 @@ function createCA(){
 }
 
 # https://docs.docker.com/engine/security/https/
-function createCerts($serverCertsPath, $serverName, $ipAddresses, $clientCertsPath) {
+function createCerts($serverCertsPath, $serverName, $additionalServerNames, $ipAddresses, $clientCertsPath) {
   Write-Host "`n=== Reading in CA Private Key Password"
   $Global:caPrivateKeyPass = Get-Content -Path $Global:caPrivateKeyPassFile
 
@@ -172,6 +172,7 @@ function createMachineConfig ($machineName, $machineHome, $machinePath, $machine
 
 $dockerData = "$env:ProgramData\docker"
 $serverName = $env:SERVER_NAME
+$additionalNames = $env:ADDITIONAL_NAMES
 $ipAddresses = $env:IP_ADDRESSES
 $userPath = "$env:USERPROFILE\.docker"
 
@@ -186,7 +187,7 @@ if (  !(Test-Path -Path $Global:caPrivateKeyPassFile) -or
   createCA
 }
 
-createCerts "$dockerData\certs.d" $serverName $ipAddresses "$userPath"
+createCerts "$dockerData\certs.d" $serverName $additionalNames $ipAddresses "$userPath"
 updateConfig "$dockerData\config\daemon.json" "$dockerData\certs.d"
 
 $machineHome = $env:MACHINE_HOME
