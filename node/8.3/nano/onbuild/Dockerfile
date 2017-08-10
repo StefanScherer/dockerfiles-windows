@@ -1,4 +1,4 @@
-FROM node:8.2.1-nanoserver
+FROM node:8.3.0-nanoserver
 
 RUN mkdir \app
 WORKDIR /app

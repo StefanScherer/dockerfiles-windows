@@ -30,4 +30,4 @@ function pushVersion($majorMinorPatch, $majorMinor, $major) {
 }
 
 pushVersion "6.11.2" "6.11" "6"
-pushVersion "8.2.1" "8.2" "8"
+pushVersion "8.3.0" "8.3" "8"

@@ -1,4 +1,4 @@
-FROM node:8.2.1-windowsservercore
+FROM node:8.3.0-windowsservercore
 
 RUN mkdir \app
 WORKDIR /app
