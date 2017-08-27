@@ -21,7 +21,7 @@ RUN @( `
       gpg --keyserver ha.pool.sks-keyservers.net --recv-keys $_ ; `
     }
 
-ENV NODE_VERSION 8.2.1
+ENV NODE_VERSION 8.4.0
 
 RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/SHASUMS256.txt.asc' -f $env:NODE_VERSION) -OutFile 'SHASUMS256.txt.asc' -UseBasicParsing ; `
     gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc
@@ -64,8 +64,8 @@ COPY --from=download /yarn /yarn
 
 RUN setx PATH "%PATH%;C:\nodejs;C:\yarn\bin;%APPDATA%\npm"
 
-# does not work: docker run node:8.2.1 node --version
-# works only with cmd: docker run node:8.2.1 cmd /c node --version
+# does not work: docker run node:8.4.0 node --version
+# works only with cmd: docker run node:8.4.0 cmd /c node --version
 # ENV PATH C:\Windows\system32;C:\Windows;C:\Users\ContainerAdministrator\AppData\Local\Microsoft\WindowsApps;C:\nodejs;C:\Users\ContainerAdministrator\AppData\Roaming\npm
 
 CMD [ "node.exe" ]
