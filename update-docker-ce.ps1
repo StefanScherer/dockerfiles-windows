@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 
-Install-Package -Name docker -ProviderName DockerMsftProviderInsider -Verbose -Update -Force
+Install-Package -Name docker -ProviderName DockerMsftProvider -Verbose -Update -Force
 
 Write-Host "Starting docker service"
 Start-Service docker
