@@ -1,2 +1,2 @@
-docker build -t chocolatey:0.10.7 .
-docker tag chocolatey:0.10.7 chocolatey:latest
+docker build -t chocolatey:0.10.8 .
+docker tag chocolatey:0.10.8 chocolatey:latest
