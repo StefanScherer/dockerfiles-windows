@@ -1,4 +1,3 @@
-:80 {
-  log stdout
-  root C:\wwwroot
-}
+:80
+log stdout
+root C:\wwwroot
