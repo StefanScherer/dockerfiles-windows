@@ -1,6 +1,6 @@
 FROM microsoft/nanoserver
 
-ENV TRAEFIK_VERSION 1.3.5
+ENV TRAEFIK_VERSION 1.3.7
 
 ADD https://github.com/containous/traefik/releases/download/v${TRAEFIK_VERSION}/traefik_windows-amd64 /traefik.exe
 
