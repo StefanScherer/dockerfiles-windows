@@ -1,14 +1,11 @@
 # escape=`
 FROM microsoft/nanoserver
-ENV CONSUL_VERSION 0.8.4
+ENV CONSUL_VERSION 0.9.2
 
 RUN powershell -Command $ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue'; `
     Invoke-WebRequest $('https://releases.hashicorp.com/consul/{0}/consul_{0}_windows_amd64.zip' -f $env:CONSUL_VERSION) -OutFile 'consul.zip' -UseBasicParsing ; `
-    Invoke-WebRequest $('https://releases.hashicorp.com/consul/{0}/consul_{0}_web_ui.zip' -f $env:CONSUL_VERSION) -OutFile 'webui.zip' -UseBasicParsing ; `
     Expand-Archive -Path consul.zip -DestinationPath . -Force ; `
-    Expand-Archive -Path webui.zip -DestinationPath C:\dist -Force ; `
     rm consul.zip ; `
-    rm webui.zip ; `
     mkdir C:\consul\data ; `
     mkdir C:\consul\config
 
@@ -33,4 +30,4 @@ ENTRYPOINT [ "C:\\consul.exe" ]
 # By default you'll get an insecure single-node development server that stores
 # everything in RAM, exposes a web UI and HTTP endpoints, and bootstraps itself.
 # Don't use this configuration for production.
-CMD ["agent", "-dev", "-client", "0.0.0.0"]
+CMD ["agent", "-ui", "-dev", "-client", "0.0.0.0"]
