@@ -1,4 +1,5 @@
+$version=$(select-string -Path Dockerfile -Pattern "ENV CURL_VERSION").ToString().split()[-1]
 docker tag curl stefanscherer/curl-windows
-docker tag curl stefanscherer/curl-windows:7.53.0
-docker push stefanscherer/curl-windows:7.53.0
+docker tag curl stefanscherer/curl-windows:$version
+docker push stefanscherer/curl-windows:$version
 docker push stefanscherer/curl-windows
