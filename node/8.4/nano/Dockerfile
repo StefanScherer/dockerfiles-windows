@@ -62,10 +62,8 @@ ENV NPM_CONFIG_LOGLEVEL info
 COPY --from=download /nodejs /nodejs
 COPY --from=download /yarn /yarn
 
-RUN setx PATH "%PATH%;C:\nodejs;C:\yarn\bin;%APPDATA%\npm"
-
-# does not work: docker run node:8.4.0 node --version
-# works only with cmd: docker run node:8.4.0 cmd /c node --version
-# ENV PATH C:\Windows\system32;C:\Windows;C:\Users\ContainerAdministrator\AppData\Local\Microsoft\WindowsApps;C:\nodejs;C:\Users\ContainerAdministrator\AppData\Roaming\npm
+USER ContainerAdministrator
+RUN setx /m PATH "%PATH%;C:\nodejs;C:\yarn\bin;%APPDATA%\npm"
+USER ContainerUser
 
 CMD [ "node.exe" ]
