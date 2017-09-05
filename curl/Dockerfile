@@ -2,7 +2,7 @@ FROM microsoft/nanoserver
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV CURL_VERSION 7.53.0
+ENV CURL_VERSION 7.55.1
 
 RUN Invoke-WebRequest $('https://dl.uxnr.de/build/curl/curl_winssl_msys2_mingw64_stc/curl-{0}/curl-{0}.zip' -f $env:CURL_VERSION) -OutFile 'curl.zip' -UseBasicParsing ; \
     Expand-Archive curl.zip -DestinationPath C:\ ; \
