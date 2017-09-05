@@ -1,0 +1,5 @@
+FROM microsoft/nanoserver-insider
+
+ADD https://master.dockerproject.org/windows/x86_64/docker.exe /windows/system32/docker.exe
+
+ENTRYPOINT [ "docker.exe" ]
