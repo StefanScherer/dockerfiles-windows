@@ -42,4 +42,6 @@ COPY --from=builder /git /git
 ENV GOPATH C:\\gopath
 WORKDIR $GOPATH
 
-RUN setx PATH "%PATH%;C:\%GOPATH%\bin;C:\go\bin;C:\git\cmd;C:\git\mingw64\bin;C:\git\usr\bin"
+USER ContainerAdministrator
+RUN setx /m PATH "%PATH%;C:\%GOPATH%\bin;C:\go\bin;C:\git\cmd;C:\git\mingw64\bin;C:\git\usr\bin"
+USER ContainerUser
