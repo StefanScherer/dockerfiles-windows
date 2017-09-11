@@ -1,0 +1,22 @@
+version: "3.2"
+services:
+
+  whoami:
+    image: stefanscherer/whoami:insider
+    networks:
+      - demo
+    environment:
+      - PORT=8000
+    volumes:
+      - type: bind
+        source: C:/data
+        target: C:/inside
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+          - node.platform.os == windows
+
+networks:
+  demo:
+    driver: overlay
