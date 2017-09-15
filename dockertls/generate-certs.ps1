@@ -187,9 +187,9 @@ function createMachineConfig ($machineName, $machineHome, $machinePath, $machine
 
 $dockerData = "$env:ProgramData\docker"
 $dockerDataRoot = $dockerData
-if (-not [string]::IsNullOrWhiteSpace($env:DockerDataRoot))
+if (-not [string]::IsNullOrWhiteSpace($env:DOCKER_DATA_ROOT))
 {
-	$dockerDataRoot = $env:DockerDataRoot
+	$dockerDataRoot = $env:DOCKER_DATA_ROOT
 }
 
 $serverName = $env:SERVER_NAME

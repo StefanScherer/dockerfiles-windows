@@ -118,7 +118,7 @@ docker run --rm `
 mkdir $env:USERPROFILE\.docker
 docker run --rm `
   -e SERVER_NAME=$(hostname) `
-  -e DockerDataRoot=E:\ProgramData\Docker `
+  -e DOCKER_DATA_ROOT=E:\ProgramData\Docker `
   -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
   -v "c:\programdata\docker:c:\programdata\docker" `
   -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
