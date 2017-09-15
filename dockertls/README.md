@@ -114,11 +114,28 @@ docker run --rm `
 ```
 
 ### Using an alternate Docker Data-Root directory in the daemon.json configuration file.
+
+If you have configured `dockerd` to start with the `--data-root <Path>` option, you need to provide that path to ensure the daemon.json file gets written correctly.
+
 ```powershell
 mkdir $env:USERPROFILE\.docker
 docker run --rm `
   -e SERVER_NAME=$(hostname) `
   -e DOCKER_DATA_ROOT=E:\ProgramData\Docker `
+  -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
+  -v "c:\programdata\docker:c:\programdata\docker" `
+  -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
+```
+
+### Providing additional Subject Alternative Names the Docker TLS certificate will accept.
+
+Sometimes it is necessary to provide additional dns names the certificate will be valid for, these might include the fully qualified domain name (e.g. computer.corporate.domain.com) or an alternative name that might resolve to multiple hosts (e.g manager.corporate.domain.com).  You can provide these names in a comma separated list through the `ALTERNATIVE_NAMES` environment variable.
+
+```powershell
+mkdir $env:USERPROFILE\.docker
+docker run --rm `
+  -e SERVER_NAME=$(hostname) `
+  -e "ALTERNATIVE_NAMES=$(HostName).$((Get-WmiObject win32_computersystem).Domain),manager.$((Get-WmiObject win32_computersystem).Domain)" `
   -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
   -v "c:\programdata\docker:c:\programdata\docker" `
   -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
