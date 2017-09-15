@@ -113,6 +113,17 @@ docker run --rm `
   -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
 ```
 
+### Using an alternate Docker Data-Root directory in the daemon.json configuration file.
+```powershell
+mkdir $env:USERPROFILE\.docker
+docker run --rm `
+  -e SERVER_NAME=$(hostname) `
+  -e DockerDataRoot=E:\ProgramData\Docker `
+  -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
+  -v "c:\programdata\docker:c:\programdata\docker" `
+  -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
+```
+
 ## See also
 
 * [Dockerfile](https://github.com/StefanScherer/dockerfiles-windows/blob/master/dockertls/Dockerfile)

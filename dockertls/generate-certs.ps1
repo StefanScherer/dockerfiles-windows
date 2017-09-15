@@ -186,6 +186,12 @@ function createMachineConfig ($machineName, $machineHome, $machinePath, $machine
 }
 
 $dockerData = "$env:ProgramData\docker"
+$dockerDataRoot = $dockerData
+if (-not [string]::IsNullOrWhiteSpace($env:DockerDataRoot))
+{
+	$dockerDataRoot = $env:DockerDataRoot
+}
+
 $serverName = $env:SERVER_NAME
 $alternativeNames = $env:ALTERNATIVE_NAMES
 $ipAddresses = $env:IP_ADDRESSES
@@ -203,7 +209,7 @@ if (  !(Test-Path -Path $Global:caPrivateKeyPassFile) -or
 }
 
 createCerts "$dockerData\certs.d" $serverName $alternativeNames $ipAddresses "$userPath"
-updateConfig "$dockerData\config\daemon.json" "$dockerData\certs.d"
+updateConfig "$dockerData\config\daemon.json" "$dockerDataRoot\certs.d"
 
 $machineHome = $env:MACHINE_HOME
 $machineName = $env:MACHINE_NAME
