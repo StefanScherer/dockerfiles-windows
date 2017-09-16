@@ -5,7 +5,8 @@ Investigations for issue https://github.com/golang/go/issues/21867
 Some Golang binaries are not able to run in microsoft/nanoserver-insider images as there is an indirect dependency to the missing netapi32.dll.
 
 ```
-C:\gopath>currentuser.exe
+$ docker build -t currentuser .
+$ docker run currentuser
 Hello
 panic: Failed to load netapi32.dll: The specified module could not be found.
 
@@ -45,3 +46,10 @@ COPY --from=core /windows/system32/netapi32.dll
 ```
 
 It is only needed to satisfy the DLL entry points, even if these functions are not called at runtime.
+
+```
+$ docker build -t currentuserfix -f Dockerfile.works .
+$ docker run currentuserfix
+Hello
+Current user &{S-1-5-93-2-2 S-1-5-93-2-2 User Manager\ContainerUser ContainerUser C:\Users\ContainerUser}
+```
