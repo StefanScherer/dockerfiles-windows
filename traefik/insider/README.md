@@ -7,7 +7,7 @@ It works, even using a mapped named pipe, but some issues in Golang and the Dock
 
 Issues
 
-- Golang tries to load netapi32.dll if os.Current() is called
+- Golang tries to load netapi32.dll if user.Current() is called
   - https://github.com/golang/go/issues/21867
   - workaround: copy netapi32.dll from windowsservercore-insider into traefik image
 
