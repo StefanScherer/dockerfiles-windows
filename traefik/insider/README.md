@@ -32,5 +32,11 @@ Issues
 Run Traefik manually works:
 
 ```
-docker run -it -p 8080:8080 -p 443:443 -u ContainerAdministrator -v C:/traefik:C:/etc/traefik -v //./pipe/docker_engine://./pipe/docker_engine stefanscherer/traefik-windows:v1.3.8-insider --docker.endpoint=npipe:////./pipe/docker_engine --loglevel=DEBUG
+docker run -it `
+  -p 8080:8080 -p 443:443 `
+  -u ContainerAdministrator `
+  -v C:/traefik:C:/etc/traefik `
+  -v //./pipe/docker_engine://./pipe/docker_engine `
+  stefanscherer/traefik-windows:v1.3.8-insider `
+  --docker.endpoint=npipe:////./pipe/docker_engine --loglevel=DEBUG
 ```
