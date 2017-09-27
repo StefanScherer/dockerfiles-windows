@@ -1,4 +1,4 @@
-FROM node:8.5.0-nanoserver
+FROM node:8.6.0-windowsservercore
 
 RUN mkdir \app
 WORKDIR /app
