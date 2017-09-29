@@ -1,0 +1,16 @@
+{
+  "name": "xterm",
+  "version": "1.0.0",
+  "description": "Run xterm.js in a Windows Docker container",
+  "main": "demo/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.16.0",
+    "express-ws": "3.0.0",
+    "node-pty": "0.7.0"
+  }
+}
