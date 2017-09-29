@@ -6,6 +6,12 @@ function buildVersion($majorMinorPatch, $majorMinor, $major) {
   docker tag node:$majorMinorPatch node:$major
   docker tag node:$majorMinorPatch node:$majorMinorPatch-windowsservercore
 
+  if (Test-Path $majorMinor\build-tools) {
+    docker build -t node:$majorMinorPatch-build-tools $majorMinor/build-tools
+    docker tag node:$majorMinorPatch-build-tools node:$majorMinor-build-tools
+    docker tag node:$majorMinorPatch-build-tools node:$major-build-tools
+  }
+
   docker build -t node:$majorMinorPatch-onbuild $majorMinor/onbuild
   docker tag node:$majorMinorPatch-onbuild node:$majorMinor-onbuild
   docker tag node:$majorMinorPatch-onbuild node:$major-onbuild
