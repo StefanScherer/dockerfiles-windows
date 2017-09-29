@@ -15,6 +15,12 @@ function pushVersion($majorMinorPatch, $majorMinor, $major) {
   docker tag node:$majorMinor-nano-onbuild stefanscherer/node-windows:$majorMinor-nano-onbuild
   docker tag node:$major-nano-onbuild stefanscherer/node-windows:$major-nano-onbuild
 
+  if (Test-Path $majorMinor\build-tools) {
+    docker tag node:$majorMinorPatch-build-tools stefanscherer/node-windows:$majorMinorPatch-build-tools
+    docker tag node:$majorMinorPatch-build-tools stefanscherer/node-windows:$majorMinor-build-tools
+    docker tag node:$majorMinorPatch-build-tools stefanscherer/node-windows:$major-build-tools
+  }
+
   docker push stefanscherer/node-windows:$majorMinorPatch
   docker push stefanscherer/node-windows:$majorMinor
   docker push stefanscherer/node-windows:$major
@@ -27,6 +33,12 @@ function pushVersion($majorMinorPatch, $majorMinor, $major) {
   docker push stefanscherer/node-windows:$majorMinorPatch-nano-onbuild
   docker push stefanscherer/node-windows:$majorMinor-nano-onbuild
   docker push stefanscherer/node-windows:$major-nano-onbuild
+
+  if (Test-Path $majorMinor\build-tools) {
+    docker push stefanscherer/node-windows:$majorMinorPatch-build-tools
+    docker push stefanscherer/node-windows:$majorMinor-build-tools
+    docker push stefanscherer/node-windows:$major-build-tools
+  }
 }
 
 pushVersion "6.11.3" "6.11" "6"
