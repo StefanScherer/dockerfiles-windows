@@ -1,0 +1,8 @@
+FROM stefanscherer/xterm:windows
+FROM microsoft/windowsservercore-insider
+COPY --from=0 /code /code
+COPY --from=0 /nodejs/node.exe /code/node.exe
+ADD https://master.dockerproject.org/windows/x86_64/docker.exe /windows/system32/docker.exe
+WORKDIR /code
+EXPOSE 3000
+ENTRYPOINT ["node.exe", "demo/app.js"]
