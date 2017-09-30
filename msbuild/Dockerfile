@@ -8,8 +8,9 @@ RUN (New-Object System.Net.WebClient).DownloadFile('http://download.microsoft.co
 
 COPY entrypoint.bat entrypoint.bat
 
-SHELL ["cmd"]
+SHELL ["cmd.exe", "/s", "/c", "C:\\entrypoint.bat"]
 
 WORKDIR /code
 
 ENTRYPOINT ["C:\\entrypoint.bat"]
+CMD ["cmd"]
