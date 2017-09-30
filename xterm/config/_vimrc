@@ -1,0 +1,26 @@
+set nocompatible
+
+set t_Co=256
+syntax on
+
+imap ^ <Esc>
+
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+set autoindent " Copy indent from last line when starting new line.
+set backspace=indent,eol,start
+set encoding=utf-8 nobomb " BOM often causes trouble
+set esckeys " Allow cursor keys in insert mode.
+set expandtab " Expand tabs to spaces
+set hidden
+set history=1000 " Increase history from 20 default to 1000
+set hlsearch " Highlight searches
+set ignorecase " Ignore case of searches.
+set incsearch " Highlight dynamically as pattern is typed.
+set laststatus=2 " Always show status line
+set magic " Enable extended regexes.
+set mouse=a " Enable moouse in all in all modes.
+set noerrorbells " Disable error bells.
+set nu " Enable line numbers.
+set ruler " Show the cursor position
+set scrolloff=3 " Start scrolling three lines before horizontal border of window.
+set shiftwidth=2 " The # of spaces for indenting.
