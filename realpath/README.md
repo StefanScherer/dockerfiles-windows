@@ -36,3 +36,9 @@ Could not get final path (error 53)
 
 C:\>exit
 ```
+
+## Building the image
+
+1. Build the msbuild image in ../msbuild directory.
+2. Build the realpath.exe in a multi-stage build with the Dockerfile in this directory.
+
