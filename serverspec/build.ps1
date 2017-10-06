@@ -1,1 +1,2 @@
+
 docker build -t serverspec .
