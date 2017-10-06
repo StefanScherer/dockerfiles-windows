@@ -10,6 +10,6 @@ describe "Chocolatey" do
 
   describe command('choco version') do
     its(:exit_status) { should eq 0 }
-    its(:stdout) { should match /Chocolatey v0.10.3/ }
+    its(:stdout) { should match /Chocolatey v0.10.8/ }
   end
 end
