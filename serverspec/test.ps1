@@ -1,1 +1,1 @@
-docker run -v $(pwd)\spec:C:\spec serverspec
+docker run -v "$(pwd)\spec:C:\spec" serverspec
