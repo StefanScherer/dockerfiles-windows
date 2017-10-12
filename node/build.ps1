@@ -1,6 +1,6 @@
 
 function buildVersion($majorMinorPatch, $majorMinor, $major) {
-  docker build -t node:$majorMinorPatch $majorMinor
+  docker build -pull -t node:$majorMinorPatch $majorMinor
   docker tag node:$majorMinorPatch node:latest
   docker tag node:$majorMinorPatch node:$majorMinor
   docker tag node:$majorMinorPatch node:$major
@@ -16,7 +16,7 @@ function buildVersion($majorMinorPatch, $majorMinor, $major) {
   docker tag node:$majorMinorPatch-onbuild node:$majorMinor-onbuild
   docker tag node:$majorMinorPatch-onbuild node:$major-onbuild
 
-  docker build -t node:$majorMinorPatch-nano $majorMinor/nano
+  docker build -pull -t node:$majorMinorPatch-nano $majorMinor/nano
   docker tag node:$majorMinorPatch-nano node:latest-nano
   docker tag node:$majorMinorPatch-nano node:$majorMinor-nano
   docker tag node:$majorMinorPatch-nano node:$major-nano
@@ -27,5 +27,5 @@ function buildVersion($majorMinorPatch, $majorMinor, $major) {
   docker tag node:$majorMinorPatch-nano-onbuild node:$major-nano-onbuild
 }
 
-buildVersion "6.11.3" "6.11" "6"
-buildVersion "8.6.0" "8.6" "8"
+buildVersion "6.11.4" "6.11" "6"
+buildVersion "8.7.0" "8.7" "8"
