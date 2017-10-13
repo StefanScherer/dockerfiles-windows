@@ -1,6 +1,3 @@
-Write-Host Test URL
-Invoke-WebRequest https://nodejs.org/dist/v8.7.0/SHASUMS256.txt.asc
-
 function buildVersion($majorMinorPatch, $majorMinor, $major) {
   docker build --pull -t node:$majorMinorPatch $majorMinor
   docker tag node:$majorMinorPatch node:latest
