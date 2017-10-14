@@ -49,6 +49,13 @@ Only for windowsservercore, you can also use
 ```powershell
 $wc = New-Object net.webclient; $wc.Downloadfile($url, $target)
 ```
+### TLS 1.2
+
+Some web sites enforce you to use TLS 1.2. You have to enable TLS 1.2 in PowerShell before the `Invoke-WebRequest` or WebClient call.
+
+```powershell
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
+```
 
 ## `curl -u`
 
