@@ -44,6 +44,8 @@ $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest $url -OutFile $target -UseBasicParsing 
 ```
 
+The  `$ProgressPreference` setting is to fix download speed as sometimes downloading with `Invoke-WebRequest` was poorly slow.
+ 
 Only for windowsservercore, you can also use
 
 ```powershell
