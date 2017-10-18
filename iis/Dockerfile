@@ -1,6 +1,6 @@
 # This dockerfile utilizes components licensed by their respective owners/authors.
 
-FROM microsoft/windowsservercore
+FROM microsoft/windowsservercore:10.0.14393.1770
 
 LABEL Description="IIS" Vendor="Microsoft" Version="10"
 

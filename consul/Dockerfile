@@ -1,5 +1,5 @@
 # escape=`
-FROM microsoft/nanoserver
+FROM microsoft/nanoserver:10.0.14393.1770
 ENV CONSUL_VERSION 0.9.2
 
 RUN powershell -Command $ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue'; `

@@ -1,4 +1,4 @@
-FROM microsoft/nanoserver
+FROM microsoft/nanoserver:10.0.14393.1770
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 

@@ -14,7 +14,7 @@ RUN mkdir src\github.com\docker ; \
     try { go get github.com/tools/godep } catch { } ; \
     Start-Process -FilePath godep.exe -ArgumentList go, build, ./cmd/registry -Wait
 
-FROM microsoft/nanoserver
+FROM microsoft/nanoserver:10.0.14393.1770
 
 COPY --from=build /gopath/src/github.com/docker/distribution/registry.exe /registry.exe
 COPY config.yml /config/config.yml
