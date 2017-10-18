@@ -1,5 +1,5 @@
 # escape=`
-FROM microsoft/windowsservercore
+FROM microsoft/windowsservercore:10.0.14393.1770
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
