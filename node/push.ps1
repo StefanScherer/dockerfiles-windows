@@ -41,5 +41,5 @@ function pushVersion($majorMinorPatch, $majorMinor, $major) {
   }
 }
 
-pushVersion "6.11.4" "6.11" "6"
-pushVersion "8.7.0" "8.7" "8"
+pushVersion "6.11.5" "6.11" "6"
+pushVersion "8.8.0" "8.8" "8"
