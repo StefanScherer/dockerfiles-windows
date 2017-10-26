@@ -1,0 +1,7 @@
+FROM microsoft/nanoserver:1709
+COPY ./Files/ /
+VOLUME C:\\data
+EXPOSE 9000
+ADD https://master.dockerproject.org/windows/x86_64/docker.exe /Windows/system32/docker.exe
+USER ContainerAdministrator
+ENTRYPOINT [ "/portainer.exe" ]
