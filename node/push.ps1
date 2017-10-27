@@ -43,3 +43,7 @@ function pushVersion($majorMinorPatch, $majorMinor, $major) {
 
 pushVersion "6.11.5" "6.11" "6"
 pushVersion "8.8.1" "8.8" "8"
+
+npm install -g rebase-docker-image
+rebase-docker-image stefanscherer/node-windows:6-nano -t stefanscherer/node-windows:6-nano-1709 -b microsoft/nanoserver:1709
+rebase-docker-image stefanscherer/node-windows:8-nano -t stefanscherer/node-windows:8-nano-1709 -b microsoft/nanoserver:1709
