@@ -1,49 +1,65 @@
 function pushVersion($majorMinorPatch, $majorMinor, $major) {
-  docker tag node:$majorMinorPatch stefanscherer/node-windows:$majorMinorPatch
-  docker tag node:$majorMinor stefanscherer/node-windows:$majorMinor
-  docker tag node:$major stefanscherer/node-windows:$major
+  #docker tag node:$majorMinorPatch-windowsservercore stefanscherer/node-windows:$majorMinorPatch-windowsservercore-2016
+  #docker tag node:$majorMinorPatch-nanoserver stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016
+  #
+  #docker push stefanscherer/node-windows:$majorMinorPatch-windowsservercore-2016
+  #docker push stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016
+  #
+  #if (Test-Path $majorMinor\build-tools) {
+  #  docker tag node:$majorMinorPatch-build-tools stefanscherer/node-windows:$majorMinorPatch-build-tools
+  #  docker tag node:$majorMinorPatch-build-tools stefanscherer/node-windows:$majorMinor-build-tools
+  #  docker tag node:$majorMinorPatch-build-tools stefanscherer/node-windows:$major-build-tools
+  #  docker push stefanscherer/node-windows:$majorMinorPatch-build-tools
+  #  docker push stefanscherer/node-windows:$majorMinor-build-tools
+  #  docker push stefanscherer/node-windows:$major-build-tools
+  #}
+  #
+  #rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-windowsservercore-2016 -t stefanscherer/node-windows:$majorMinorPatch-windowsservercore-1709 -b microsoft/windowsservercore:1709
+  #rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1709 -b microsoft/nanoserver:1709
 
-  docker tag node:$majorMinorPatch-onbuild stefanscherer/node-windows:$majorMinorPatch-onbuild
-  docker tag node:$majorMinor-onbuild stefanscherer/node-windows:$majorMinor-onbuild
-  docker tag node:$major-onbuild stefanscherer/node-windows:$major-onbuild
+  $coreManifest = @"
+image: stefanscherer/node-windows:{0}-windowsservercore
+tags: ['{1}-windowsservercore', '{2}-windowsservercore', 'windowsservercore']
+manifests:
+  -
+    image: stefanscherer/node-windows:{0}-windowsservercore-2016
+    platform:
+      architecture: amd64
+      os: windows
+  -
+    image: stefanscherer/node-windows:{0}-windowsservercore-1709
+    platform:
+      architecture: amd64
+      os: windows
+"@
 
-  docker tag node:$majorMinorPatch-nano stefanscherer/node-windows:$majorMinorPatch-nano
-  docker tag node:$majorMinor-nano stefanscherer/node-windows:$majorMinor-nano
-  docker tag node:$major-nano stefanscherer/node-windows:$major-nano
+  $coreManifest -f $majorMinorPatch, $majorMinor, $major | Out-File windowsservercore.yml -Encoding Ascii
+  cat windowsservercore.yml
+  #manifest-tool push from-spec windowsservercore.yml
 
-  docker tag node:$majorMinorPatch-nano-onbuild stefanscherer/node-windows:$majorMinorPatch-nano-onbuild
-  docker tag node:$majorMinor-nano-onbuild stefanscherer/node-windows:$majorMinor-nano-onbuild
-  docker tag node:$major-nano-onbuild stefanscherer/node-windows:$major-nano-onbuild
+  $nanoManifest = @"
+image: stefanscherer/node-windows:{0}
+tags: ['{0}-nanoserver', '{1}-nanoserver', '{2}-nanoserver', 'nanoserver', '{1}', '{2}', 'latest']
+manifests:
+  -
+    image: stefanscherer/node-windows:{0}-nanoserver-2016
+    platform:
+      architecture: amd64
+      os: windows
+  -
+    image: stefanscherer/node-windows:{0}-nanoserver-1709
+    platform:
+      architecture: amd64
+      os: windows
+"@
 
-  if (Test-Path $majorMinor\build-tools) {
-    docker tag node:$majorMinorPatch-build-tools stefanscherer/node-windows:$majorMinorPatch-build-tools
-    docker tag node:$majorMinorPatch-build-tools stefanscherer/node-windows:$majorMinor-build-tools
-    docker tag node:$majorMinorPatch-build-tools stefanscherer/node-windows:$major-build-tools
-  }
-
-  docker push stefanscherer/node-windows:$majorMinorPatch
-  docker push stefanscherer/node-windows:$majorMinor
-  docker push stefanscherer/node-windows:$major
-  docker push stefanscherer/node-windows:$majorMinorPatch-onbuild
-  docker push stefanscherer/node-windows:$majorMinor-onbuild
-  docker push stefanscherer/node-windows:$major-onbuild
-  docker push stefanscherer/node-windows:$majorMinorPatch-nano
-  docker push stefanscherer/node-windows:$majorMinor-nano
-  docker push stefanscherer/node-windows:$major-nano
-  docker push stefanscherer/node-windows:$majorMinorPatch-nano-onbuild
-  docker push stefanscherer/node-windows:$majorMinor-nano-onbuild
-  docker push stefanscherer/node-windows:$major-nano-onbuild
-
-  if (Test-Path $majorMinor\build-tools) {
-    docker push stefanscherer/node-windows:$majorMinorPatch-build-tools
-    docker push stefanscherer/node-windows:$majorMinor-build-tools
-    docker push stefanscherer/node-windows:$major-build-tools
-  }
+  $nanoManifest -f $majorMinorPatch, $majorMinor, $major | Out-File nanoserver.yml -Encoding Ascii
+  cat nanoserver.yml
+  #manifest-tool push from-spec nanoserver.yml
 }
+
+npm install -g rebase-docker-image
+choco install -y manifest-tool
 
 pushVersion "6.11.5" "6.11" "6"
 pushVersion "8.6.0" "8.6" "8"
-
-npm install -g rebase-docker-image
-rebase-docker-image stefanscherer/node-windows:6-nano -t stefanscherer/node-windows:6-nano-1709 -b microsoft/nanoserver:1709
-rebase-docker-image stefanscherer/node-windows:8-nano -t stefanscherer/node-windows:8-nano-1709 -b microsoft/nanoserver:1709
