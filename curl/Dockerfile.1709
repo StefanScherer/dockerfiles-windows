@@ -1,0 +1,8 @@
+FROM microsoft/nanoserver:1709 AS download
+WORKDIR /curl
+ADD https://skanthak.homepage.t-online.de/download/curl-7.56.1.cab curl.cab
+RUN expand /R curl.cab /F:* .
+FROM microsoft/nanoserver:1709
+COPY --from=download /curl/AMD64/ /Windows/system32/
+COPY --from=download /curl/CURL.LIC /
+ENTRYPOINT ["curl.exe"]
