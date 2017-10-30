@@ -33,14 +33,10 @@ RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/node-v{0}-win-x64.zip' -f 
 
 FROM microsoft/nanoserver:10.0.14393.1770
 
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
-
 ENV NPM_CONFIG_LOGLEVEL info
 
 COPY --from=download /nodejs /nodejs
 
-RUN New-Item $($env:APPDATA + '\npm') ; \
-    $env:PATH = 'C:\nodejs;{0}\npm;{1}' -f $env:APPDATA, $env:PATH ; \
-    Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\' -Name Path -Value $env:PATH
+RUN setx /m PATH "%PATH%;C:\nodejs;%APPDATA%\npm"
 
 CMD [ "node.exe" ]
