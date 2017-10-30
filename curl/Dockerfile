@@ -6,3 +6,4 @@ RUN expand /R curl.cab /F:* .
 FROM microsoft/nanoserver:10.0.14393.1770
 COPY --from=download /curl/AMD64/ /Windows/system32/
 COPY --from=download /curl/CURL.LIC /
+ENTRYPOINT ["curl.exe"]
