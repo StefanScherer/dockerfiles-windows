@@ -1,0 +1,13 @@
+image: stefanscherer/curl-windows:7.56.1
+tags: ['7.56', '7', 'latest']
+manifests:
+  -
+    image: stefanscherer/curl-windows:7.56.1-2016
+    platform:
+      architecture: amd64
+      os: windows
+  -
+    image: stefanscherer/curl-windows:7.56.1-1709
+    platform:
+      architecture: amd64
+      os: windows
