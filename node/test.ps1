@@ -1,8 +1,9 @@
 function testCommand($image, $command, $expected) {
-  Write-Host "Testing docker image $image with command $command --version"
+  Write-Host "Testing: docker run $image $command --version"
   $ErrorActionPreference = 'SilentlyContinue';
   $actual = $(docker run $image $command --version)
   $ErrorActionPreference = 'Stop';
+  Write-Host $actual
   if ($LastExitCode) {
     Write-Error "Command exited with error $LastExitCode"
   }
