@@ -1,12 +1,26 @@
+function testCommand($image, $command, $expected) {
+  Write-Host "Testing: docker run $image $command --version"
+  $ErrorActionPreference = 'SilentlyContinue';
+  $actual = $(docker run $image $command --version)
+  $ErrorActionPreference = 'Stop';
+  Write-Host $actual
+  if ($LastExitCode) {
+    Write-Error "Command exited with error $LastExitCode"
+  }
+  if ($expected -and ($actual -ne $expected)) {
+    Write-Error "Expected '$expected', but got '$actual'"
+  }
+  if ($actual -eq "") {
+    Write-Error "Expected some output, but got '$actual'"
+  }
+}
+
 function testVersion($majorMinorPatch) {
-  docker run node:$majorMinorPatch-windowsservercore node --version
-  $ErrorActionPreference = 'SilentlyContinue';
-  docker run node:$majorMinorPatch-windowsservercore npm.cmd --version
-  $ErrorActionPreference = 'Stop';
-  docker run node:$majorMinorPatch-nanoserver node --version
-  $ErrorActionPreference = 'SilentlyContinue';
-  docker run node:$majorMinorPatch-nanoserver npm.cmd --version
-  $ErrorActionPreference = 'Stop';
+  testCommand "node:$majorMinorPatch-windowsservercore" "node" "v$majorMinorPatch"
+  testCommand "node:$majorMinorPatch-windowsservercore" "npm.cmd" ""
+
+  testCommand "node:$majorMinorPatch-nanoserver" "node" "v$majorMinorPatch"
+  testCommand "node:$majorMinorPatch-nanoserver" "npm.cmd" ""
 }
 
 testVersion "6.11.5"
