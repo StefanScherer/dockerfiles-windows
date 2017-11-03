@@ -9,3 +9,4 @@ Updated Dockerfiles to represent the same content as in the pull requests
 in https://github.com/nodejs/docker-node/pull/222
 and https://github.com/nodejs/docker-node/pull/223
 
+There also is a build-tools variant to compile native node modules.
