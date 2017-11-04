@@ -1,7 +1,7 @@
 # registry
 [![This image on DockerHub](https://img.shields.io/docker/pulls/stefanscherer/registry-windows.svg)](https://hub.docker.com/r/stefanscherer/registry-windows/)
 
-Run your own Docker Registry in a Windows Docker container.
+Run your own Docker Registry in a Windows Docker container. This is a multi-os image for Windows Server 2016 and Windows Server 1709.
 
 As with Windows Server 2016 there is still a problem contacting containers from your Docker host locally (see [issue #253](https://github.com/Microsoft/Virtualization-Documentation/issues/253) for some details), I suggest to use two Windows Server 2016 machines for now.
 
