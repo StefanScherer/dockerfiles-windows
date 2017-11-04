@@ -27,9 +27,9 @@ Most of these Dockerfiles are automatically built on [AppVeyor](https://www.appv
 * Clone this repo and create some Docker images
 
 ### Windows Server 1709
-* Get a Windows Server 2016 Virtual Machine
+* Get a Windows Server 1709 Virtual Machine
   * **Packer and Vagrant**
-    * Use Packer with this [packer-windows](https://github.com/StefanScherer/packer-windows) templates to build the `windows_1709` Vagrant box].
+    * Use Packer with this [packer-windows](https://github.com/StefanScherer/packer-windows) templates to build the `windows_1709` Vagrant box]. You need the ISO file from your MSDN subscription.
     * Use Vagrant and this [windows-docker-machine](https://github.com/StefanScherer/windows-docker-machine) Vagrantfile to have Docker and lots of Docker Tools installed. Run `vagrant up 1709`.
   * **Azure**
     * Deploy a Windows Server 1709 VM to Azure with [`docker-windows-azure`](https://github.com/StefanScherer/docker-windows-azure) template
