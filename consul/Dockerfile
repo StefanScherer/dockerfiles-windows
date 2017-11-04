@@ -1,13 +1,16 @@
 # escape=`
-FROM microsoft/nanoserver:10.0.14393.1770
-ENV CONSUL_VERSION 0.9.2
+FROM microsoft/nanoserver:10.0.14393.1770 as download
+ENV CONSUL_VERSION 1.0.0
 
 RUN powershell -Command $ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue'; `
     Invoke-WebRequest $('https://releases.hashicorp.com/consul/{0}/consul_{0}_windows_amd64.zip' -f $env:CONSUL_VERSION) -OutFile 'consul.zip' -UseBasicParsing ; `
-    Expand-Archive -Path consul.zip -DestinationPath . -Force ; `
+    Expand-Archive -Path consul.zip -DestinationPath C:\download -Force ; `
     rm consul.zip ; `
-    mkdir C:\consul\data ; `
-    mkdir C:\consul\config
+    mkdir C:\download\consul\data ; `
+    mkdir C:\download\consul\config
+
+FROM microsoft/nanoserver:10.0.14393.1770
+COPY --from=download /download /
 
 # Expose the consul data directory as a volume since there's mutable state in there.
 VOLUME C:\consul\data

@@ -6,13 +6,13 @@ Run Consul Agent with Web UI in a Windows Docker Container.
 ## Build the Container image
 
 ```
-build.bat
+.\build.ps1
 ```
 
 ### Run the Container
 
 ```
-docker run -d -p 8500:8500 consul
+docker run -d -p 8500:8500 stefanscherer/consul-windows
 ```
 
 You can connect to the Consul Web UI at port 8500.

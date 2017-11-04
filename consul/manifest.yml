@@ -1,0 +1,13 @@
+image: stefanscherer/consul-windows:1.0.0
+tags: ['latest']
+manifests:
+  -
+    image: stefanscherer/consul-windows:1.0.0-2016
+    platform:
+      architecture: amd64
+      os: windows
+  -
+    image: stefanscherer/consul-windows:1.0.0-1709
+    platform:
+      architecture: amd64
+      os: windows
