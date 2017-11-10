@@ -11,6 +11,6 @@ describe "Ruby" do
 
   describe command('bundle version') do
     its(:exit_status) { should eq 0 }
-    its(:stdout) { should match /Bundler version 1.15.4/ }
+    its(:stdout) { should match /Bundler version 1.16.0/ }
   end
 end
