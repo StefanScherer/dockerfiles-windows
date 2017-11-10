@@ -39,7 +39,7 @@ Ruby
     exit_status
       should eq 0
     stdout
-      should match /Bundler version 1.14.3/
+      should match /Bundler version 1.16.0/
 
 Finished in 10.25 seconds (files took 1.77 seconds to load)
 7 examples, 0 failures
