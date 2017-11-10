@@ -5,6 +5,7 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 ENV chocolateyUseWindowsCompression=false
 
 RUN iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex ; \
+    choco feature disable --name showDownloadProgress ; \
     choco install -y ruby
 
 # http://guides.rubygems.org/ssl-certificate-update/#installing-using-update-packages
