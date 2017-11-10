@@ -27,7 +27,7 @@ Chocolatey
     exit_status
       should eq 0
     stdout
-      should match /Chocolatey v0.10.3/
+      should match /Chocolatey v0.10.8/
 
 Ruby
   Command "ruby --version"
