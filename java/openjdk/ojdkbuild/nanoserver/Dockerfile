@@ -1,16 +1,27 @@
-FROM microsoft/nanoserver:10.0.14393.1770
+ARG WINDOWS_DOCKER_TAG=10.0.14393.1770
+ARG JAVA_VERSION=1.8.0.111-3
+ARG JAVA_ZIP_VERSION=1.8.0-openjdk-1.8.0.111-3.b15
+ARG JAVA_SHA256=e080371bf57536668416157660e05d95fe04db15da36234d32bda8e301bb0454
+ARG JAVA_HOME=C:\\java-${JAVA_ZIP_VERSION}.ojdkbuild.windows.x86_64
+
+FROM microsoft/windowsservercore:$WINDOWS_DOCKER_TAG as builder
+
+ARG JAVA_VERSION
+ARG JAVA_ZIP_VERSION
+ARG JAVA_SHA256
+ARG JAVA_HOME
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
-
-ENV JAVA_VERSION 1.8.0.111-3
-ENV JAVA_ZIP_VERSION 1.8.0-openjdk-1.8.0.111-3.b15
-ENV JAVA_SHA256 e080371bf57536668416157660e05d95fe04db15da36234d32bda8e301bb0454
-
-ENV JAVA_HOME C:\\java-${JAVA_ZIP_VERSION}.ojdkbuild.windows.x86_64
 
 RUN Invoke-WebRequest $('https://github.com/ojdkbuild/ojdkbuild/releases/download/{0}/java-{1}.ojdkbuild.windows.x86_64.zip' -f $env:JAVA_VERSION, $env:JAVA_ZIP_VERSION) -OutFile 'openjdk.zip' -UseBasicParsing ; \
     if ((Get-FileHash openjdk.zip -Algorithm sha256).Hash -ne $env:JAVA_SHA256) {exit 1} ; \
     Expand-Archive openjdk.zip -DestinationPath C:\ ; \
-    $env:PATH = '{0}\bin;{1}' -f $env:JAVA_HOME, $env:PATH ; \
-    Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\' -Name Path -Value $env:PATH ; \
     Remove-Item -Path openjdk.zip
+
+FROM microsoft/nanoserver:$WINDOWS_DOCKER_TAG
+
+ARG JAVA_HOME
+
+COPY --from=builder ["$JAVA_HOME", "$JAVA_HOME"]
+
+RUN setx PATH "%JAVA_HOME%\\bin;%PATH%"
