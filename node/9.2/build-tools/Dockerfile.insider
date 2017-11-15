@@ -1,3 +1,0 @@
-FROM stefanscherer/node-windows:9.2.0-insider-core
-
-RUN npm install --global windows-build-tools
