@@ -38,6 +38,7 @@ Most of these Dockerfiles are automatically built on [AppVeyor](https://www.appv
 
 ## Further reading
   * [Modernizing existing .NET applications with Windows Containers and Azure cloud](https://myignite.microsoft.com/sessions/53622?source=speakerdetail), 2017-09-28
+  * [Windows Containers Internals](https://channel9.msdn.com/Events/Ignite/New-Zealand-2016/M402), 2016-10-24
   * [Performance Tuning Guidelines for Windows Server 2016](https://docs.microsoft.com/en-us/windows-server/administration/performance-tuning/)
   * Read the [Quick Start: Windows Server Containers and Docker](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon) to get started with a first tutorial.
   * Read my blog post [Create a Node.js Container image for Windows](https://stefanscherer.github.io/create-an-io-js-container-image-for-windows/) for my first test drive with Docker on Windows.
