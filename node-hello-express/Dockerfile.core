@@ -1,1 +1,0 @@
-FROM stefanscherer/node-windows:4-onbuild

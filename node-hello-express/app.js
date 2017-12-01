@@ -1,43 +1,48 @@
 'use strict';
 
-var http = require('http'),
-    path = require('path');
+const http = require('http'),
+      path = require('path');
 
-var express = require('express');
+const express = require('express');
+const morgan = require('morgan');
 
-var app = express();
+const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(express.logger());
+app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-var articles = [
+const articles = [
   { title: 'iPhone 5S', price: 799 },
   { title: 'Lumia 1020', price: 1 }
 ];
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   // res.send('Hello from Express!');
   res.render('index', {
     title: 'Hello from Windows container'
   });
 });
 
-app.get('/error', function (req, res) {
+app.get('/error', (req, res) => {
   res.send(500);
 });
 
-app.get('/articles/:id?', function (req, res) {
+app.get('/articles/:id?', (req, res) => {
   if (req.params.id) {
     res.send(articles[req.params.id - 1]);
+
     return;
   }
 
   res.send(articles);
 });
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 
-server.listen(3000);
+const port = 3000;
+
+console.log('Listening on port', port);
+server.listen(port);
