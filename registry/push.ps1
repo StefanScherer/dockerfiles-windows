@@ -1,4 +1,4 @@
-$version=$(select-string -Path Dockerfile -Pattern "ENV DISTRIBUTION_VERSION").ToString().split()[-1]
+$version=$(select-string -Path Dockerfile -Pattern "ENV DISTRIBUTION_VERSION").ToString().split()[-1].SubString(1)
 docker tag registry:$version stefanscherer/registry-windows:$version-2016
 docker push stefanscherer/registry-windows:$version-2016
 

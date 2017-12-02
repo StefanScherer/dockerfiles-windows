@@ -1,4 +1,5 @@
 $ErrorActionPreference = 'Stop'
+$version=$(select-string -Path Dockerfile -Pattern "ENV DISTRIBUTION_VERSION").ToString().split()[-1].SubString(1)
 
 function addRegistryToDaemonJson() {
   Write-Host "Adding registry"
@@ -21,7 +22,7 @@ function addHosts() {
 
 function runRegistry() {
   if (!(Test-Path C:\registry)) { mkdir C:\registry }
-  docker run -d -p 5000:5000 --restart=always --name registry -v C:\registry:C:\registry registry:2.6.2
+  docker run -d -p 5000:5000 --restart=always --name registry -v C:\registry:C:\registry registry:$version
 }
 
 
@@ -31,8 +32,8 @@ runRegistry
 addHosts
 
 Write-Host Pushing an image to local registry
-docker tag registry:2.6.2 myregistry:5000/registry:2.6.2
-docker push myregistry:5000/registry:2.6.2
+docker tag registry:$version myregistry:5000/registry:$version
+docker push myregistry:5000/registry:$version
 
 Write-Host Checking if local registry files are stored on host
 dir C:\registry\docker\registry\v2\repositories\registry\
