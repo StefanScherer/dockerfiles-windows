@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:10.0.14393.1770
+FROM microsoft/windowsservercore:10.0.14393.1884
 MAINTAINER scherer_stefan@icloud.com
 
 ENV chocolateyUseWindowsCompression false
