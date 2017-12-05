@@ -1,4 +1,6 @@
-FROM microsoft/nanoserver:10.0.14393.1884
+FROM microsoft/windowsservercore:1709 as core
+FROM microsoft/nanoserver:1709
+COPY --from=core /windows/system32/netapi32.dll /windows/system32/netapi32.dll
 
 ENV TRAEFIK_VERSION 1.4.4
 
