@@ -1,8 +1,8 @@
-FROM microsoft/nanoserver:10.0.14393.1770
+FROM microsoft/nanoserver:10.0.14393.1884
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV VERSION 2.5.5
+ENV VERSION 2.6.3
 
 ENV LIBRESSLPATH C:\libressl
 
