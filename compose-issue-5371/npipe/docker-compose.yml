@@ -1,0 +1,16 @@
+version: "3.2"
+
+services:
+
+  dockercli:
+    image: stefanscherer/docker-cli-windows
+    volumes:
+      - type: npipe
+        source: \\.\pipe\docker_engine
+        target: \\.\pipe\docker_engine
+    command: docker version
+
+networks:
+  default:
+    external:
+      name: nat

@@ -1,0 +1,15 @@
+version: "3.5"
+
+services:
+  test:
+    image: microsoft/windowsservercore:1709
+    volumes:
+      - type: bind
+        source: C:\Users\stefan\.ssh
+        target: C:\ssh
+    command: cmd /C dir C:\ssh
+
+networks:
+  default:
+    external:
+      name: nat
