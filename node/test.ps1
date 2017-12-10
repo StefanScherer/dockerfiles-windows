@@ -23,6 +23,6 @@ function testVersion($majorMinorPatch) {
   testCommand "node:$majorMinorPatch-nanoserver" "npm.cmd" ""
 }
 
-testVersion "6.12.1"
-testVersion "8.9.2"
-testVersion "9.2.0"
+testVersion "6.12.2"
+testVersion "8.9.3"
+testVersion "9.2.1"
