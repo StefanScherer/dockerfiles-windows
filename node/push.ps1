@@ -56,5 +56,5 @@ npm install -g rebase-docker-image
 choco install -y manifest-tool
 
 pushVersion "6.12.2" "6.12" "6"
-pushVersion "9.2.1" "9.2" "9"
+pushVersion "9.3.0" "9.3" "9"
 pushVersion "8.9.3" "8.9" "8"
