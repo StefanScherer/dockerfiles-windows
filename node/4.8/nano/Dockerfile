@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:10.0.14393.1884 as download
+FROM microsoft/windowsservercore:10.0.14393.1944 as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -31,7 +31,7 @@ RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/node-v{0}-win-x64.zip' -f 
     Expand-Archive node.zip -DestinationPath C:\ ; \
     Rename-Item -Path $('C:\node-v{0}-win-x64' -f $env:NODE_VERSION) -NewName 'C:\nodejs'
 
-FROM microsoft/nanoserver:10.0.14393.1884
+FROM microsoft/nanoserver:10.0.14393.1944
 
 ENV NPM_CONFIG_LOGLEVEL info
 
