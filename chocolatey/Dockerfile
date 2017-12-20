@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:10.0.14393.1884
+FROM microsoft/windowsservercore:10.0.14393.1944
 
 ENV chocolateyUseWindowsCompression false
 
