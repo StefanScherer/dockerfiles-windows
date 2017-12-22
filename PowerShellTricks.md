@@ -169,6 +169,15 @@ PS C:\Users\vagrant> $(gp "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").
 PS C:\Users\vagrant> winver
 ```
 
+## List processes with PID, PPID, commandline
+
+The simple `docker exec cid powershell -command get-process` does not list the parent PID and not the command line of all processes.
+Here is another command that works for me:
+
+```
+docker exec cid powershell -command 'Get-CimInstance Win32_Process | Ft ProcessId,ParentProcessId,CommandLine -autosize | out-string -width 300'
+```
+
 ## Links
 
 ### Basic networking PowerShell Cmdlets cheatsheet to replace `netsh`, `ipconfig`, `nslookup` and more
