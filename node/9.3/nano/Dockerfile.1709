@@ -38,7 +38,7 @@ ENV NPM_CONFIG_LOGLEVEL info
 COPY --from=download /nodejs /nodejs
 
 USER ContainerAdministrator
-RUN setx /m PATH "%PATH%;C:\nodejs;%APPDATA%\npm"
+RUN setx /m PATH "%PATH%;C:\nodejs"
 USER ContainerUser
 
 CMD [ "node.exe" ]
