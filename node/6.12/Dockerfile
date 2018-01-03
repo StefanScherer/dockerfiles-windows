@@ -2,7 +2,7 @@ FROM microsoft/windowsservercore:10.0.14393.1944 as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV GPG_VERSION 2.3.3
+ENV GPG_VERSION 2.3.4
 
 RUN Invoke-WebRequest $('https://files.gpg4win.org/gpg4win-vanilla-{0}.exe' -f $env:GPG_VERSION) -OutFile 'gpg4win.exe' -UseBasicParsing ; \
     Start-Process .\gpg4win.exe -ArgumentList '/S' -NoNewWindow -Wait
@@ -20,7 +20,7 @@ RUN @( \
       gpg --keyserver ha.pool.sks-keyservers.net --recv-keys $_ ; \
     }
 
-ENV NODE_VERSION 6.12.2
+ENV NODE_VERSION 6.12.3
 
 RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/SHASUMS256.txt.asc' -f $env:NODE_VERSION) -OutFile 'SHASUMS256.txt.asc' -UseBasicParsing ; \
     gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc
