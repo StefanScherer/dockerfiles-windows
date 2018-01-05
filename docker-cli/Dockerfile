@@ -1,4 +1,4 @@
-FROM microsoft/nanoserver:10.0.14393.1770 as download
+FROM microsoft/nanoserver:10.0.14393.2007 as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -11,6 +11,6 @@ RUN Invoke-WebRequest $('https://download.docker.com/win/static/edge/x86_64/dock
     Remove-Item -Path docker.zip ; \
     Remove-Item -Path docker\dockerd.exe
 
-FROM microsoft/nanoserver:10.0.14393.1770
+FROM microsoft/nanoserver:10.0.14393.2007
 COPY --from=download docker/docker.exe /
 CMD [ "docker.exe" ]

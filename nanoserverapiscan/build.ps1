@@ -1,9 +1,7 @@
-docker rm -f nano 2>nul
-docker create --name nano microsoft/nanoserver
+docker create --name nano microsoft/nanoserver:10.0.14393.2007
 mkdir tmp
 docker cp nano:Windows/System32/Forwarders tmp
 docker build -t win10sdk -f Dockerfile.build .
-docker rm -f win10sdk 2>nul
 docker create --name win10sdk win10sdk
 mkdir tmp\kit\um\x64
 mkdir tmp\kit\ucrt\x64

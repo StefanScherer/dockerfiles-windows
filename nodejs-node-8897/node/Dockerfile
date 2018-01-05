@@ -1,10 +1,11 @@
-FROM microsoft/windowsservercore:10.0.14393.1770
+FROM microsoft/windowsservercore:10.0.14393.2007
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV chocolateyUseWindowsCompression false
 
-RUN iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'));
+RUN iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')); \
+    choco feature disable --name showDownloadProgress
 
 RUN choco install -y nodejs -version 7.3.0
 RUN choco install -y git -params "/GitAndUnixToolsOnPath"

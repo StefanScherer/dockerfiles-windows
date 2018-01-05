@@ -1,5 +1,5 @@
 # escape=`
-FROM microsoft/nanoserver:10.0.14393.1770
+FROM microsoft/nanoserver:10.0.14393.2007
 ENV CADDY_VERSION 0.10.10
 RUN powershell -Command $ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue'; `
     Invoke-WebRequest $('https://github.com/mholt/caddy/releases/download/v{0}/caddy_v{0}_windows_amd64.zip' -f $env:CADDY_VERSION) -OutFile 'caddy.zip' -UseBasicParsing ; `
