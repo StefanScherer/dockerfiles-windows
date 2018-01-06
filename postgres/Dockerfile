@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:10.0.14393.1944 AS download
+FROM microsoft/windowsservercore:10.0.14393.2007 AS download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -12,7 +12,7 @@ RUN Invoke-WebRequest 'http://download.microsoft.com/download/0/5/6/056DCDA9-D66
     Start-Process vcredist_x64.exe -ArgumentList '/install', '/passive', '/norestart' -NoNewWindow -Wait ; \
     Remove-Item vcredist_x64.exe
 
-FROM microsoft/nanoserver:10.0.14393.1944
+FROM microsoft/nanoserver:10.0.14393.2007
 
 COPY --from=download /pgsql /pgsql
 COPY --from=download /windows/system32/msvcp120.dll /pgsql/bin/msvcp120.dll
