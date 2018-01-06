@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:1709 as download
+FROM microsoft/windowsservercore:1709_KB4056892 as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
