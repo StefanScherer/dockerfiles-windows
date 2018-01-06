@@ -5,6 +5,7 @@ ENV chocolateyUseWindowsCompression false
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 RUN iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')); \
+    choco feature disable --name showDownloadProgress ; \
     choco install -y openssl.light
 
 WORKDIR "C:\\Program Files\\OpenSSL\\bin"

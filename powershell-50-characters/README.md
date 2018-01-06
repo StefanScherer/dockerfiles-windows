@@ -20,7 +20,7 @@ Now paste your clipboard into it (I also can repro it from my Mac pasting it int
 A fix could be removing PSReadLine from windowsservercore until it is fixed in PSReadLine module.
 
 ```Dockerfile
-FROM microsoft/windowsservercore:10.0.14393.1770
+FROM microsoft/windowsservercore:10.0.14393.2007
 WORKDIR "Program Files"
 RUN rd /S /Q WindowsPowerShell\Modules\PSReadLine
 WORKDIR /
