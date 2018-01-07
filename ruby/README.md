@@ -1,5 +1,7 @@
 # Ruby
 
+[![This image on DockerHub](https://img.shields.io/docker/pulls/stefanscherer/ruby-windows.svg)](https://hub.docker.com/r/stefanscherer/ruby-windows/)
+
 Ruby in a Windows Server Core container.
 
 ## NanoServer
