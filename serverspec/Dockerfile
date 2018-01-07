@@ -1,19 +1,6 @@
-FROM microsoft/windowsservercore:10.0.14393.1770
+FROM stefanscherer/ruby-windows:2.5.0.1
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
-
-ENV chocolateyUseWindowsCompression=false
-
-RUN iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex ; \
-    choco feature disable --name showDownloadProgress ; \
-    choco install -y ruby
-
-# http://guides.rubygems.org/ssl-certificate-update/#installing-using-update-packages
-RUN Invoke-WebRequest -Uri https://rubygems.org/downloads/rubygems-update-2.6.7.gem -OutFile C:\rubygems-update-2.6.7.gem ; \
-    gem install --local C:\rubygems-update-2.6.7.gem ; \
-    update_rubygems --no-ri --no-rdoc ; \
-    gem uninstall rubygems-update -x ; \
-    gem install bundler
 
 WORKDIR /code
 COPY . /code
