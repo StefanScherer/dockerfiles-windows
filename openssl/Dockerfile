@@ -1,12 +1,13 @@
-FROM microsoft/windowsservercore:10.0.14393.1884
+FROM microsoft/windowsservercore:10.0.14393.2007
 MAINTAINER scherer_stefan@icloud.com
 
+ENV OPENSSL_VERSION 1.1.0.60000000
 ENV chocolateyUseWindowsCompression false
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 RUN iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')); \
     choco feature disable --name showDownloadProgress ; \
-    choco install -y openssl.light
+    choco install -y openssl.light --version $env:OPENSSL_VERSION
 
 WORKDIR "C:\\Program Files\\OpenSSL\\bin"
 
