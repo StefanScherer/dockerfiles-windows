@@ -3,7 +3,7 @@ Write-Output "test curl"
 docker run -v "$(pwd):C:/dl" -w C:/dl busybox curl -o docker.zip https://download.docker.com/win/static/edge/x86_64/docker-17.10.0-ce.zip
 
 Write-Output "test wget"
-docker run -v "$(pwd):C:/dl" -w C:/dl busybox wget https://download.docker.com/win/static/edge/x86_64/docker-17.10.0-ce.zip
+docker run -v "$(pwd):C:/dl" -w C:/dl busybox wget http://google.de
 
 Write-Output "test unzip"
 docker run -v "$(pwd):C:/dl" -w C:/dl busybox unzip docker.zip

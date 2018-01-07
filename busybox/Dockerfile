@@ -5,5 +5,5 @@ RUN FOR /f "tokens=*" %i IN ('busybox --list') DO mklink C:\busybox\%i.exe busyb
 
 FROM stefanscherer/curl-windows:7.57.0-2016
 COPY --from=prep /busybox/ /busybox
-RUN setx /M PATH "C:\busybox;%PATH%"
+RUN setx /M PATH "C:\busybox;C:\;%PATH%"
 ENTRYPOINT ["cmd.exe", "/s", "/c"]
