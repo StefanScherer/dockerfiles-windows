@@ -1,5 +1,7 @@
 # Run Serverspec tests in a Windows container
 
+[![This image on DockerHub](https://img.shields.io/docker/pulls/stefanscherer/serverspec-windows.svg)](https://hub.docker.com/r/stefanscherer/serverspec-windows/)
+
 [Dockerfile](https://github.com/StefanScherer/dockerfiles-windows/blob/master/serverspec/Dockerfile)
 
 This is a Windows Docker image with [Serverspec](http://serverspec.org) installed.
