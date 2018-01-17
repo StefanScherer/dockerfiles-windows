@@ -1,1 +1,1 @@
-docker run powercli powercli --version
+docker run powercli
