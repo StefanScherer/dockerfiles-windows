@@ -9,8 +9,8 @@ services:
       - PORT=8000
     volumes:
       - type: bind
-        source: C:/data
-        target: C:/inside
+        source: C:\data
+        target: C:\inside
     deploy:
       endpoint_mode: dnsrr
       placement:
