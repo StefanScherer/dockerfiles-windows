@@ -39,7 +39,7 @@ ENV NPM_CONFIG_LOGLEVEL info
 
 COPY --from=download /nodejs /nodejs
 
-RUN $env:PATH = 'C:\nodejs;{0}' -f $env:PATH ; \ ; \
+RUN $env:PATH = 'C:\nodejs;{0}' -f $env:PATH ; \
     [Environment]::SetEnvironmentVariable('PATH', $env:PATH, [EnvironmentVariableTarget]::Machine)
 
 CMD [ "node.exe" ]
