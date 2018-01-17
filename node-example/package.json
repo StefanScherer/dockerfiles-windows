@@ -1,7 +1,13 @@
 {
     "main": "app.js",
+    "scripts": {
+        "test": "standard"
+    },
     "dependencies": {
         "express": "~4.14.0",
         "express-handlebars": "~3.0.0"
+    },
+    "devDependencies": {
+        "standard": "^10.0.3"
     }
 }

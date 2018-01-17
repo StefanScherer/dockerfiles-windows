@@ -1,0 +1,25 @@
+{
+    // Verwendet IntelliSense zum Ermitteln möglicher Node.js-Debugattribute.
+    // Zeigen Sie auf vorhandene Attribute, um die zugehörigen Beschreibungen anzuzeigen.
+    // Weitere Informationen finden Sie unter https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Debug",
+            "address": "192.168.65.131",
+            "port": 9229,
+            "restart": true,
+            "remoteRoot": "c:\\code",
+            "localRoot": "${workspaceRoot}"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Start",
+            "program": "${workspaceRoot}/app.js"
+        }
+    ]
+}
