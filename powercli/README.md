@@ -1,4 +1,5 @@
 # PowerCLI
+[![This image on DockerHub](https://img.shields.io/docker/pulls/stefanscherer/powercli.svg)](https://hub.docker.com/r/stefanscherer/powercli/)
 
 The VMware PowerCLI is a PowerShell module to manage VMware servers like vSphere or vCloud Director.
 This is the Windows only, but full edition of the [vmware/powerclicore](https://hub.docker.com/r/vmware/powerclicore/) image.
