@@ -71,3 +71,11 @@ PML_	AABB08234517C:\Windows??????????
 
 * https://forum.sysinternals.com/procmon-in-windows-containers_topic32977.html
 * https://social.msdn.microsoft.com/Forums/vstudio/en-US/b20be612-95da-4476-8b15-052370b4321e/procmon-freezes-in-windowsservercore?forum=windowscontainers
+
+## Run procmon on container host
+
+See my blog post https://stefanscherer.github.io/find-dependencies-in-windows-containers/
+
+Predefined filter for Process Monitor to look for missing DLL's.
+
+* [depends.PMF](./depends.PMF)
