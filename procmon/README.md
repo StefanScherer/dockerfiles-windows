@@ -66,3 +66,8 @@ C:\>type abc.pml
 PML_	AABB08234517C:\Windows??????????
 ?B????
 ```
+
+## Forums
+
+* https://forum.sysinternals.com/procmon-in-windows-containers_topic32977.html
+* https://social.msdn.microsoft.com/Forums/vstudio/en-US/b20be612-95da-4476-8b15-052370b4321e/procmon-freezes-in-windowsservercore?forum=windowscontainers
