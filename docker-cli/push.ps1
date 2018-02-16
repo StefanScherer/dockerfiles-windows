@@ -6,7 +6,7 @@ npm install -g rebase-docker-image
 rebase-docker-image `
   stefanscherer/docker-cli-windows:$version-2016 `
   -t stefanscherer/docker-cli-windows:$version-1709 `
-  -b microsoft/nanoserver:1709_KB4056892
+  -b microsoft/nanoserver:1709_KB4074588
 
 Invoke-WebRequest -UseBasicParsing https://6582-88013053-gh.circle-artifacts.com/0/work/build/docker-windows-amd64 -OutFile docker.exe
 

@@ -1,5 +1,5 @@
 # escape=`
-FROM microsoft/nanoserver:10.0.14393.2007 as download
+FROM microsoft/nanoserver:10.0.14393.2068 as download
 ENV CONSUL_VERSION 1.0.0
 
 RUN powershell -Command $ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue'; `
@@ -9,7 +9,7 @@ RUN powershell -Command $ErrorActionPreference = 'Stop'; $ProgressPreference = '
     mkdir C:\download\consul\data ; `
     mkdir C:\download\consul\config
 
-FROM microsoft/nanoserver:10.0.14393.2007
+FROM microsoft/nanoserver:10.0.14393.2068
 COPY --from=download /download /
 
 # Expose the consul data directory as a volume since there's mutable state in there.

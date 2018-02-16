@@ -1,7 +1,7 @@
 # escape=`
 FROM python:3.6-windowsservercore AS python
 
-FROM microsoft/nanoserver:10.0.14393.2007
+FROM microsoft/nanoserver:10.0.14393.2068
 
 COPY --from=python /Python /Python
 
