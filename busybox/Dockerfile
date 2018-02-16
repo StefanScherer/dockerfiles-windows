@@ -1,4 +1,4 @@
-FROM microsoft/nanoserver:10.0.14393.2007 AS prep
+FROM microsoft/nanoserver:10.0.14393.2068 AS prep
 WORKDIR /busybox
 ADD https://github.com/jhowardmsft/busybox64/raw/master/busybox.exe busybox.exe
 RUN FOR /f "tokens=*" %i IN ('busybox --list') DO mklink C:\busybox\%i.exe busybox.exe
