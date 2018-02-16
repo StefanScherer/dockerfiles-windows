@@ -5,7 +5,7 @@ WORKDIR /code
 
 RUN go build webserver.go
 
-FROM microsoft/nanoserver:10.0.14393.2007
+FROM microsoft/nanoserver:10.0.14393.2068
 
 COPY --from=gobuild /code/webserver.exe /webserver.exe
 

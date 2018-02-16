@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:10.0.14393.2007 as download
+FROM microsoft/windowsservercore:10.0.14393.2068 as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -11,6 +11,6 @@ RUN Invoke-WebRequest 'http://constexpr.org/innoextract/files/innoextract-1.6-wi
 RUN Invoke-WebRequest $('https://github.com/docker/toolbox/releases/download/v{0}/DockerToolbox-{0}.exe' -f $env:DOCKER_VERSION) -OutFile 'dockertoolbox.exe' -UseBasicParsing
 RUN /innoextract.exe dockertoolbox.exe
 
-FROM microsoft/nanoserver:10.0.14393.2007
+FROM microsoft/nanoserver:10.0.14393.2068
 COPY --from=download /app/docker.exe /
 CMD [ "docker.exe" ]
