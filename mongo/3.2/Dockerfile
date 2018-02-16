@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:10.0.14393.2007
+FROM microsoft/windowsservercore:10.0.14393.2068
 
 ENV MONGO_VERSION=3.2.11
 

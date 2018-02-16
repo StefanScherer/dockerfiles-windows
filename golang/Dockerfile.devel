@@ -7,7 +7,7 @@ ENV GOROOT_BOOTSTRAP C:/go1.8.1
 ENV CGO_ENABLED 0
 RUN cmd /C make.bat
 
-FROM microsoft/nanoserver:10.0.14393.2007
+FROM microsoft/nanoserver:10.0.14393.2068
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 ENV GOPATH C:\\gopath
 RUN $newPath = ('{0}\bin;C:\go\bin;{1}' -f $env:GOPATH, $env:PATH); \
