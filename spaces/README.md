@@ -3,7 +3,7 @@
 How to use spaces in Dockerfiles
 
 ```Dockerfile
-FROM microsoft/windowsservercore:10.0.14393.2007
+FROM microsoft/windowsservercore:10.0.14393.2068
 COPY [ "Sub Dir", "C:/Program Files (x86)/Sub Dir" ]
 ```
 
