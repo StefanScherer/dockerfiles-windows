@@ -1,5 +1,5 @@
 # escape=`
-FROM microsoft/windowsservercore:10.0.14393.2007 AS tar
+FROM microsoft/windowsservercore:10.0.14393.2068 AS tar
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV MHOLT_ARCHIVER_VERSION 2.0
@@ -14,7 +14,7 @@ RUN Invoke-WebRequest $('https://github.com/prometheus/prometheus/releases/downl
 RUN .\archiver.exe open prometheus.tar.gz
 RUN Rename-Item -Path $('C:\prometheus-{0}.windows-amd64' -f $env:PROMETHEUS_VERSION) -NewName 'C:\download'
 
-FROM microsoft/nanoserver:10.0.14393.2007
+FROM microsoft/nanoserver:10.0.14393.2068
 
 COPY --from=tar /download/prometheus.exe      /bin/prometheus.exe
 COPY --from=tar /download/promtool.exe        /bin/promtool.exe

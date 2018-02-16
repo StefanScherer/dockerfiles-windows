@@ -1,4 +1,4 @@
-docker create --name nano microsoft/nanoserver:10.0.14393.2007
+docker create --name nano microsoft/nanoserver:10.0.14393.2068
 mkdir tmp
 docker cp nano:Windows/System32/Forwarders tmp
 docker build -t win10sdk -f Dockerfile.build .

@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:10.0.14393.2007
+FROM microsoft/windowsservercore:10.0.14393.2068
 
 ENV POWERCLI_VERSION 6.5.4.7155375
 

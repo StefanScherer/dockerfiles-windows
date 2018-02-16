@@ -30,7 +30,7 @@ It is still not a PowerShell script, but a `powershell.exe -Command` call where 
 ```
 $ docker build --no-cache -t test3 .
 Sending build context to Docker daemon 2.048 kB
-Step 1/5 : FROM microsoft/windowsservercore:10.0.14393.2007
+Step 1/5 : FROM microsoft/windowsservercore:10.0.14393.2068
  ---> 93a9c37b36d0
 Step 2/5 : RUN powershell -Command $a = \"world\" ; $b = \"hello \"\"$a\"\"\" ; Write-Host \"'$b'\"
  ---> Running in 8a5ea6ced75c
