@@ -18,9 +18,11 @@ function testCommand($image, $command, $expected) {
 function testVersion($majorMinorPatch) {
   testCommand "node:$majorMinorPatch-windowsservercore" "node" "v$majorMinorPatch"
   testCommand "node:$majorMinorPatch-windowsservercore" "npm.cmd" ""
+  testCommand "node:$majorMinorPatch-windowsservercore" "yarn.cmd" ""
 
   testCommand "node:$majorMinorPatch-nanoserver" "node" "v$majorMinorPatch"
   testCommand "node:$majorMinorPatch-nanoserver" "npm.cmd" ""
+  testCommand "node:$majorMinorPatch-nanoserver" "yarn.cmd" ""
 }
 
 # testVersion "6.13.0"

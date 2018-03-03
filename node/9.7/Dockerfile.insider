@@ -31,6 +31,19 @@ RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/node-v{0}-win-x64.zip' -f 
     Expand-Archive node.zip -DestinationPath C:\ ; \
     Rename-Item -Path $('C:\node-v{0}-win-x64' -f $env:NODE_VERSION) -NewName 'C:\nodejs'
 
+ENV YARN_VERSION 1.5.1
+
+RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 ; \
+    Invoke-WebRequest $('https://yarnpkg.com/downloads/{0}/yarn-{0}.msi' -f $env:YARN_VERSION) -OutFile yarn.msi -UseBasicParsing ; \
+    $sig = Get-AuthenticodeSignature yarn.msi ; \
+    if ($sig.Status -ne 'Valid') { Write-Error 'Authenticode signature is not valid' } ; \
+    Write-Output $sig.SignerCertificate.Thumbprint ; \
+    if (@( \
+      '7E253367F8A102A91D04829E37F3410F14B68A5F', \
+      'AF764E1EA56C762617BDC757C8B0F3780A0CF5F9' \
+      ) -notcontains $sig.SignerCertificate.Thumbprint) { Write-Error 'Unknown signer certificate' } ; \
+    Start-Process msiexec.exe -ArgumentList '/i', 'yarn.msi', '/quiet', '/norestart' -NoNewWindow -Wait
+
 FROM microsoft/windowsservercore-insider
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
@@ -38,8 +51,9 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 ENV NPM_CONFIG_LOGLEVEL info
 
 COPY --from=download /nodejs /nodejs
+COPY --from=download [ "/Program Files (x86)/yarn", "/yarn" ]
 
-RUN $env:PATH = 'C:\nodejs;{0}' -f $env:PATH ; \
+RUN $env:PATH = 'C:\nodejs;C:\yarn\bin;{0}' -f $env:PATH ; \
     [Environment]::SetEnvironmentVariable('PATH', $env:PATH, [EnvironmentVariableTarget]::Machine)
 
 CMD [ "node.exe" ]
