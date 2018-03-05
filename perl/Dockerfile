@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:10.0.14393.2007
+FROM microsoft/windowsservercore:10.0.14393.2068
 
 ENV PERL_VERSION 5.26.1.1
 ENV PERL_SHA256 1bb54d7f5e487ff468bf980dbfd9962fb9d83ff1f10ccde008e0bee1f1f5b6ce

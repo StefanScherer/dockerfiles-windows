@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:10.0.14393.2007 as download
+FROM microsoft/windowsservercore:10.0.14393.2068 as download
 
 ENV RUBY_VERSION 2.5.0.1
 ENV RUBYGEMS_VERSION 2.7.4
@@ -21,12 +21,12 @@ RUN Invoke-WebRequest -Uri $('https://rubygems.org/downloads/rubygems-update-{0}
 
 RUN rm /tools/ruby25/unins*
 
-FROM microsoft/windowsservercore:10.0.14393.2007
+FROM microsoft/windowsservercore:10.0.14393.2068
 
 COPY --from=download /tools/ruby25 /tools/ruby25
 
 RUN setx /M PATH "C:\tools\ruby25\bin;%PATH%"
 
-# FROM stefanscherer/nanoserverapiscan:10.0.14393.2007
+# FROM stefanscherer/nanoserverapiscan:10.0.14393.2068
 # COPY --from=download /tools/ruby25/bin /scan
 # RUN ["C:\\tool\\NanoServerApiScan.exe", "/BinaryPath:C:\\scan", "/WindowsKitsPath:C:\\kit"]
