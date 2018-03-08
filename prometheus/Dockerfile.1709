@@ -1,5 +1,5 @@
 # escape=`
-ARG tag=10.0.14393.2068
+ARG tag=1709
 FROM microsoft/windowsservercore:$tag AS tar
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -24,6 +24,8 @@ COPY --from=tar /download/promtool.exe        /bin/promtool.exe
 COPY --from=tar /download/prometheus.yml      /etc/prometheus/prometheus.yml
 COPY --from=tar /download/console_libraries/  /etc/prometheus/
 COPY --from=tar /download/consoles/           /etc/prometheus/
+# nanoserver 1709 does not have netapi32.dll, but golang sometimes needs it
+COPY --from=tar /Windows/system32/netapi32.dll /Windows/system32/netapi32.dll
 
 EXPOSE     9090
 # VOLUME     C:\prometheus

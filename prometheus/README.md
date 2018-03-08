@@ -47,5 +47,5 @@ docker build -t prom .
 ### Windows Server 1709
 
 ```
-docker build --build-arg tag=1709 -t prom .
+docker build -f Dockerfile.1709 -t prom .
 ```
