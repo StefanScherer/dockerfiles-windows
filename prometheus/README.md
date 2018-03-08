@@ -34,3 +34,18 @@ $ open http://$(docker-machine ip windows):9090
 See the [Getting started](https://prometheus.io/docs/introduction/getting_started/) guide to learn more about Prometheus.
 
 See the script [start-prometheus.ps1](https://github.com/StefanScherer/docker-windows-box/blob/master/scripts/prometheus/start-prometheus.ps1) and [prom.yml](https://github.com/StefanScherer/docker-windows-box/blob/master/scripts/prometheus/prom.yml) to activate the Docker Metrics API and run Prometheus collecting it.
+
+
+## Build
+
+### Windows Server 2016
+
+```
+docker build -t prom .
+```
+
+### Windows Server 1709
+
+```
+docker build --build-arg tag=1709 -t prom .
+```
