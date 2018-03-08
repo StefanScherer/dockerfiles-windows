@@ -3,6 +3,7 @@ FROM microsoft/nanoserver:10.0.14393.2068 as download
 ENV CONSUL_VERSION 1.0.0
 
 RUN powershell -Command $ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue'; `
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 ; `
     Invoke-WebRequest $('https://releases.hashicorp.com/consul/{0}/consul_{0}_windows_amd64.zip' -f $env:CONSUL_VERSION) -OutFile 'consul.zip' -UseBasicParsing ; `
     Expand-Archive -Path consul.zip -DestinationPath C:\download -Force ; `
     rm consul.zip ; `
