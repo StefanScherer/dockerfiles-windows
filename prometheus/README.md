@@ -10,10 +10,10 @@ mkdir C:\prom
 copy prometheus.yml C:\prom\prometheus.yml
 docker container run -d -p 9090:9090 `
   -v "C:\prom\data:C:\prometheus" -v "C:\prom:C:\config" `
-  stefanscherer/prometheus-windows '-config.file=/config/prom.yml' `
-  '-storage.local.path=/prometheus' `
-  '-web.console.libraries=/etc/prometheus/console_libraries' `
-  '-web.console.templates=/etc/prometheus/consoles'
+  stefanscherer/prometheus-windows '--config.file=/config/prom.yml' `
+  '--storage.local.path=/prometheus' `
+  '--web.console.libraries=/etc/prometheus/console_libraries' `
+  '--web.console.templates=/etc/prometheus/consoles'
 ```
 
 # bash
@@ -24,10 +24,10 @@ From my Mac:
 $ mkdir -p data
 $ docker run -d -p 9090:9090 \
   -v C:$(pwd)/data:C:/prometheus -v C:$(pwd):C:/config \
-  stefanscherer/prometheus-windows -config.file=/config/prometheus.yml \
-  -storage.local.path=/prometheus \
-  -web.console.libraries=/etc/prometheus/console_libraries \
-  -web.console.templates=/etc/prometheus/consoles
+  stefanscherer/prometheus-windows --config.file=/config/prometheus.yml \
+  --storage.local.path=/prometheus \
+  --web.console.libraries=/etc/prometheus/console_libraries \
+  --web.console.templates=/etc/prometheus/consoles
 $ open http://$(docker-machine ip windows):9090
 ```
 

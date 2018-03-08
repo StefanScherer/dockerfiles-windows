@@ -24,12 +24,14 @@ COPY --from=tar /download/promtool.exe        /bin/promtool.exe
 COPY --from=tar /download/prometheus.yml      /etc/prometheus/prometheus.yml
 COPY --from=tar /download/console_libraries/  /etc/prometheus/
 COPY --from=tar /download/consoles/           /etc/prometheus/
+# nanoserver 1709 does not have netapi32.dll, but golang sometimes needs it
+COPY --from=tar /Windows/system32/netapi32.dll /Windows/system32/netapi32.dll
 
 EXPOSE     9090
-VOLUME     C:\prometheus
-WORKDIR    C:\prometheus
+# VOLUME     C:\prometheus
+# WORKDIR    C:\prometheus
 ENTRYPOINT [ "C:\\bin\\prometheus.exe" ]
-CMD        [ "-config.file=/etc/prometheus/prometheus.yml", `
-             "-storage.local.path=/prometheus", `
-             "-web.console.libraries=/etc/prometheus/console_libraries", `
-             "-web.console.templates=/etc/prometheus/consoles" ]
+CMD        [ "--config.file=/etc/prometheus/prometheus.yml", `
+             "--storage.tsdb.path=/prometheus", `
+             "--web.console.libraries=/etc/prometheus/console_libraries", `
+             "--web.console.templates=/etc/prometheus/consoles" ]
