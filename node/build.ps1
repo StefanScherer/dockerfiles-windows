@@ -8,6 +8,6 @@ function buildVersion($majorMinorPatch, $majorMinor, $major) {
   docker build -t node:$majorMinorPatch-nanoserver $majorMinor/nano
 }
 
-buildVersion "6.13.1" "6.13" "6"
+# buildVersion "6.13.1" "6.13" "6"
 buildVersion "8.10.0" "8.10" "8"
-# buildVersion "9.7.1" "9.7" "9"
+buildVersion "9.8.0" "9.8" "9"
