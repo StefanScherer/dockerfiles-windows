@@ -1,10 +1,15 @@
 # escape=`
-FROM microsoft/nanoserver:10.0.14393.2068
+ARG tag=10.0.14393.2068
+FROM microsoft/windowsservercore:$tag AS download
 ENV CADDY_VERSION 0.10.10
 RUN powershell -Command $ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue'; `
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 ; `
     Invoke-WebRequest $('https://github.com/mholt/caddy/releases/download/v{0}/caddy_v{0}_windows_amd64.zip' -f $env:CADDY_VERSION) -OutFile 'caddy.zip' -UseBasicParsing ; `
     Expand-Archive -Path caddy.zip -DestinationPath C:\caddy -Force ; `
     rm caddy.zip
+
+FROM microsoft/nanoserver:$tag
+COPY --from=download /caddy /caddy
 
 WORKDIR C:\caddy
 
