@@ -4,8 +4,8 @@ $ProgressPreference = 'SilentlyContinue'
 $dockerVersion="18.02.0-ce"
 
 Write-Host "Installing Docker CLI $dockerVersion"
-docker pull stefanscherer/docker-cli-windows:$dockerVersion
-docker create stefanscherer/docker-cli-windows:$dockerVersion
+docker pull stefanscherer/docker-cli-windows:$dockerVersion-2016
+docker create stefanscherer/docker-cli-windows:$dockerVersion-2016
 docker cp "$(docker ps -ql):docker.exe" $env:TEMP\docker.exe
 cp $env:TEMP\docker.exe "$env:ProgramFiles\docker\docker.exe"
 

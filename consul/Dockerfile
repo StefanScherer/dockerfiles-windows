@@ -1,6 +1,5 @@
 # escape=`
 FROM microsoft/nanoserver:10.0.14393.2068 as download
-
 ENV CONSUL_VERSION 1.0.6
 
 RUN powershell -Command $ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue'; `
