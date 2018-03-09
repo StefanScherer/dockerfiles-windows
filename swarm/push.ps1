@@ -1,4 +1,4 @@
-$version=$(select-string -Path Dockerfile -Pattern "ENV SWARM_VERSION").ToString().split()[-1]
+$version=$(select-string -Path Dockerfile -Pattern "ENV SWARM_VERSION").ToString().split()[-1].SubString(1)
 
 docker tag swarm:$version stefanscherer/swarm-windows:$version-1607
 docker push stefanscherer/swarm-windows:$version-1607

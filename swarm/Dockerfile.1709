@@ -11,7 +11,7 @@ RUN go install .
 
 FROM microsoft/nanoserver:1709
 
-COPY --from=build /go/src/github.com/docker/swarm/swarm.exe /swarm.exe
+COPY --from=build /go/bin/swarm.exe /swarm.exe
 
 # nanoserver 1709 is missing the netapi32.dll
 COPY --from=build /Windows/System32/netapi32.dll /Windows/System32/netapi32.dll
