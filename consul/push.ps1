@@ -8,18 +8,16 @@ rebase-docker-image `
   -t stefanscherer/consul-windows:$version-1709 `
   -b microsoft/nanoserver:1709
 
-Invoke-WebRequest -UseBasicParsing `
-  https://6582-88013053-gh.circle-artifacts.com/0/work/build/docker-windows-amd64 `
-  -OutFile docker.exe
+$docker="docker run --rm -v $env:USERPROFILE\.docker:C:\Users\ContainerAdministrator\.docker stefanscherer/docker-cli-windows:18.02.0-ce docker"
 
-.\docker.exe manifest create `
+. $docker manifest create `
   stefanscherer/consul-windows:$version `
   stefanscherer/consul-windows:$version-2016 `
   stefanscherer/consul-windows:$version-1709
-.\docker.exe manifest push stefanscherer/consul-windows:$version
+. $docker manifest push stefanscherer/consul-windows:$version
 
-.\docker.exe manifest create `
+. $docker manifest create `
   stefanscherer/consul-windows:latest `
   stefanscherer/consul-windows:$version-2016 `
   stefanscherer/consul-windows:$version-1709
-.\docker.exe manifest push stefanscherer/consul-windows:latest
+. $docker manifest push stefanscherer/consul-windows:latest
