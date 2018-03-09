@@ -8,16 +8,16 @@ rebase-docker-image `
   -t stefanscherer/docker-cli-windows:$version-1709 `
   -b microsoft/nanoserver:1709_KB4074588
 
-Invoke-WebRequest -UseBasicParsing https://6582-88013053-gh.circle-artifacts.com/0/work/build/docker-windows-amd64 -OutFile docker.exe
+..\update-docker-cli.ps1
 
-.\docker.exe manifest create `
+docker manifest create `
   stefanscherer/docker-cli-windows:$version `
   stefanscherer/docker-cli-windows:$version-2016 `
   stefanscherer/docker-cli-windows:$version-1709
-.\docker.exe manifest push stefanscherer/docker-cli-windows:$version
+docker manifest push stefanscherer/docker-cli-windows:$version
 
-.\docker.exe manifest create `
+docker manifest create `
   stefanscherer/docker-cli-windows:latest `
   stefanscherer/docker-cli-windows:$version-2016 `
   stefanscherer/docker-cli-windows:$version-1709
-.\docker.exe manifest push stefanscherer/docker-cli-windows:latest
+docker manifest push stefanscherer/docker-cli-windows:latest
