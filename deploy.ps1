@@ -9,15 +9,6 @@ $files = ""
 Write-Host Starting deploy
 docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
 
-Write-Host "Activating experimental features"
-$configJson = "$env:USERPROFILE\.docker\config.json"
-$config = @{}
-if (Test-Path $configJson) {
- $config = (Get-Content $configJson) -join "`n" | ConvertFrom-Json
-}
-$config = $config | Add-Member(@{ experimental = 'enabled' }) -Force -PassThru
-$config | ConvertTo-Json | Set-Content $configJson -Encoding Ascii
-
 if ( $env:APPVEYOR_PULL_REQUEST_NUMBER ) {
   Write-Host Pull request $env:APPVEYOR_PULL_REQUEST_NUMBER
   $files = $(git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master))
