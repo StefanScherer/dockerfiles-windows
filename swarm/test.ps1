@@ -4,4 +4,3 @@ $isVersion=$(docker run swarm:$version --version).split()[-2]
 if (!($version -eq $isVersion)) {
   Write-Error "Got wrong version $isVersion, expected $version"
 }
-docker run swarm:$version create
