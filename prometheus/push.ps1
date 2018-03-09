@@ -1,20 +1,22 @@
 $version=$(select-string -Path Dockerfile -Pattern "ENV PROMETHEUS_VERSION").ToString().split()[-1]
-docker tag prometheus stefanscherer/prometheus-windows:$version-2016
-docker push stefanscherer/prometheus-windows:$version-2016
+docker tag prometheus stefanscherer/prometheus-windows:$version-1607
+docker push stefanscherer/prometheus-windows:$version-1607
 
 npm install -g rebase-docker-image
-rebase-docker-image stefanscherer/prometheus-windows:$version-2016 -t stefanscherer/prometheus-windows:$version-1709 -b microsoft/nanoserver:1709
+rebase-docker-image stefanscherer/prometheus-windows:$version-1607 `
+  -t stefanscherer/prometheus-windows:$version-1709 `
+  -b stefanscherer/netapi-helper:1709
 
-Invoke-WebRequest -UseBasicParsing https://6582-88013053-gh.circle-artifacts.com/0/work/build/docker-windows-amd64 -OutFile docker.exe
+..\update-docker-cli.ps1
 
-.\docker.exe manifest create `
+docker manifest create `
   stefanscherer/prometheus-windows:$version `
-  stefanscherer/prometheus-windows:$version-2016 `
+  stefanscherer/prometheus-windows:$version-1607 `
   stefanscherer/prometheus-windows:$version-1709
-.\docker.exe manifest push stefanscherer/prometheus-windows:$version
+docker manifest push stefanscherer/prometheus-windows:$version
 
-.\docker.exe manifest create `
+docker manifest create `
   stefanscherer/prometheus-windows:latest `
-  stefanscherer/prometheus-windows:$version-2016 `
+  stefanscherer/prometheus-windows:$version-1607 `
   stefanscherer/prometheus-windows:$version-1709
-.\docker.exe manifest push stefanscherer/prometheus-windows:latest
+docker manifest push stefanscherer/prometheus-windows:latest
