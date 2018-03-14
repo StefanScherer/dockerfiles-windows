@@ -1,0 +1,12 @@
+version: '2.1'
+services:
+  lin:
+    image: tutum/curl:alpine
+    command: watch curl http://win:8080
+    links:
+      - win
+
+  win:
+    image: stefanscherer/whoami
+
+
