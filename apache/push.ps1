@@ -1,5 +1,5 @@
 $version=$(select-string -Path Dockerfile -Pattern "ENV APACHE_VERSION").ToString().split()[-1]
-docker tag apache stefanscherer/apache-windows:$version-1607
+docker tag apache:$version stefanscherer/apache-windows:$version-1607
 docker push stefanscherer/apache-windows:$version-1607
 
 npm install -g rebase-docker-image
