@@ -7,9 +7,9 @@ import (
 
 func main() {
 	fmt.Println("Hello")
-	currentuser, err := user.Current()
+	current, err := user.Current()
 	if err == nil {
-		fmt.Println("Current user", currentuser)
+		fmt.Printf("Current user %+v\n", current)
 	} else {
 		fmt.Println("Error", err)
 	}
