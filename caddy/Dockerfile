@@ -1,7 +1,7 @@
 # escape=`
-ARG tag=10.0.14393.2068
+ARG tag=10.0.14393.2125
 FROM microsoft/windowsservercore:$tag AS download
-ENV CADDY_VERSION 0.10.11
+ENV CADDY_VERSION 0.10.12
 RUN powershell -Command $ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue'; `
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 ; `
     Invoke-WebRequest $('https://github.com/mholt/caddy/releases/download/v{0}/caddy_v{0}_windows_amd64.zip' -f $env:CADDY_VERSION) -OutFile 'caddy.zip' -UseBasicParsing ; `
