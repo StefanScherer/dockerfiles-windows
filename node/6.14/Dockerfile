@@ -20,7 +20,7 @@ RUN @( \
       gpg --keyserver ha.pool.sks-keyservers.net --recv-keys $_ ; \
     }
 
-ENV NODE_VERSION 6.13.1
+ENV NODE_VERSION 6.14.0
 
 RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/SHASUMS256.txt.asc' -f $env:NODE_VERSION) -OutFile 'SHASUMS256.txt.asc' -UseBasicParsing ; \
     gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc
@@ -44,13 +44,16 @@ RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tl
       ) -notcontains $sig.SignerCertificate.Thumbprint) { Write-Error 'Unknown signer certificate' } ; \
     Start-Process msiexec.exe -ArgumentList '/i', 'yarn.msi', '/quiet', '/norestart' -NoNewWindow -Wait
 
-FROM microsoft/nanoserver:10.0.14393.2068
+FROM microsoft/windowsservercore:10.0.14393.2068
+
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV NPM_CONFIG_LOGLEVEL info
 
 COPY --from=download /nodejs /nodejs
 COPY --from=download [ "/Program Files (x86)/yarn", "/yarn" ]
 
-RUN setx /m PATH "%PATH%;C:\nodejs;C:\yarn\bin"
+RUN $env:PATH = 'C:\nodejs;C:\yarn\bin;{0}' -f $env:PATH ; \
+    [Environment]::SetEnvironmentVariable('PATH', $env:PATH, [EnvironmentVariableTarget]::Machine)
 
 CMD [ "node.exe" ]
