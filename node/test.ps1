@@ -25,6 +25,6 @@ function testVersion($majorMinorPatch) {
   testCommand "node:$majorMinorPatch-nanoserver" "yarn.cmd" ""
 }
 
-testVersion "6.14.0"
-#testVersion "8.11.0"
-#testVersion "9.10.0"
+#testVersion "6.14.0"
+testVersion "8.11.0"
+testVersion "9.10.0"
