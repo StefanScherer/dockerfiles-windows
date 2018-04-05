@@ -57,4 +57,4 @@ choco install -y manifest-tool
 
 #pushVersion "6.14.1" "6.14" "6"
 pushVersion "8.11.1" "8.11" "8"
-pushVersion "9.10.1" "9.10" "9"
+pushVersion "9.11.1" "9.11" "9"
