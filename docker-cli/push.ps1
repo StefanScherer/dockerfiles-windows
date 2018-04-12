@@ -5,8 +5,9 @@ docker push stefanscherer/docker-cli-windows:$version-1607
 npm install -g rebase-docker-image
 rebase-docker-image `
   stefanscherer/docker-cli-windows:$version-1607 `
+  -s microsoft/nanoserver:10.0.14393.2189 `
   -t stefanscherer/docker-cli-windows:$version-1709 `
-  -b microsoft/nanoserver:1709_KB4074588
+  -b stefanscherer/netapi-helper:1709
 
 ..\update-docker-cli.ps1
 
