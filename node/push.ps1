@@ -15,6 +15,7 @@ function pushVersion($majorMinorPatch, $majorMinor, $major) {
   }
 
   rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1709 -b microsoft/nanoserver:1709
+  rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1803 -b microsoft/nanoserver:1803
 
   $coreManifest = @"
 image: stefanscherer/node-windows:{0}-windowsservercore
@@ -42,6 +43,11 @@ manifests:
       os: windows
   -
     image: stefanscherer/node-windows:{0}-nanoserver-1709
+    platform:
+      architecture: amd64
+      os: windows
+  -
+    image: stefanscherer/node-windows:{0}-nanoserver-1803
     platform:
       architecture: amd64
       os: windows
