@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-set -x
 
 function update_version() {
   version=$1
@@ -14,7 +13,6 @@ function update_version() {
 
   echo "Updating $curr -> $latest"
 
-exit
   a=( ${curr//./ } )
   curr_major="${a[0]}"
   curr_major_minor="${a[0]}.${a[1]}"
