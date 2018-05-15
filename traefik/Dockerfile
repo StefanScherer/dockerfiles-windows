@@ -1,4 +1,4 @@
-FROM microsoft/nanoserver:10.0.14393.2189
+FROM microsoft/nanoserver:10.0.14393.2248
 
 ENV TRAEFIK_VERSION 1.6.1
 
