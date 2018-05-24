@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:10.0.14393.2189 as download
+FROM microsoft/windowsservercore as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -12,6 +12,6 @@ RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tl
     Invoke-WebRequest $('https://github.com/docker/toolbox/releases/download/v{0}/DockerToolbox-{0}.exe' -f $env:DOCKER_VERSION) -OutFile 'dockertoolbox.exe' -UseBasicParsing
 RUN /innoextract.exe dockertoolbox.exe
 
-FROM microsoft/nanoserver:10.0.14393.2189
+FROM microsoft/nanoserver:sac2016
 COPY --from=download /app/docker.exe /
 CMD [ "docker.exe" ]
