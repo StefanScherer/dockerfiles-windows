@@ -20,7 +20,7 @@ RUN @( \
       gpg --keyserver ha.pool.sks-keyservers.net --recv-keys $_ ; \
     }
 
-ENV NODE_VERSION 8.11.1
+ENV NODE_VERSION 8.11.2
 
 RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/SHASUMS256.txt.asc' -f $env:NODE_VERSION) -OutFile 'SHASUMS256.txt.asc' -UseBasicParsing ; \
     gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc
@@ -44,7 +44,7 @@ RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tl
       ) -notcontains $sig.SignerCertificate.Thumbprint) { Write-Error 'Unknown signer certificate' } ; \
     Start-Process msiexec.exe -ArgumentList '/i', 'yarn.msi', '/quiet', '/norestart' -NoNewWindow -Wait
 
-FROM microsoft/windowsservercore:10.0.14393.2248
+FROM microsoft/windowsservercore:ltsc2016
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 

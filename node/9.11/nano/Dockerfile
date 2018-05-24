@@ -44,7 +44,7 @@ RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tl
       ) -notcontains $sig.SignerCertificate.Thumbprint) { Write-Error 'Unknown signer certificate' } ; \
     Start-Process msiexec.exe -ArgumentList '/i', 'yarn.msi', '/quiet', '/norestart' -NoNewWindow -Wait
 
-FROM microsoft/nanoserver:10.0.14393.2248
+FROM microsoft/nanoserver:sac2016
 
 ENV NPM_CONFIG_LOGLEVEL info
 
