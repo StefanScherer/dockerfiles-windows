@@ -3,5 +3,4 @@
 
 MongoDB in a Windows NanoServer Docker image
 
-There also is a `Dockerfile` for the MongoDB Enterprise editition. You have to build it locally.
-
+There also is a `Dockerfile` for the MongoDB Enterprise edition. You have to build it locally.

@@ -1,5 +1,5 @@
 # escape=`
-FROM microsoft/windowsservercore:10.0.14393.2068 as msi
+FROM microsoft/windowsservercore as msi
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -17,7 +17,7 @@ RUN if ((Get-FileHash mongodb.msi -Algorithm sha256).Hash -ne $env:MONGO_DOWNLOA
 RUN Start-Process msiexec.exe -ArgumentList '/i', 'mongodb.msi', '/quiet', '/norestart', 'INSTALLLOCATION=C:\mongodb', 'ADDLOCAL=Server,Client,MonitoringTools,ImportExportTools,MiscellaneousTools' -NoNewWindow -Wait
 RUN Remove-Item C:\mongodb\bin\*.pdb
 
-FROM microsoft/nanoserver:10.0.14393.2068
+FROM microsoft/nanoserver:sac2016
 
 COPY --from=msi C:\mongodb\ C:\mongodb\
 COPY --from=msi C:\windows\system32\msvcp140.dll C:\windows\system32
