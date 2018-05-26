@@ -3,9 +3,9 @@ FROM microsoft/windowsservercore as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV MONGO_VERSION 3.4.15
+ENV MONGO_VERSION 3.6.5
 ENV MONGO_DOWNLOAD_URL http://downloads.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-${MONGO_VERSION}.zip
-ENV MONGO_DOWNLOAD_SHA256 0372b18543dea2c058071bfe3ae4403906dcdc0c15f592fb6672b7479d42dbe4
+ENV MONGO_DOWNLOAD_SHA256 3546f8d5721e91c9158133d37335d35703207af566266b248eeba6ed0db0fbc0
 
 RUN Write-Host ('Downloading {0} ...' -f $env:MONGO_DOWNLOAD_URL)
 RUN Invoke-WebRequest -Uri $env:MONGO_DOWNLOAD_URL -OutFile 'mongodb.zip'
