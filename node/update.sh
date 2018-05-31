@@ -20,7 +20,7 @@ function update_version() {
   latest_major="${a[0]}"
   latest_major_minor="${a[0]}.${a[1]}"
 
-  find ${curr_major_minor} -type f -exec sed -i "" "s/${curr//./\\.}/$latest/g" {} +
+  find ${curr_major} -type f -exec sed -i "" "s/${curr//./\\.}/$latest/g" {} +
   find build* -type f -exec sed -i "" "s/${curr//./\\.}/$latest/g" {} +
   find build* -type f -exec sed -i "" "s/${curr_major_minor//./\\.}/$latest_major_minor/g" {} +
   find build* -type f -exec sed -i "" "s/${curr_major//./\\.}/$latest_major/g" {} +
@@ -30,10 +30,6 @@ function update_version() {
   find push* -type f -exec sed -i "" "s/${curr//./\\.}/$latest/g" {} +
   find push* -type f -exec sed -i "" "s/${curr_major_minor//./\\.}/$latest_major_minor/g" {} +
   find push* -type f -exec sed -i "" "s/${curr_major//./\\.}/$latest_major/g" {} +
-
-  if [ "$curr_major_minor" != "$latest_major_minor" ]; then
-    mv ${curr_major_minor} ${latest_major_minor}
-  fi
 }
 
 update_version 10
