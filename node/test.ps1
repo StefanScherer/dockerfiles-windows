@@ -19,12 +19,12 @@ function testVersion($majorMinorPatch) {
   testCommand "node:$majorMinorPatch-windowsservercore" "node" "v$majorMinorPatch"
   testCommand "node:$majorMinorPatch-windowsservercore" "npm.cmd" ""
   testCommand "node:$majorMinorPatch-windowsservercore" "yarn.cmd" "1.7.0"
-  testCommand "node:$majorMinorPatch-windowsservercore" "git" "git version 2.17.1.windows.2"
+#  testCommand "node:$majorMinorPatch-windowsservercore" "git" "git version 2.17.1.windows.2"
 
   testCommand "node:$majorMinorPatch-nanoserver" "node" "v$majorMinorPatch"
   testCommand "node:$majorMinorPatch-nanoserver" "npm.cmd" ""
   testCommand "node:$majorMinorPatch-nanoserver" "yarn.cmd" "1.7.0"
-  testCommand "node:$majorMinorPatch-nanoserver" "git" "git version 2.17.1.windows.2"
+#  testCommand "node:$majorMinorPatch-nanoserver" "git" "git version 2.17.1.windows.2"
 
   testCommand "node:$majorMinorPatch-pure" "node" "v$majorMinorPatch"
 }
