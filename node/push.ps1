@@ -5,13 +5,21 @@ function pushVersion($majorMinorPatch, $majorMinor, $major) {
   docker push stefanscherer/node-windows:$majorMinorPatch-windowsservercore-2016
   docker push stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016
 
-  if (Test-Path $majorMinor\build-tools) {
+  if (Test-Path $major\build-tools) {
     docker tag node:$majorMinorPatch-build-tools stefanscherer/node-windows:$majorMinorPatch-build-tools
     docker tag node:$majorMinorPatch-build-tools stefanscherer/node-windows:$majorMinor-build-tools
     docker tag node:$majorMinorPatch-build-tools stefanscherer/node-windows:$major-build-tools
     docker push stefanscherer/node-windows:$majorMinorPatch-build-tools
     docker push stefanscherer/node-windows:$majorMinor-build-tools
     docker push stefanscherer/node-windows:$major-build-tools
+  }
+
+  if (Test-Path $major\pure) {
+    docker tag node:$majorMinorPatch-pure stefanscherer/node-windows:$majorMinorPatch-pure-2016
+    docker push stefanscherer/node-windows:$majorMinorPatch-pure-2016
+
+    rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-pure-2016 -t stefanscherer/node-windows:$majorMinorPatch-pure-1709 -b microsoft/nanoserver:1709
+    rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-pure-2016 -t stefanscherer/node-windows:$majorMinorPatch-pure-1803 -b microsoft/nanoserver:1803
   }
 
   rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1709 -b microsoft/nanoserver:1709
@@ -56,6 +64,31 @@ manifests:
   $nanoManifest -f $majorMinorPatch, $majorMinor, $major | Out-File nanoserver.yml -Encoding Ascii
   cat nanoserver.yml
   manifest-tool push from-spec nanoserver.yml
+
+  $pureManifest = @"
+image: stefanscherer/node-windows:{0}
+tags: ['{0}-pure', '{1}-pure', '{2}-pure', 'pure', '{1}', '{2}', 'latest']
+manifests:
+  -
+    image: stefanscherer/node-windows:{0}-pure-2016
+    platform:
+      architecture: amd64
+      os: windows
+  -
+    image: stefanscherer/node-windows:{0}-pure-1709
+    platform:
+      architecture: amd64
+      os: windows
+  -
+    image: stefanscherer/node-windows:{0}-pure-1803
+    platform:
+      architecture: amd64
+      os: windows
+"@
+
+  $pureManifest -f $majorMinorPatch, $majorMinor, $major | Out-File pure.yml -Encoding Ascii
+  cat pure.yml
+  manifest-tool push from-spec pure.yml
 }
 
 npm install -g rebase-docker-image

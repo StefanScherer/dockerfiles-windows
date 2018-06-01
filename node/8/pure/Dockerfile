@@ -1,4 +1,6 @@
-FROM microsoft/windowsservercore as download
+ARG core=microsoft/windowsservercore
+ARG target=microsoft/nanoserver:sac2016
+FROM $core as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -31,7 +33,7 @@ RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/node-v{0}-win-x64.zip' -f 
     Expand-Archive node.zip -DestinationPath C:\ ; \
     Rename-Item -Path $('C:\node-v{0}-win-x64' -f $env:NODE_VERSION) -NewName 'C:\nodejs'
 
-ENV YARN_VERSION 1.6.0
+ENV YARN_VERSION 1.7.0
 
 RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 ; \
     Invoke-WebRequest $('https://yarnpkg.com/downloads/{0}/yarn-{0}.msi' -f $env:YARN_VERSION) -OutFile yarn.msi -UseBasicParsing ; \
@@ -44,13 +46,8 @@ RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tl
       ) -notcontains $sig.SignerCertificate.Thumbprint) { Write-Error 'Unknown signer certificate' } ; \
     Start-Process msiexec.exe -ArgumentList '/i', 'yarn.msi', '/quiet', '/norestart' -NoNewWindow -Wait
 
-FROM microsoft/nanoserver:sac2016
+FROM $target
 
-ENV NPM_CONFIG_LOGLEVEL info
-
-COPY --from=download /nodejs /nodejs
-COPY --from=download [ "/Program Files (x86)/yarn", "/yarn" ]
-
-RUN setx /m PATH "%PATH%;C:\nodejs;C:\yarn\bin"
+COPY --from=download /nodejs/node.exe /Windows/system32
 
 CMD [ "node.exe" ]

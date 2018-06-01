@@ -1,11 +1,15 @@
 function buildVersion($majorMinorPatch, $majorMinor, $major) {
-  docker build -t node:$majorMinorPatch-windowsservercore $majorMinor
+  docker build -t node:$majorMinorPatch-windowsservercore $major
 
-  if (Test-Path $majorMinor\build-tools) {
-    docker build -t node:$majorMinorPatch-build-tools $majorMinor/build-tools
+  if (Test-Path $major\build-tools) {
+    docker build -t node:$majorMinorPatch-build-tools $major/build-tools
   }
 
-  docker build -t node:$majorMinorPatch-nanoserver $majorMinor/nano
+  if (Test-Path $major\pure) {
+    docker build -t node:$majorMinorPatch-pure $major/pure
+  }
+
+  docker build -t node:$majorMinorPatch-nanoserver $major/nano
 }
 
 #buildVersion "6.14.2" "6.14" "6"
