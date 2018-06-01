@@ -66,8 +66,8 @@ manifests:
   manifest-tool push from-spec nanoserver.yml
 
   $pureManifest = @"
-image: stefanscherer/node-windows:{0}
-tags: ['{0}-pure', '{1}-pure', '{2}-pure', 'pure']
+image: stefanscherer/node-windows:{0}-pure
+tags: ['{1}-pure', '{2}-pure', 'pure']
 manifests:
   -
     image: stefanscherer/node-windows:{0}-pure-2016
