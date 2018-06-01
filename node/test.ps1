@@ -7,7 +7,7 @@ function testCommand($image, $command, $expected) {
   $ErrorActionPreference = 'Stop';
   Write-Host $actual
   if ($LastExitCode) {
-    Write-Error "Command exited with error $LastExitCode: $stderr"
+    Write-Error "Command exited with error $LastExitCode : $stderr"
   }
   if ($expected -and ($actual -ne $expected)) {
     Write-Error "Expected '$expected', but got '$actual'"
