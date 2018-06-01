@@ -17,20 +17,20 @@ function testCommand($image, $command, $expected) {
   }
 }
 
-function testVersion($majorMinorPatch) {
+function testVersion($majorMinorPatch, $yarnVersion) {
   testCommand "node:$majorMinorPatch-windowsservercore" "node" "v$majorMinorPatch"
   testCommand "node:$majorMinorPatch-windowsservercore" "npm.cmd" ""
-  testCommand "node:$majorMinorPatch-windowsservercore" "yarn.cmd" "1.7.0"
+  testCommand "node:$majorMinorPatch-windowsservercore" "yarn.cmd" $yarnVersion
   testCommand "node:$majorMinorPatch-windowsservercore" "git" "git version 2.17.1.windows.2"
 
   testCommand "node:$majorMinorPatch-nanoserver" "node" "v$majorMinorPatch"
   testCommand "node:$majorMinorPatch-nanoserver" "npm.cmd" ""
-  testCommand "node:$majorMinorPatch-nanoserver" "yarn.cmd" "1.7.0"
+  testCommand "node:$majorMinorPatch-nanoserver" "yarn.cmd" $yarnVersion
   testCommand "node:$majorMinorPatch-nanoserver" "git" "git version 2.17.1.windows.2"
 
   testCommand "node:$majorMinorPatch-pure" "node" "v$majorMinorPatch"
 }
 
-#testVersion "6.14.2"
-#testVersion "8.11.2"
-testVersion "10.3.0"
+#testVersion "6.14.2" "1.6.0"
+testVersion "8.11.2" "1.6.0"
+#testVersion "10.3.0" "1.7.0"
