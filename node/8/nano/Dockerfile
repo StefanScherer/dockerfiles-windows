@@ -64,6 +64,7 @@ COPY --from=download /nodejs /nodejs
 COPY --from=download [ "/Program Files (x86)/yarn", "/yarn" ]
 COPY --from=download /git /git
 
-RUN setx PATH "%PATH%;C:\nodejs;C:\yarn\bin;C:\git\cmd;C:\git\mingw64\bin;C:\git\usr\bin"
+ARG SETX=/M
+RUN setx %SETX% PATH "%PATH%;C:\nodejs;C:\yarn\bin;C:\git\cmd;C:\git\mingw64\bin;C:\git\usr\bin"
 
 CMD [ "node.exe" ]
