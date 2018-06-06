@@ -33,6 +33,5 @@ function update_version() {
 }
 
 update_version 10
-update_version 9
 update_version 8
 update_version 6
