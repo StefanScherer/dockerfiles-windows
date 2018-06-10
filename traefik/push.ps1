@@ -6,12 +6,12 @@ docker push stefanscherer/traefik-windows:v$version-1607
 npm install -g rebase-docker-image
 
 rebase-docker-image stefanscherer/traefik-windows:v$version-1607 `
-  -s microsoft/nanoserver:10.0.14393.2248 `
+  -s microsoft/nanoserver:sac2016 `
   -t stefanscherer/traefik-windows:v$version-1709 `
   -b stefanscherer/netapi-helper:1709
 
   rebase-docker-image stefanscherer/traefik-windows:v$version-1607 `
-    -s microsoft/nanoserver:10.0.14393.2248 `
+    -s microsoft/nanoserver:sac2016 `
     -t stefanscherer/traefik-windows:v$version-1803 `
     -b stefanscherer/netapi-helper:1803
 
