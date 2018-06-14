@@ -13,5 +13,5 @@ function buildVersion($majorMinorPatch, $majorMinor, $major) {
 }
 
 #buildVersion "6.14.3" "6.14" "6"
-buildVersion "8.11.3" "8.11" "8"
-#buildVersion "10.4.1" "10.4" "10"
+#buildVersion "8.11.3" "8.11" "8"
+buildVersion "10.4.1" "10.4" "10"

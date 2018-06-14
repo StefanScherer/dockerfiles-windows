@@ -1,4 +1,4 @@
-ARG node=node:10.4.0-windowsservercore
+ARG node=node:10.4.1-windowsservercore
 FROM $node
 
 RUN npm install --global windows-build-tools ; \
