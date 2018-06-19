@@ -16,6 +16,7 @@ mkdir client\.docker
 docker run --rm `
   -e SERVER_NAME=$(hostname) `
   -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
+  -e SSL_EXPIRY_DAYS=730 `
   -v "$(pwd)\server:c:\programdata\docker" `
   -v "$(pwd)\client\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
 dir server\certs.d
