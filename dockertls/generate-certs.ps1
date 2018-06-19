@@ -5,6 +5,7 @@ $Global:caPrivateKeyPassFile = ($Global:DockerSSLCARoot + "ca-key-pass.txt")
 $Global:caPrivateKeyPass = ""
 $Global:caPrivateKeyFile = ($Global:DockerSSLCARoot + "ca-key.pem")
 $Global:caPublicKeyFile = ($Global:DockerSSLCARoot + "ca.pem")
+$Global:sslExpiryDays = 365
 
 
 function ensureDirs($dirs) {
@@ -26,8 +27,8 @@ function createCA(){
   Write-Host "`n=== Generating CA private key"
   & openssl genrsa -aes256 -passout $Global:caPrivateKeyPass -out $Global:caPrivateKeyFile 4096
 
-  Write-Host "`n=== Generating CA public key"
-  & openssl req -subj "/C=US/ST=Washington/L=Redmond/O=./OU=." -new -x509 -days 365 -passin $Global:caPrivateKeyPass -key $Global:caPrivateKeyFile -sha256 -out $Global:caPublicKeyFile
+  Write-Host "`n=== Generating CA public key - expires in $Global:sslExpiryDays days"
+  & openssl req -subj "/C=US/ST=Washington/L=Redmond/O=./OU=." -new -x509 -days $Global:sslExpiryDays -passin $Global:caPrivateKeyPass -key $Global:caPrivateKeyFile -sha256 -out $Global:caPublicKeyFile
 }
 
 # https://docs.docker.com/engine/security/https/
@@ -59,7 +60,7 @@ function createCerts($serverCertsPath, $serverName, $alternativeNames, $ipAddres
 
   "subjectAltName = " + ($san -join ',') | Out-File extfile.cnf -Encoding Ascii
   cat extfile.cnf
-  & openssl x509 -req -days 365 -sha256 -in server.csr -CA $Global:caPublicKeyFile -passin $Global:caPrivateKeyPass -CAkey $Global:caPrivateKeyFile `
+  & openssl x509 -req -days $Global:sslExpiryDays -sha256 -in server.csr -CA $Global:caPublicKeyFile -passin $Global:caPrivateKeyPass -CAkey $Global:caPrivateKeyFile `
     -CAcreateserial -out server-cert.pem -extfile extfile.cnf
 
   Write-Host "`n=== Generating Client key"
@@ -68,9 +69,9 @@ function createCerts($serverCertsPath, $serverName, $alternativeNames, $ipAddres
   Write-Host "`n=== Generating Client signing request"
   & openssl req -subj '/CN=client' -new -key key.pem -out client.csr
 
-  Write-Host "`n=== Signing Client signing request"
+  Write-Host "`n=== Signing Client signing request - expires in $Global:sslExpiryDays days"
   "extendedKeyUsage = clientAuth" | Out-File extfile.cnf -Encoding Ascii
-  & openssl x509 -req -days 365 -sha256 -in client.csr -CA $Global:caPublicKeyFile -passin $Global:caPrivateKeyPass -CAkey $Global:caPrivateKeyFile `
+  & openssl x509 -req -days $Global:sslExpiryDays -sha256 -in client.csr -CA $Global:caPublicKeyFile -passin $Global:caPrivateKeyPass -CAkey $Global:caPrivateKeyFile `
     -CAcreateserial -out cert.pem -extfile extfile.cnf
 
   Write-Host "`n=== Copying Server certificates to $serverCertsPath"
@@ -196,6 +197,11 @@ $serverName = $env:SERVER_NAME
 $alternativeNames = $env:ALTERNATIVE_NAMES
 $ipAddresses = $env:IP_ADDRESSES
 $userPath = "$env:USERPROFILE\.docker"
+
+$sslExpiry=0
+if ([int]::TryParse($env:SSL_EXPIRY_DAYS, [ref]$sslExpiry)) {
+  $Global:sslExpiryDays = $sslExpiry
+}
 
 ensureDirs @("$dockerData\certs.d", "$dockerData\config", "$userPath", $Global:DockerSSLCARoot)
 
