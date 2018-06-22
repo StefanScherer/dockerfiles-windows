@@ -17,12 +17,13 @@ RUN @( \
     'C4F0DFFF4E8C1A8236409D08E73BC641CC11F4C8', \
     'B9AE9905FFD7803F25714661B63B535A4C206CA9', \
     '56730D5401028683275BD23C23EFEFE93C4CFFFE', \
-    '77984A986EBC2AA786BC0F66B01FBB92821C587A' \
+    '77984A986EBC2AA786BC0F66B01FBB92821C587A', \
+    '8FCCA13FEF1D0C2E91008E09770F7A9A5AE15600' \
     ) | foreach { \
       gpg --keyserver ha.pool.sks-keyservers.net --recv-keys $_ ; \
     }
 
-ENV NODE_VERSION 10.4.1
+ENV NODE_VERSION 10.5.0
 
 RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/SHASUMS256.txt.asc' -f $env:NODE_VERSION) -OutFile 'SHASUMS256.txt.asc' -UseBasicParsing ; \
     gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc
