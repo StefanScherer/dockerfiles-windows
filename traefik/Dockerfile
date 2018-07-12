@@ -17,3 +17,4 @@ LABEL org.label-schema.vendor="Containous" \
       org.label-schema.description="A modern reverse-proxy" \
       org.label-schema.version="v${TRAEFIK_VERSION}" \
       org.label-schema.docker.schema-version="1.0"
+
