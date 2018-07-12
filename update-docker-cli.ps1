@@ -1,14 +1,6 @@
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 
-$dockerVersion="18.02.0-ce"
-
-Write-Host "Installing Docker CLI $dockerVersion"
-docker pull stefanscherer/docker-cli-windows:$dockerVersion
-docker create stefanscherer/docker-cli-windows:$dockerVersion
-docker cp "$(docker ps -ql):docker.exe" $env:TEMP\docker.exe
-cp $env:TEMP\docker.exe "$env:ProgramFiles\docker\docker.exe"
-
 Write-Host "Activating experimental features"
 $configJson = "$env:USERPROFILE\.docker\config.json"
 $config = @{}
