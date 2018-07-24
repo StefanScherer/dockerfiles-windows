@@ -7,7 +7,20 @@ if ( $env:APPVEYOR_PULL_REQUEST_NUMBER -Or ! $env:APPVEYOR_REPO_BRANCH.Equals("m
 
 $files = ""
 Write-Host Starting deploy
-"$env:DOCKER_PASS" | docker login --username "$env:DOCKER_USER" --password-stdin
+# "$env:DOCKER_PASS" | docker login --username "$env:DOCKER_USER" --password-stdin
+# docker login with the old config.json style that is needed for manifest-tool
+$auth =[System.Text.Encoding]::UTF8.GetBytes("$($env:DOCKER_USER):$($env:DOCKER_PASS)")
+$auth64 = [Convert]::ToBase64String($pwd)
+@"
+{
+  "auths": {
+    "https://index.docker.io/v1/": {
+      "auth": "$auth64"
+    }
+  }
+}
+"@ | Out-File -Encoding Ascii ~/.docker/config.json
+
 
 if ( $env:APPVEYOR_PULL_REQUEST_NUMBER ) {
   Write-Host Pull request $env:APPVEYOR_PULL_REQUEST_NUMBER
