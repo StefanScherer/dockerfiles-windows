@@ -2,7 +2,7 @@ FROM microsoft/windowsservercore as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV DOCKER_VERSION 18.03.0-ce
+ENV DOCKER_VERSION 18.06.0-ce
 
 RUN Invoke-WebRequest 'http://constexpr.org/innoextract/files/innoextract-1.6-windows.zip' -OutFile 'innoextract.zip' -UseBasicParsing ; \
     Expand-Archive innoextract.zip -DestinationPath C:\ ; \
