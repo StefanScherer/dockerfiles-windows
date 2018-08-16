@@ -31,6 +31,6 @@ function testVersion($majorMinorPatch, $yarnVersion) {
   testCommand "node:$majorMinorPatch-pure" "node" "v$majorMinorPatch"
 }
 
-#testVersion "6.14.3" "1.6.0"
-#testVersion "8.11.3" "1.6.0"
-testVersion "10.8.0" "1.7.0"
+#testVersion "6.14.4" "1.6.0"
+#testVersion "8.11.4" "1.6.0"
+testVersion "10.9.0" "1.9.2"
