@@ -17,4 +17,5 @@ Write-Output "Running update-docker.ps1"
 
 #buildVersion "6.14.4" "6.14" "6"
 #buildVersion "8.11.4" "8.11" "8"
+
 buildVersion "10.9.0" "10.9" "10"
