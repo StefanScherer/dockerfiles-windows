@@ -13,7 +13,9 @@ function buildVersion($majorMinorPatch, $majorMinor, $major) {
 }
 
 Write-Output "Test with server docker engine"
+$ErrorActionPreference = 'Continue';
 curl.exe -Lo "C:\Program Files\docker\dockerd.exe" https://master.dockerproject.com/windows/x86_64/dockerd.exe
+$ErrorActionPreference = 'Stop';
 $env:PATH="c:\program files\docker;$env:PATH"
 & sc stop com.docker.service
 Stop-Service docker
