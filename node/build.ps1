@@ -12,9 +12,13 @@ function buildVersion($majorMinorPatch, $majorMinor, $major) {
   docker build -t node:$majorMinorPatch-nanoserver $major/nano
 }
 
-Write-Output "Test with server docker engine"
+Write-Output "Build with server docker engine"
 $ErrorActionPreference = 'Continue';
-curl.exe -Lo "C:\Program Files\docker\dockerd.exe" https://master.dockerproject.com/windows/x86_64/dockerd.exe
+$docker_version = "18.03.1-ee-3"
+wget -outfile $env:TEMP\docker.zip $("https://dockermsft.blob.core.windows.net/dockercontainer/docker-{0}.zip" -f $docker_version)
+Expand-Archive -Path $env:TEMP\docker.zip -DestinationPath $env:TEMP -Force
+copy $env:TEMP\docker\*.exe $env:ProgramFiles\docker
+Remove-Item $env:TEMP\docker.zip
 $ErrorActionPreference = 'Stop';
 $env:PATH="c:\program files\docker;$env:PATH"
 Write-Output "Stop com.docker.service"
