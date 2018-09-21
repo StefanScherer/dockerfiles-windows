@@ -17,10 +17,15 @@ $ErrorActionPreference = 'Continue';
 curl.exe -Lo "C:\Program Files\docker\dockerd.exe" https://master.dockerproject.com/windows/x86_64/dockerd.exe
 $ErrorActionPreference = 'Stop';
 $env:PATH="c:\program files\docker;$env:PATH"
-& sc stop com.docker.service
+Write-Output "Stop com.docker.service"
+Stop-Service com.docker.service
+Write-Output "Stop docker"
 Stop-Service docker
+Write-Output "Unregister docker"
 dockerd --unregister-service
-dockerd --register-service  
+Write-Output "Register docker"
+dockerd --register-service
+Write-Output "Start docker"
 Start-Service docker
 Write-Output "Running server docker engine"
 docker version
