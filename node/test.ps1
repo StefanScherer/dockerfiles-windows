@@ -33,4 +33,4 @@ function testVersion($majorMinorPatch, $yarnVersion) {
 
 #testVersion "6.14.4" "1.6.0"
 #testVersion "8.11.4" "1.6.0"
-testVersion "10.10.0" "1.9.4"
+testVersion "10.11.0" "1.9.4"
