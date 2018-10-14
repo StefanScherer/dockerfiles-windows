@@ -24,6 +24,7 @@ function pushVersion($majorMinorPatch, $majorMinor, $major) {
 
   rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1709 -b microsoft/nanoserver:1709
   rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1803 -b microsoft/nanoserver:1803
+  rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1809 -b stefanscherer/nanoserver:10.0.17763.1
 
   $coreManifest = @"
 image: stefanscherer/node-windows:{0}-windowsservercore
@@ -59,6 +60,11 @@ manifests:
     platform:
       architecture: amd64
       os: windows
+  -
+    image: stefanscherer/node-windows:{0}-nanoserver-1809
+    platform:
+      architecture: amd64
+      os: windows
 "@
 
   $nanoManifest -f $majorMinorPatch, $majorMinor, $major | Out-File nanoserver.yml -Encoding Ascii
@@ -84,6 +90,11 @@ manifests:
     platform:
       architecture: amd64
       os: windows
+  -
+    image: stefanscherer/node-windows:{0}-pure-1809
+    platform:
+      architecture: amd64
+      os: windows
 "@
 
   $pureManifest -f $majorMinorPatch, $majorMinor, $major | Out-File pure.yml -Encoding Ascii
@@ -96,4 +107,4 @@ choco install -y manifest-tool
 
 #pushVersion "6.14.4" "6.14" "6"
 #pushVersion "8.11.4" "8.11" "8"
-pushVersion "10.11.0" "10.11" "10"
+pushVersion "10.12.0" "10.12" "10"
