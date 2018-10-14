@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$1" == "" ]; then
-  echo "Usage: $0 1709|1803"
+  echo "Usage: $0 1709|1803|1809"
   exit 1
 fi
 
