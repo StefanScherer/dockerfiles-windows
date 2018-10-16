@@ -21,10 +21,10 @@ copy $env:TEMP\docker\*.exe $env:ProgramFiles\docker
 Remove-Item $env:TEMP\docker.zip
 # $ErrorActionPreference = 'Stop'
 $env:PATH="c:\program files\docker;$env:PATH"
-Write-Output "Stop com.docker.service"
-Stop-Service com.docker.service
 Write-Output "Stop docker"
 Stop-Service docker
+Write-Output "Stop com.docker.service"
+Stop-Service com.docker.service
 Write-Output "Unregister docker"
 dockerd --unregister-service
 Write-Output "Register docker"
@@ -37,4 +37,4 @@ docker version
 #buildVersion "6.14.4" "6.14" "6"
 #buildVersion "8.11.4" "8.11" "8"
 
-buildVersion "10.11.0" "10.11" "10"
+buildVersion "10.12.0" "10.12" "10"
