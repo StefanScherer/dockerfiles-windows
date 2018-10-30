@@ -1,0 +1,24 @@
+image: stefanscherer/node-windows:10.12.0
+tags: ['10.12.0-nanoserver', '10.12-nanoserver', '10-nanoserver', 'nanoserver', '10.12', '10', 'latest']
+manifests:
+  -
+    image: stefanscherer/node-windows:10.12.0-nanoserver-2016
+    platform:
+      architecture: amd64
+      os: windows
+  -
+    image: stefanscherer/node-windows:10.12.0-nanoserver-1709
+    platform:
+      architecture: amd64
+      os: windows
+  -
+    image: stefanscherer/node-windows:10.12.0-nanoserver-1803
+    platform:
+      architecture: amd64
+      os: windows
+  -
+    image: stefanscherer/node-windows:10.12.0-nanoserver-1809
+    platform:
+      architecture: amd64
+      os: windows
+
