@@ -13,6 +13,11 @@ rebase-docker-image `
   -s microsoft/nanoserver:sac2016 `
   -t stefanscherer/docker-cli-windows:$version-1803 `
   -b stefanscherer/netapi-helper:1803
+rebase-docker-image `
+  stefanscherer/docker-cli-windows:$version-1607 `
+  -s microsoft/nanoserver:sac2016 `
+  -t stefanscherer/docker-cli-windows:$version-1809 `
+  -b stefanscherer/netapi-helper:1809
 
 ..\update-docker-cli.ps1
 
@@ -20,12 +25,14 @@ docker manifest create `
   stefanscherer/docker-cli-windows:$version `
   stefanscherer/docker-cli-windows:$version-1607 `
   stefanscherer/docker-cli-windows:$version-1709 `
-  stefanscherer/docker-cli-windows:$version-1803
+  stefanscherer/docker-cli-windows:$version-1803 `
+  stefanscherer/docker-cli-windows:$version-1809
 docker manifest push stefanscherer/docker-cli-windows:$version
 
 docker manifest create `
   stefanscherer/docker-cli-windows:latest `
   stefanscherer/docker-cli-windows:$version-1607 `
   stefanscherer/docker-cli-windows:$version-1709 `
-  stefanscherer/docker-cli-windows:$version-1803
+  stefanscherer/docker-cli-windows:$version-1803 `
+  stefanscherer/docker-cli-windows:$version-1809
 docker manifest push stefanscherer/docker-cli-windows:latest
