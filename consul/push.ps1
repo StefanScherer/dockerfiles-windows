@@ -7,6 +7,15 @@ rebase-docker-image `
   stefanscherer/consul-windows:$version-1607 `
   -t stefanscherer/consul-windows:$version-1709 `
   -b microsoft/nanoserver:1709
+rebase-docker-image `
+  stefanscherer/consul-windows:$version-1607 `
+  -t stefanscherer/consul-windows:$version-1803 `
+  -b microsoft/nanoserver:1803
+rebase-docker-image `
+  stefanscherer/consul-windows:$version-1607 `
+  -s microsoft/nanoserver:sac2016 `
+  -t stefanscherer/consul-windows:$version-1809 `
+  -b stefanscherer/netapi-helper:1809
 
 ..\update-docker-cli.ps1
 

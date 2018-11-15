@@ -1,6 +1,6 @@
 # escape=`
-FROM microsoft/nanoserver:10.0.14393.2189 as download
-ENV CONSUL_VERSION 0.7.5
+FROM microsoft/nanoserver:sac2016 as download
+ENV CONSUL_VERSION 1.4.0
 
 RUN powershell -Command $ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue'; `
     Invoke-WebRequest $('https://releases.hashicorp.com/consul/{0}/consul_{0}_windows_amd64.zip' -f $env:CONSUL_VERSION) -OutFile 'consul.zip' -UseBasicParsing ; `
@@ -9,11 +9,11 @@ RUN powershell -Command $ErrorActionPreference = 'Stop'; $ProgressPreference = '
     mkdir C:\download\consul\data ; `
     mkdir C:\download\consul\config
 
-FROM microsoft/nanoserver:10.0.14393.2189
+FROM microsoft/nanoserver:sac2016
 COPY --from=download /download /
 
 # Expose the consul data directory as a volume since there's mutable state in there.
-VOLUME C:\consul\data
+# VOLUME C:\consul\data
 
 # Server RPC is used for communication between Consul clients and servers for internal
 # request forwarding.
@@ -33,4 +33,4 @@ ENTRYPOINT [ "C:\\consul.exe" ]
 # By default you'll get an insecure single-node development server that stores
 # everything in RAM, exposes a web UI and HTTP endpoints, and bootstraps itself.
 # Don't use this configuration for production.
-CMD ["agent", "-ui", "-dev", "-client", "0.0.0.0"]
+CMD ["agent", "-dev", "-client", "0.0.0.0"]
