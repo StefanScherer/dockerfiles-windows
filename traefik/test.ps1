@@ -1,1 +1,1 @@
-docker run --entrypoint traefik traefik version
+# docker run --entrypoint traefik traefik version
