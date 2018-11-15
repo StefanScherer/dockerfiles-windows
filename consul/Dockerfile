@@ -9,8 +9,7 @@ RUN powershell -Command $ErrorActionPreference = 'Stop'; $ProgressPreference = '
     mkdir C:\download\consul\data ; `
     mkdir C:\download\consul\config
 
-#FROM microsoft/nanoserver:sac2016
-FROM stefanscherer/netapi-helper:1809
+FROM microsoft/nanoserver:sac2016
 COPY --from=download /download /
 
 # Expose the consul data directory as a volume since there's mutable state in there.
