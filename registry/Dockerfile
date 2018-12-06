@@ -1,9 +1,9 @@
-FROM stefanscherer/golang-windows:1.9 as build
+FROM golang as build
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV DOCKER_BUILDTAGS include_oss include_gcs
-ENV DISTRIBUTION_VERSION v2.6.2
+ENV DISTRIBUTION_VERSION v2.7.0
 
 RUN mkdir src\github.com\docker ; \
     cd src\github.com\docker ; \
@@ -14,12 +14,11 @@ RUN mkdir src\github.com\docker ; \
     try { go get github.com/tools/godep } catch { } ; \
     Start-Process -FilePath godep.exe -ArgumentList go, build, ./cmd/registry -Wait
 
-FROM microsoft/nanoserver:10.0.14393.2068
+FROM microsoft/nanoserver:sac2016
 
 COPY --from=build /gopath/src/github.com/docker/distribution/registry.exe /registry.exe
 COPY config.yml /config/config.yml
 
-VOLUME C:\\registry
 EXPOSE 5000
 
 ENTRYPOINT ["\\registry.exe"]
