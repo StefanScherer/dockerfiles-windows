@@ -40,7 +40,8 @@ addHosts
 
 Write-Host Pushing an image to local registry
 docker tag registry:$version myregistry:5000/registry:$version
-docker push myregistry:5000/registry:$version
+$ErrorActionPreference = 'SilentlyContinue'
+docker push myregistry:5000/registry:$version 2>registry-error.log >registry.log
 
 Write-Host Checking if local registry files are stored on host
 dir C:\registry\docker\registry\v2\repositories\registry\
