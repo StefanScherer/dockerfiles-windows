@@ -37,4 +37,4 @@ docker version
 #buildVersion "6.14.4" "6.14" "6"
 #buildVersion "8.11.4" "8.11" "8"
 
-buildVersion "10.14.0" "10.14" "10"
+buildVersion "10.14.1" "10.14" "10"
