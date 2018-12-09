@@ -2,7 +2,7 @@ $ErrorActionPreference = 'Stop'
 $version=$(select-string -Path Dockerfile -Pattern "ENV DISTRIBUTION_VERSION").ToString().split()[-1].SubString(1)
 
 function addRegistryToDaemonJson() {
-  Write-Host "Adding registry"
+  Write-Output "Adding insecure registry to daemon.json"
   $daemonJson = "$env:ProgramData\docker\config\daemon.json"
   $config = @{}
   if (Test-Path $daemonJson) {
@@ -15,19 +15,23 @@ function addRegistryToDaemonJson() {
 }
 
 function addHosts() {
+  Write-Output "Adding hosts entry for registry container"
   $ip = $(docker inspect -f '{{ .NetworkSettings.Networks.nat.IPAddress }}' registry)
   "" | Out-File -Encoding Ascii -Append C:\Windows\system32\drivers\etc\hosts
   "$ip myregistry" | Out-File -Encoding Ascii -Append C:\Windows\system32\drivers\etc\hosts
 }
 
 function runRegistry() {
+  Write-Output "Running registry container"
   if (!(Test-Path C:\registry)) { mkdir C:\registry }
   docker run -d -p 5000:5000 --restart=always --name registry -v C:\registry:C:\registry registry:$version
 }
 
 
 addRegistryToDaemonJson
+Write-Output "Restarting docker service"
 restart-service docker
+Start-Sleep -Seconds 10
 runRegistry
 addHosts
 
