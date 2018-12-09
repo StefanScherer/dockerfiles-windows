@@ -12,6 +12,9 @@ function addRegistryToDaemonJson() {
     'insecure-registries' = @("myregistry:5000"); `
   }) -Force -PassThru
   $config | ConvertTo-Json | Set-Content $daemonJson -Encoding Ascii
+  
+  Write-Output "Contents of $daemonJson"
+  cat $daemonJson
 }
 
 function addHosts() {
