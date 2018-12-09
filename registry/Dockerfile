@@ -10,9 +10,7 @@ RUN mkdir src\github.com\docker ; \
     git clone -q https://github.com/docker/distribution ; \
     cd distribution ; \
     git checkout -q $env:DISTRIBUTION_VERSION ; \
-    try { go get github.com/tools/godep 2>&1 } catch { } ; \
-    try { go get github.com/tools/godep } catch { } ; \
-    Start-Process -FilePath godep.exe -ArgumentList go, build, ./cmd/registry -Wait
+    go build -o registry.exe cmd/registry/main.go
 
 FROM microsoft/nanoserver:sac2016
 
