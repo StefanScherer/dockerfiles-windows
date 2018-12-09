@@ -12,6 +12,7 @@ RUN mkdir src\github.com\docker ; \
     git checkout -q $env:DISTRIBUTION_VERSION ; \
     go build -o registry.exe cmd/registry/main.go
 
+
 FROM microsoft/nanoserver:sac2016
 
 COPY --from=build /gopath/src/github.com/docker/distribution/registry.exe /registry.exe
