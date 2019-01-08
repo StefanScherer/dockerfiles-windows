@@ -1,3 +1,0 @@
-FROM stefanscherer/node-windows:10.15.0-insider-core
-
-RUN npm install --global --production --add-python-to-path windows-build-tools --vs2015
