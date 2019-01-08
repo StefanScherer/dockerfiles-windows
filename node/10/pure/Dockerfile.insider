@@ -1,4 +1,0 @@
-FROM mcr.microsoft.com/nanoserver-insider:10.0.17744.1001
-ADD https://nodejs.org/dist/v10.14.1/win-x64/node.exe C:/Windows/system32/node.exe
-USER ContainerAdministrator
-CMD [ "node.exe" ]

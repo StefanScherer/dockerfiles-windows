@@ -16,14 +16,16 @@ RUN @( \
     'DD8F2338BAE7501E3DD5AC78C273792F7D83545D', \
     'C4F0DFFF4E8C1A8236409D08E73BC641CC11F4C8', \
     'B9AE9905FFD7803F25714661B63B535A4C206CA9', \
-    '56730D5401028683275BD23C23EFEFE93C4CFFFE', \
     '77984A986EBC2AA786BC0F66B01FBB92821C587A', \
-    '8FCCA13FEF1D0C2E91008E09770F7A9A5AE15600' \
+    '8FCCA13FEF1D0C2E91008E09770F7A9A5AE15600', \
+    '4ED778F539E3634C779C87C6D7062848A1AB005C', \
+    'A48C2BEE680E841632CD4E44F07496B3EB3C1762', \
+    'B9E2F5981AA6E0CD28160D9FF13993A75599653C' \
     ) | foreach { \
       gpg --keyserver ha.pool.sks-keyservers.net --recv-keys $_ ; \
     }
 
-ENV NODE_VERSION 10.14.1
+ENV NODE_VERSION 10.15.0
 
 RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/SHASUMS256.txt.asc' -f $env:NODE_VERSION) -OutFile 'SHASUMS256.txt.asc' -UseBasicParsing ; \
     gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc
@@ -34,7 +36,7 @@ RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/node-v{0}-win-x64.zip' -f 
     Expand-Archive node.zip -DestinationPath C:\ ; \
     Rename-Item -Path $('C:\node-v{0}-win-x64' -f $env:NODE_VERSION) -NewName 'C:\nodejs'
 
-ENV YARN_VERSION 1.10.1
+ENV YARN_VERSION 1.12.3
 
 RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 ; \
     Invoke-WebRequest $('https://yarnpkg.com/downloads/{0}/yarn-{0}.msi' -f $env:YARN_VERSION) -OutFile yarn.msi -UseBasicParsing ; \
