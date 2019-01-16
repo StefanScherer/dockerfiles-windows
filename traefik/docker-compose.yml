@@ -1,15 +1,17 @@
-version: '2.1'
+version: '2.4'
 services:
   traefik:
     image: stefanscherer/traefik-windows
-    # we need the IP of the vEthernet (HNS Internal NIC)
-    command: --docker.endpoint=tcp://172.27.224.1:2375 --logLevel=DEBUG
+    command: --docker.endpoint=npipe:////./pipe/docker_engine --logLevel=DEBUG
     ports:
       - "8080:8080"
       - "443:443"
     volumes:
       - .:C:/etc/traefik
 #      - C:/Users/vagrant/.docker:C:/etc/ssl
+      - type: npipe
+        source: \\.\pipe\docker_engine
+        target: \\.\pipe\docker_engine
 
   whoami1:
     image: stefanscherer/whoami-windows
