@@ -1,4 +1,5 @@
 function pushVersion($majorMinorPatch, $majorMinor, $major) {
+  $nanoserverTag="10.0.17763.253"
   docker tag node:$majorMinorPatch-windowsservercore stefanscherer/node-windows:$majorMinorPatch-windowsservercore-2016
   docker tag node:$majorMinorPatch-nanoserver stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016
 
@@ -20,12 +21,12 @@ function pushVersion($majorMinorPatch, $majorMinor, $major) {
 
     rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-pure-2016 -t stefanscherer/node-windows:$majorMinorPatch-pure-1709 -b microsoft/nanoserver:1709
     rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-pure-2016 -t stefanscherer/node-windows:$majorMinorPatch-pure-1803 -b microsoft/nanoserver:1803
-    rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-pure-2016 -s microsoft/nanoserver:sac2016 -t stefanscherer/node-windows:$majorMinorPatch-pure-1809 -b stefanscherer/nanoserver:10.0.17763.253
+    rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-pure-2016 -s microsoft/nanoserver:sac2016 -t stefanscherer/node-windows:$majorMinorPatch-pure-1809 -b stefanscherer/nanoserver:$nanoserverTag
   }
 
   rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1709 -b microsoft/nanoserver:1709
   rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1803 -b microsoft/nanoserver:1803
-  rebase-docker-image -v stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016 -s microsoft/nanoserver:sac2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1809 -b stefanscherer/nanoserver:10.0.17763.253
+  rebase-docker-image -v stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016 -s microsoft/nanoserver:sac2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1809 -b stefanscherer/nanoserver:$nanoserverTag
 
   $coreManifest = @"
 image: stefanscherer/node-windows:{0}-windowsservercore
