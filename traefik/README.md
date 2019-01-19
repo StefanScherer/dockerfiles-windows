@@ -5,55 +5,31 @@
 
 ## Example usage
 
-Grab a [sample configuration file](https://raw.githubusercontent.com/containous/traefik/master/traefik.sample.toml) and rename it to `traefik.toml`. Enable `docker` provider and web UI:
-
-```toml
-################################################################
-# Web configuration backend
-################################################################
-[web]
-address = ":8080"
-################################################################
-# Docker configuration backend
-################################################################
-[docker]
-domain = "docker.local"
-watch = true
-# increase docker api version to 1.24 with swarm-mode :-)
-swarmmode = true
-```
-
-Start Træfɪk:
+Start Træfɪk on a Windows Server 2019 or Windows 10 1809.
 
 ```bash
-docker run -it -v C:$(pwd):C:/etc/traefik -v C:/Users/vagrant/.docker:C:/etc/ssl -p 8080:8080 -p 80:80 traefik --docker.endpoint=tcp://172.31.80.1:2375
-```
-
-Start a backend server, named `test`:
-
-```bash
-docker run -d --name test stefanscherer/whoami-windows
+docker-compose up -d
 ```
 
 And finally, you can access to your `whoami` server throught Træfɪk, on the domain name `{containerName}.{configuredDomain}`:
 
 ```bash
-curl --header 'Host: test.docker.local' 'http://localhost:80/'
-Hostname: 117c5530934d
-IP: 127.0.0.1
-IP: ::1
-IP: 172.17.0.3
-IP: fe80::42:acff:fe11:3
-GET / HTTP/1.1
-Host: 172.17.0.3:80
-User-Agent: curl/7.35.0
-Accept: */*
-Accept-Encoding: gzip
-X-Forwarded-For: 172.17.0.1
-X-Forwarded-Host: 172.17.0.3:80
-X-Forwarded-Proto: http
-X-Forwarded-Server: f2e05c433120
-
+PS C:\Users\stefan\code\dockerfiles-windows\traefik> docker-compose up -d
+Starting traefik_whoami2_1 ... done
+Starting traefik_whoami1_1 ... done
+Starting traefik_traefik_1 ... done
+PS C:\Users\stefan\code\dockerfiles-windows\traefik>
+PS C:\Users\stefan\code\dockerfiles-windows\traefik>
+PS C:\Users\stefan\code\dockerfiles-windows\traefik> docker ps
+CONTAINER ID        IMAGE                           COMMAND                  CREATED             STATUS              PORTS                                                              NAMES
+113ce8f5c552        stefanscherer/whoami            "\\http.exe"             32 minutes ago      Up 4 seconds        8080/tcp                                                           traefik_whoami1_1
+44c88c5055f0        stefanscherer/traefik-windows   "/traefik --configfi…"   32 minutes ago      Up 4 seconds        0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp, 0.0.0.0:8080->8080/tcp   traefik_traefik_1
+88673d7e3c03        stefanscherer/whoami            "\\http.exe"             32 minutes ago      Up 4 seconds        8080/tcp                                                           traefik_whoami2_1
+PS C:\Users\stefan\code\dockerfiles-windows\traefik> curl.exe -H Host:whoami.docker.local http://localhost
+I'm 113ce8f5c552 running on windows/amd64
+PS C:\Users\stefan\code\dockerfiles-windows\traefik> curl.exe -H Host:whoami.docker.local http://localhost
+I'm 88673d7e3c03 running on windows/amd64
+PS C:\Users\stefan\code\dockerfiles-windows\traefik>
 ```
 
 The web UI [http://localhost:8080](http://localhost:8080) will give you an overview of the frontends/backends and also a health dashboard.
