@@ -17,3 +17,8 @@ endpoint = "npipe:////./pipe/docker_engine"
 # Default: false
 #
 #swarmmode = true
+#
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+

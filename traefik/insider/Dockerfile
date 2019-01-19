@@ -1,8 +1,8 @@
-FROM microsoft/windowsservercore-insider as core
-FROM microsoft/nanoserver-insider
+FROM mcr.microsoft.com/windows/servercore/insider:10.0.18298.1000 as core
+FROM mcr.microsoft.com/windows/nanoserver/insider:10.0.18298.1000
 COPY --from=core /windows/system32/netapi32.dll /windows/system32/netapi32.dll
 
-ENV TRAEFIK_VERSION 1.6.1
+ENV TRAEFIK_VERSION 1.7.7
 
 ADD https://github.com/containous/traefik/releases/download/v${TRAEFIK_VERSION}/traefik_windows-amd64.exe /traefik.exe
 
