@@ -6,6 +6,7 @@ services:
     ports:
       - "8080:8080"
       - "443:443"
+      - "80:80"
     volumes:
       - .:C:/etc/traefik
 #      - C:/Users/vagrant/.docker:C:/etc/ssl
@@ -14,18 +15,18 @@ services:
         target: \\.\pipe\docker_engine
 
   whoami1:
-    image: stefanscherer/whoami-windows
+    image: stefanscherer/whoami
     labels:
       - "traefik.backend=whoami"
-      - "traefik.frontend.entryPoints=https"
-      - "traefik.frontend.rule=Host:whoami.yourdomain.com"
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.frontend.rule=Host:whoami.docker.local"
 
   whoami2:
-    image: stefanscherer/whoami-windows
+    image: stefanscherer/whoami
     labels:
       - "traefik.backend=whoami"
-      - "traefik.frontend.entryPoints=https"
-      - "traefik.frontend.rule=Host:whoami.yourdomain.com"
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.frontend.rule=Host:whoami.docker.local"
 
 #  portainer:
 #    image: portainer/portainer
