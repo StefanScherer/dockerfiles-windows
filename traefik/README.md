@@ -5,7 +5,7 @@
 
 ## Example usage
 
-Start Træfɪk:
+Start Træfɪk on a Windows Server 2019 or Windows 10 1809.
 
 ```bash
 docker-compose up -d
