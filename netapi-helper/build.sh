@@ -5,6 +5,6 @@ if [ "$1" == "" ]; then
   exit 1
 fi
 
-docker pull microsoft/nanoserver:$1
+docker pull mcr.microsoft.com/windows/nanoserver:$1
 docker build -t stefanscherer/netapi-helper:$1 -f Dockerfile.$1 .
 docker push stefanscherer/netapi-helper:$1
