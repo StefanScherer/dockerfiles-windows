@@ -1,28 +1,31 @@
-version: '2.1'
+version: '2.4'
 services:
   traefik:
-    image: stefanscherer/traefik-windows:v1.3.8-insider
+    image: stefanscherer/traefik-windows:v1.7.7-insider-10.0.18298.1000
     ports:
       - "8080:8080"
       - "443:443"
+      - "80:80"
     volumes:
       - .:C:/etc/traefik
-      - //./pipe/docker_engine://./pipe/docker_engine
+      - type: npipe
+        source: \\.\pipe\docker_engine
+        target: \\.\pipe\docker_engine
     user: ContainerAdministrator
 
 
   whoami1:
-    image: stefanscherer/whoami:insider
+    image: stefanscherer/whoami:insider-10.0.18298.1000
     labels:
       - "traefik.backend=whoami"
-      - "traefik.frontend.entryPoints=https"
+      - "traefik.frontend.entryPoints=http"
       - "traefik.frontend.rule=Host:whoami.docker.local"
 
   whoami2:
-    image: stefanscherer/whoami:insider
+    image: stefanscherer/whoami:insider-10.0.18298.1000
     labels:
       - "traefik.backend=whoami"
-      - "traefik.frontend.entryPoints=https"
+      - "traefik.frontend.entryPoints=http"
       - "traefik.frontend.rule=Host:whoami.docker.local"
 
 #  portainer:
