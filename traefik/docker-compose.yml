@@ -7,9 +7,9 @@ services:
       - "8080:8080"
       - "443:443"
       - "80:80"
+    isolation: process # workaround for https://github.com/containous/traefik/issues/4409
     volumes:
       - .:C:/etc/traefik
-#      - C:/Users/vagrant/.docker:C:/etc/ssl
       - type: npipe
         source: \\.\pipe\docker_engine
         target: \\.\pipe\docker_engine
