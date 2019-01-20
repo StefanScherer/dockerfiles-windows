@@ -3,7 +3,7 @@ FROM golang as build
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV DOCKER_BUILDTAGS include_oss include_gcs
-ENV DISTRIBUTION_VERSION v2.7.0
+ENV DISTRIBUTION_VERSION v2.7.1
 
 RUN mkdir src\github.com\docker ; \
     cd src\github.com\docker ; \
