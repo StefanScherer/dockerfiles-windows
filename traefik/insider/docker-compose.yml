@@ -1,7 +1,7 @@
 version: '2.4'
 services:
   traefik:
-    image: stefanscherer/traefik-windows:v1.7.7-insider-10.0.18298.1000
+    image: stefanscherer/traefik-windows:v1.7.9-insider-10.0.18334.1
     ports:
       - "8080:8080"
       - "443:443"
@@ -15,14 +15,14 @@ services:
 
 
   whoami1:
-    image: stefanscherer/whoami:insider-10.0.18298.1000
+    image: stefanscherer/whoami:insider-10.0.18334.1
     labels:
       - "traefik.backend=whoami"
       - "traefik.frontend.entryPoints=http"
       - "traefik.frontend.rule=Host:whoami.docker.local"
 
   whoami2:
-    image: stefanscherer/whoami:insider-10.0.18298.1000
+    image: stefanscherer/whoami:insider-10.0.18334.1
     labels:
       - "traefik.backend=whoami"
       - "traefik.frontend.entryPoints=http"
