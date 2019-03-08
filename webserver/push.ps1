@@ -1,4 +1,4 @@
-$version=0.3.0
+$version="0.3.0"
 
 docker tag traefik stefanscherer/webserver-windows:$version-1607
 docker push stefanscherer/webserver-windows:$version-1607
