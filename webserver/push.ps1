@@ -1,6 +1,6 @@
 $version="0.3.0"
 
-docker tag traefik stefanscherer/webserver-windows:$version-1607
+docker tag webserver stefanscherer/webserver-windows:$version-1607
 docker push stefanscherer/webserver-windows:$version-1607
 
 npm install -g rebase-docker-image
