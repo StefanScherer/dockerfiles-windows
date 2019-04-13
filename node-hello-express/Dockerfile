@@ -1,4 +1,4 @@
-FROM stefanscherer/node-windows:8.9.1
+FROM stefanscherer/node-windows:10
 WORKDIR /code
 COPY package.json /code
 RUN npm install --production
