@@ -1,10 +1,10 @@
 function pushVersion($majorMinorPatch, $majorMinor, $major) {
   $nanoserverTag="10.0.17763.253"
   docker tag node:$majorMinorPatch-windowsservercore stefanscherer/node-windows:$majorMinorPatch-windowsservercore-2016
-  docker tag node:$majorMinorPatch-nanoserver stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016
+  docker tag node:$majorMinorPatch-nanoserver stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016-deprecated
 
   docker push stefanscherer/node-windows:$majorMinorPatch-windowsservercore-2016
-  docker push stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016
+  docker push stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016-deprecated
 
   if (Test-Path $major\build-tools) {
     docker tag node:$majorMinorPatch-build-tools stefanscherer/node-windows:$majorMinorPatch-build-tools
@@ -19,41 +19,19 @@ function pushVersion($majorMinorPatch, $majorMinor, $major) {
     docker tag node:$majorMinorPatch-pure stefanscherer/node-windows:$majorMinorPatch-pure-2016
     docker push stefanscherer/node-windows:$majorMinorPatch-pure-2016
 
-    rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-pure-2016 -t stefanscherer/node-windows:$majorMinorPatch-pure-1709 -b microsoft/nanoserver:1709
     rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-pure-2016 -t stefanscherer/node-windows:$majorMinorPatch-pure-1803 -b microsoft/nanoserver:1803
     rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-pure-2016 -s microsoft/nanoserver:sac2016 -t stefanscherer/node-windows:$majorMinorPatch-pure-1809 -b stefanscherer/nanoserver:$nanoserverTag
   }
 
-  rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1709 -b microsoft/nanoserver:1709
-  rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1803 -b microsoft/nanoserver:1803
-  rebase-docker-image -v stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016 -s microsoft/nanoserver:sac2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1809 -b stefanscherer/nanoserver:$nanoserverTag
-
-  $coreManifest = @"
-image: stefanscherer/node-windows:{0}-windowsservercore
-tags: ['{1}-windowsservercore', '{2}-windowsservercore', 'windowsservercore']
-manifests:
-  -
-    image: stefanscherer/node-windows:{0}-windowsservercore-2016
-    platform:
-      architecture: amd64
-      os: windows
-"@
-
-  $coreManifest -f $majorMinorPatch, $majorMinor, $major | Out-File windowsservercore.yml -Encoding Ascii
-  cat windowsservercore.yml
-  manifest-tool push from-spec windowsservercore.yml
+  rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016-deprecated -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1803 -b microsoft/nanoserver:1803
+  rebase-docker-image -v stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016-deprecated -s microsoft/nanoserver:sac2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1809 -b stefanscherer/nanoserver:$nanoserverTag
 
   $nanoManifest = @"
 image: stefanscherer/node-windows:{0}
-tags: ['{0}-nanoserver', '{1}-nanoserver', '{2}-nanoserver', 'nanoserver', '{1}', '{2}', 'latest']
+tags: ['{1}', '{2}', 'latest']
 manifests:
   -
-    image: stefanscherer/node-windows:{0}-nanoserver-2016
-    platform:
-      architecture: amd64
-      os: windows
-  -
-    image: stefanscherer/node-windows:{0}-nanoserver-1709
+    image: stefanscherer/node-windows:{0}-windowsservercore-2016
     platform:
       architecture: amd64
       os: windows
@@ -77,16 +55,6 @@ manifests:
 image: stefanscherer/node-windows:{0}-pure
 tags: ['{1}-pure', '{2}-pure', 'pure']
 manifests:
-  -
-    image: stefanscherer/node-windows:{0}-pure-2016
-    platform:
-      architecture: amd64
-      os: windows
-  -
-    image: stefanscherer/node-windows:{0}-pure-1709
-    platform:
-      architecture: amd64
-      os: windows
   -
     image: stefanscherer/node-windows:{0}-pure-1803
     platform:
