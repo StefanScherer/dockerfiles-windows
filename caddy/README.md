@@ -17,10 +17,10 @@ Caddy is an awesome standalone [web server](https://caddyserver.com)
 docker build -t caddy .
 ```
 
-On Windows Server 1709 build it with different base image tag.
+On Windows Server 1809 build it with different base image tag.
 
 ```
-docker build --build-arg tag=1709 -t caddy .
+docker build --build-arg tag=1809 -t caddy .
 ```
 
 ## Run the container

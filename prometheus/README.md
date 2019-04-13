@@ -43,9 +43,3 @@ See the script [start-prometheus.ps1](https://github.com/StefanScherer/docker-wi
 ```
 docker build -t prom .
 ```
-
-### Windows Server 1709
-
-```
-docker build -f Dockerfile.1709 -t prom .
-```

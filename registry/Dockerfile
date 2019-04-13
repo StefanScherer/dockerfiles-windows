@@ -13,7 +13,7 @@ RUN mkdir src\github.com\docker ; \
     go build -o registry.exe cmd/registry/main.go
 
 
-FROM microsoft/nanoserver:sac2016
+FROM mcr.microsoft.com/windows/nanoserver:sac2016
 
 COPY --from=build /gopath/src/github.com/docker/distribution/registry.exe /registry.exe
 COPY config.yml /config/config.yml

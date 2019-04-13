@@ -27,15 +27,15 @@ The `Dockerfile` is prepared to run on any Windows platform, but you have to spe
 
 ```
 docker build -t node:10.15.3-windowsservercore `
-  --build-arg core=microsoft/windowsservercore:1803 `
-  --build-arg target=microsoft/nanoserver:1803 .
+  --build-arg core=mcr.microsoft.com/windows/servercore:1803 `
+  --build-arg target=mcr.microsoft.com/windows/nanoserver:1803 .
 docker build -t node:10.15.3-nanoserver `
-  --build-arg core=microsoft/windowsservercore:1803 `
-  --build-arg target=microsoft/nanoserver:1803 `
+  --build-arg core=mcr.microsoft.com/windows/servercore:1803 `
+  --build-arg target=mcr.microsoft.com/windows/nanoserver:1803 `
   --build-arg "SETX= " nano
 docker build -t node:10.15.3-pure `
-  --build-arg core=microsoft/windowsservercore:1803 `
-  --build-arg target=microsoft/nanoserver:1803 pure
+  --build-arg core=mcr.microsoft.com/windows/servercore:1803 `
+  --build-arg target=mcr.microsoft.com/windows/nanoserver:1803 pure
 ```
 
 Watch out for the SETX parameter to have a blank value to overwrite the `/M` default needed for 2016.

@@ -1,5 +1,5 @@
 function pushVersion($majorMinorPatch, $majorMinor, $major) {
-  $nanoserverTag="10.0.17763.253"
+  $nanoserverTag="10.0.17763.437"
   docker tag node:$majorMinorPatch-windowsservercore stefanscherer/node-windows:$majorMinorPatch-windowsservercore-2016
   docker tag node:$majorMinorPatch-nanoserver stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016-deprecated
 
@@ -19,12 +19,12 @@ function pushVersion($majorMinorPatch, $majorMinor, $major) {
     docker tag node:$majorMinorPatch-pure stefanscherer/node-windows:$majorMinorPatch-pure-2016
     docker push stefanscherer/node-windows:$majorMinorPatch-pure-2016
 
-    rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-pure-2016 -t stefanscherer/node-windows:$majorMinorPatch-pure-1803 -b microsoft/nanoserver:1803
-    rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-pure-2016 -s microsoft/nanoserver:sac2016 -t stefanscherer/node-windows:$majorMinorPatch-pure-1809 -b stefanscherer/nanoserver:$nanoserverTag
+    rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-pure-2016 -t stefanscherer/node-windows:$majorMinorPatch-pure-1803 -b mcr.microsoft.com/windows/nanoserver:1803
+    rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-pure-2016 -s mcr.microsoft.com/windows/nanoserver:sac2016 -t stefanscherer/node-windows:$majorMinorPatch-pure-1809 -b stefanscherer/nanoserver:$nanoserverTag
   }
 
-  rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016-deprecated -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1803 -b microsoft/nanoserver:1803
-  rebase-docker-image -v stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016-deprecated -s microsoft/nanoserver:sac2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1809 -b stefanscherer/nanoserver:$nanoserverTag
+  rebase-docker-image stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016-deprecated -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1803 -b mcr.microsoft.com/windows/nanoserver:1803
+  rebase-docker-image -v stefanscherer/node-windows:$majorMinorPatch-nanoserver-2016-deprecated -s mcr.microsoft.com/windows/nanoserver:sac2016 -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1809 -b stefanscherer/nanoserver:$nanoserverTag
 
   $nanoManifest = @"
 image: stefanscherer/node-windows:{0}

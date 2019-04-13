@@ -1,4 +1,4 @@
-I tried a little with and I wasn’t able to use ContainerUser for a service. I also couldn’t use `USER ContainerUser` in a Dockerfile with Server 2016 LTS, only with Server 2016 Version 1709.
+I tried a little with and I wasn’t able to use ContainerUser for a service. I also couldn’t use `USER ContainerUser` in a Dockerfile with Server 2016 LTS, only beginning with Server 2016 Version 1709.
 
 The `USER` instruction in Dockerfile does not work with user accounts with passwords.
 Therefore the ContainerAdministrator and ContainerUser do not have a password set.
@@ -8,7 +8,7 @@ But I was able to create an user account and use it for a Windows service. I’m
 Dockerfile:
 
 ```Dockerfile
-FROM microsoft/windowsservercore
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 RUN net user John B@dP@ssw0rd /ADD
 COPY . /
 RUN msiexec /quiet /i sample.msi ACCOUNT=%COMPUTERNAME%\John PASSWORD=B@dP@ssw0rd

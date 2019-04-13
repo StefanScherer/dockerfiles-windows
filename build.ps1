@@ -2,10 +2,6 @@ $ErrorActionPreference = 'Stop';
 $files = ""
 Write-Host Starting build
 
-# Write-Host Updating base images
-# docker pull microsoft/windowsservercore
-# docker pull microsoft/nanoserver
-
 if ( $env:APPVEYOR_PULL_REQUEST_NUMBER ) {
   Write-Host Pull request $env:APPVEYOR_PULL_REQUEST_NUMBER
   $files = $(git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master))

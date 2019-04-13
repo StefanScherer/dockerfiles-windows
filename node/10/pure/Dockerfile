@@ -1,5 +1,5 @@
-ARG core=microsoft/windowsservercore
-ARG target=microsoft/nanoserver:sac2016
+ARG core=mcr.microsoft.com/windows/servercore
+ARG target=mcr.microsoft.com/windows/nanoserver:sac2016
 FROM $core as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]

@@ -1,5 +1,5 @@
-ARG core=microsoft/windowsservercore
-ARG target=microsoft/windowsservercore:ltsc2016
+ARG core=mcr.microsoft.com/windows/servercore
+ARG target=mcr.microsoft.com/windows/servercore:ltsc2016
 FROM $core as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]

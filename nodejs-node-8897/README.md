@@ -79,7 +79,7 @@ then into a new container and build a new container image `copy` with it.
 ```powershell
 docker create --name libuvtest libuvtest
 docker cp libuvtest:/libuv libuv
-docker create --name copy microsoft/windowsservercore
+docker create --name copy mcr.microsoft.com/windows/servercore
 docker cp libuv copy:/libuv
 docker commit copy copy
 docker run -it copy cmd
@@ -95,7 +95,7 @@ Now let's mount the directory `libuv` as `C:\libuv` in another empty container
 and run the same tests directly on the mounted volume.
 
 ```powershell
-docker run -it -v "$(pwd)\libuv:C:\libuv" microsoft/windowsservercore cmd
+docker run -it -v "$(pwd)\libuv:C:\libuv" mcr.microsoft.com/windows/servercore cmd
 cd libuv
 Debug\run-tests.exe
 ```

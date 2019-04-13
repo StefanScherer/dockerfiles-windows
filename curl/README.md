@@ -3,9 +3,9 @@
 
 curl in a Windows NanoServer container
 
-Sometimes I need `curl.exe` inside a Windows NanoServer container to test inter-container networking. Here is a Docker image for it.
+Sometimes I need `curl.exe` inside a Windows ServerCore container to test inter-container networking. Here is a Docker image for it.
 
-It is a multi-OS Docker image so you can run it on Windows Server 2016 LTS as well as on Windows Server 1709. You need Docker 17.10.0 EE preview 3 to make the automatic OS selection work.
+Notice: In Windows Nanoserver and ServerCore images beginning with 1803 curl.exe and tar.exe are always available.
 
 ```
 docker run stefanscherer/curl-windows

@@ -1,5 +1,5 @@
 # escape=`
-FROM microsoft/windowsservercore as download
+FROM mcr.microsoft.com/windows/servercore:ltsc2016 as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -28,7 +28,7 @@ RUN mkdir C:\prepare ; `
     cp C:\mongodb-win32-x86_64-2008plus-ssl-$env:MONGO_VERSION\bin\*.exe C:\prepare ; `
     cp C:\mongodb-win32-x86_64-2008plus-ssl-$env:MONGO_VERSION\bin\*.dll C:\prepare
 
-FROM microsoft/nanoserver:sac2016
+FROM mcr.microsoft.com/windows/servercore:ltsc2016
 
 COPY --from=download C:\prepare C:\windows\system32
 

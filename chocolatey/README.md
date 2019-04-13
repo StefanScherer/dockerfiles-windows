@@ -12,15 +12,15 @@ Jump start into Chocolatey in a Windows container.
 docker build -t chocolatey .
 ```
 
-## Build for 1709
-
-```
-docker build --build-arg version=1709 -t chocolatey .
-```
-
 ## Build for 1803
 
 ```
 docker build --build-arg version=1803 -t chocolatey .
 ```
 
+
+## Build for 2016 LTSC
+
+```
+docker build --build-arg version=ltsc2019 -t chocolatey .
+```

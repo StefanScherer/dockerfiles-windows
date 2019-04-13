@@ -2,7 +2,7 @@
 [![This image on DockerHub](https://img.shields.io/docker/pulls/stefanscherer/busybox-windows.svg)](https://hub.docker.com/r/stefanscherer/busybox-windows/)
 
 Based on the 64bit version of busybox.exe, thanks to John Howard's work in https://github.com/jhowardmsft/busybox64
-we now can have tar, wget and other tools in a NanoServer image. Even in a nanoserver:1709.
+we now can have tar, wget and other tools in a NanoServer image.
 I've added curl.exe 
 
 Limits:

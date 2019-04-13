@@ -4,7 +4,7 @@ ARG JAVA_ZIP_VERSION=1.8.0-openjdk-1.8.0.111-3.b15
 ARG JAVA_SHA256=e080371bf57536668416157660e05d95fe04db15da36234d32bda8e301bb0454
 ARG JAVA_HOME=C:\\java-${JAVA_ZIP_VERSION}.ojdkbuild.windows.x86_64
 
-FROM microsoft/windowsservercore:$WINDOWS_DOCKER_TAG as builder
+FROM mcr.microsoft.com/windows/servercore:$WINDOWS_DOCKER_TAG as builder
 
 ARG JAVA_VERSION
 ARG JAVA_ZIP_VERSION
@@ -19,7 +19,7 @@ RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tl
     Expand-Archive openjdk.zip -DestinationPath C:\ ; \
     Remove-Item -Path openjdk.zip
 
-FROM microsoft/nanoserver:$WINDOWS_DOCKER_TAG
+FROM mcr.microsoft.com/windows/nanoserver:$WINDOWS_DOCKER_TAG
 
 ARG JAVA_HOME
 

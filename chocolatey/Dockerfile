@@ -1,5 +1,5 @@
 ARG version=ltsc2016
-FROM microsoft/windowsservercore:$version
+FROM mcr.microsoft.com/windows/servercore:$version
 
 ENV chocolateyUseWindowsCompression false
 

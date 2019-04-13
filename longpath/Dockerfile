@@ -1,5 +1,5 @@
 # escape=`
-FROM microsoft/windowsservercore-insider
+FROM mcr.microsoft.com/windows/servercore-insider
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 

@@ -1,5 +1,5 @@
 FROM stefanscherer/xterm:windows
-FROM microsoft/windowsservercore-insider
+FROM mcr.microsoft.com/windows/servercore-insider
 
 RUN powershell -Command iwr -useb https://github.com/vim/vim-win32-installer/releases/download/v8.0.1159/gvim_8.0.1159_x64.zip -OutFile vim.zip ; \
     Expand-Archive vim.zip -DestinationPath C:\ ; \

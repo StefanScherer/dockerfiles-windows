@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   test:
-    image: microsoft/windowsservercore:1709
+    image: mcr.microsoft.com/windows/servercore:ltsc2019
     volumes:
       - type: bind
         source: C:\Users\stefan\.ssh

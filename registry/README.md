@@ -2,13 +2,13 @@
 
 [![This image on DockerHub](https://img.shields.io/docker/pulls/stefanscherer/registry-windows.svg)](https://hub.docker.com/r/stefanscherer/registry-windows/)
 
-Run your own Docker Registry in a Windows Docker container. This is a multi-os image for Windows Server 2016, Windows Server 1709, 1803 and Windows Server 2019.
+Run your own Docker Registry in a Windows Docker container. This is a multi-os image for Windows Server 2016, Windows Server 1803 and Windows Server 2019.
 
 As with Windows Server 2016 there is still a problem contacting containers from your Docker host locally (see [issue #253](https://github.com/Microsoft/Virtualization-Documentation/issues/253) for some details), I suggest to use two Windows Server 2016 machines for now.
 
 ## Create a folder on your host
 
-On the first Windows Server 2016 or 1709 we setup a local folder to persist your images.
+On the first Windows Server we setup a local folder to persist your images.
 
 ```
 mkdir C:\registry
@@ -20,7 +20,7 @@ If you don't have SSL certificates for your domain and don't wont to use self-si
 
 ### Run registry in container
 
-On the first Windows Server 2016 or 1709 machine run the registry like this:
+On the first Windows Server machine run the registry like this:
 
 ```
 docker run -d -p 5000:5000 --restart=always --name registry -v C:\registry:C:\registry stefanscherer/registry-windows:2.6.2
@@ -28,7 +28,7 @@ docker run -d -p 5000:5000 --restart=always --name registry -v C:\registry:C:\re
 
 ### Edit your Docker Engine config file
 
-On the second Windows Server 2016 or 1709 machine add your local registry from the first Windows Server 2016 machine. In this example the IP address of the first Windows Server 2016 machine is 192.168.254.133. We need to add this as we didn't use certificates to secure the registry.
+On the second Windows Server machine add your local registry from the first Windows Server 2016 machine. In this example the IP address of the first Windows Server 2016 machine is 192.168.254.133. We need to add this as we didn't use certificates to secure the registry.
 
 ```
 notepad C:\ProgramData\docker\config\daemon.json
@@ -105,4 +105,4 @@ docker push 192.168.254.133:5000/registry:2.6.2
 
 ## Check C:\registry
 
-On the first Windows Server 2016 or 1709 machine check the `C:\registry` folder and you will see some directories and files containing the images and meta information.
+On the first Windows Server machine check the `C:\registry` folder and you will see some directories and files containing the images and meta information.
