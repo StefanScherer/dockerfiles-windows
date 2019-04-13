@@ -19,9 +19,9 @@ docker build -t node:10.15.3-nanoserver nano
 docker build -t node:10.15.3-pure pure
 ```
 
-### Build with 1709 or newer base images
+### Build with 1803 or newer base images
 
-On Windows Server 1709 or 1803 or any current Windows 10 machine you might want to use the smaller base images.
+On Windows Server 1803 or any current Windows 10 machine you might want to use the smaller base images.
 
 The `Dockerfile` is prepared to run on any Windows platform, but you have to specify some build arguments to make it work with newer base images.
 
