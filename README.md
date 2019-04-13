@@ -1,7 +1,7 @@
 # dockerfiles-windows
 [![Build status](https://ci.appveyor.com/api/projects/status/adxm3egqc5md3fe3/branch/master?svg=true)](https://ci.appveyor.com/project/StefanScherer/dockerfiles-windows/branch/master)
 
-Various Dockerfiles for Windows. Most of these can be run as Windows Containers on Windows 10, Windows Server 2016, Windows Server 1709 and Windows Server 1803.
+Various Dockerfiles for Windows. Most of these can be run as Windows Containers on Windows 10, Windows Server 2016, Windows Server 1803 and Windows Server 2019.
 
 Most of these Dockerfiles are automatically built on [AppVeyor](https://www.appveyor.com) and pushed to Docker Hub. See the badges in each sub folder's README files.
 
@@ -26,23 +26,22 @@ Most of these Dockerfiles are automatically built on [AppVeyor](https://www.appv
     * Deploy a Windows Server 2016 VM to Azure with [`docker-windows-azure`](https://github.com/StefanScherer/docker-windows-azure) template
 * Clone this repo and create some Docker images
 
-### Windows Server 1709
-* Get a Windows Server 1709 Virtual Machine
-  * **Packer and Vagrant**
-    * Use Packer with this [packer-windows](https://github.com/StefanScherer/packer-windows) templates to build the `windows_server_1709_docker` Vagrant box]. You need the ISO file from your MSDN subscription.
-    * Use Vagrant and this [windows-docker-machine](https://github.com/StefanScherer/windows-docker-machine) Vagrantfile to have Docker and lots of Docker Tools installed. Run `vagrant up 1709`.
-  * **Azure**
-    * Deploy a Windows Server 1709 VM to Azure with [`docker-windows-azure`](https://github.com/StefanScherer/docker-windows-azure) template
-* Clone this repo and create some Docker images. Look for the `Dockerfile.1709` files.
-* It is recommended to use the smaller base images `microsoft/nanoserver:1709` and `microsoft/windowsservercore:1709`.
-
 ### Windows Server 1803
 * Get a Windows Server 1803 Virtual Machine
   * **Packer and Vagrant**
     * Use Packer with this [packer-windows](https://github.com/StefanScherer/packer-windows) templates to build the `windows_server_1803_docker` Vagrant box]. You need the ISO file from your MSDN subscription.
     * Use Vagrant and this [windows-docker-machine](https://github.com/StefanScherer/windows-docker-machine) Vagrantfile to have Docker and lots of Docker Tools installed. Run `vagrant up 1803`.
     * Clone this repo and create some Docker images. Look for the `Dockerfile.1803` files.
-    * It is recommended to use the smaller base images `microsoft/nanoserver:1803` and `microsoft/windowsservercore:1803`.
+    * It is recommended to use the smaller base images `mcr.microsoft.com/windows/nanoserver:1803` and `mcr.microsoft.com/windows/servercore:1803`.
+
+
+### Windows Server 2019
+* Get a Windows Server 2019 Virtual Machine
+  * **Packer and Vagrant**
+    * Use Packer with this [packer-windows](https://github.com/StefanScherer/packer-windows) templates to build the `windows_2019_docker` Vagrant box]. You need the ISO file from your MSDN subscription.
+    * Use Vagrant and this [windows-docker-machine](https://github.com/StefanScherer/windows-docker-machine) Vagrantfile to have Docker and lots of Docker Tools installed. Run `vagrant up 2019`.
+    * Clone this repo and create some Docker images. Look for the `Dockerfile.1809` files.
+    * It is recommended to use the smaller base images `mcr.microsoft.com/windows/nanoserver:1809` and `mcr.microsoft.com/windows/servercore:1809`.
 
 ## Further reading
   * [Network start-up and performance improvements in Windows 10 April 2018 Update and Windows Server, version 1803](https://blogs.technet.microsoft.com/networking/2018/04/27/network-start-up-and-performance-improvements-in-windows-10-spring-creators-update-and-windows-server-version-1803/), 2018-04-27

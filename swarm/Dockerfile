@@ -1,7 +1,7 @@
 # escape=`
-FROM golang:nanoserver AS build
+FROM golang AS build
 
-ENV SWARM_VERSION v1.2.8
+ENV SWARM_VERSION v1.2.9
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -23,7 +23,7 @@ WORKDIR /go/src/github.com/docker/swarm
 RUN git checkout $env:SWARM_VERSION
 RUN go install .
 
-FROM microsoft/nanoserver:10.0.14393.2068
+FROM mcr.microsoft.com/windows/servercore:ltsc2016
 
 COPY --from=build /go/bin/swarm.exe /swarm.exe
 

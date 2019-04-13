@@ -1,6 +1,6 @@
 # escape=`
-ARG tag=10.0.14393.2068
-FROM microsoft/windowsservercore:$tag AS tar
+ARG tag=ltsc2016
+FROM mcr.microsoft.com/windows/servercore:ltsc2016 AS tar
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV MHOLT_ARCHIVER_VERSION 2.0
@@ -17,7 +17,7 @@ RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tl
 RUN .\archiver.exe open prometheus.tar.gz
 RUN Rename-Item -Path $('C:\prometheus-{0}.windows-amd64' -f $env:PROMETHEUS_VERSION) -NewName 'C:\download'
 
-FROM microsoft/nanoserver:$tag
+FROM mcr.microsoft.com/windows/servercore:ltsc2016
 
 COPY --from=tar /download/prometheus.exe      /bin/prometheus.exe
 COPY --from=tar /download/promtool.exe        /bin/promtool.exe

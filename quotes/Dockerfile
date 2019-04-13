@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:10.0.14393.2068
+FROM mcr.microsoft.com/windows/servercore:ltsc2016
 
 RUN powershell -Command $a = \"world\" ; $b = \"hello \"\"$a\"\"\" ; Write-Host \"'$b'\"
 

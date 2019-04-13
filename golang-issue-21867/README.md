@@ -2,7 +2,7 @@
 
 Investigations for issue https://github.com/golang/go/issues/21867
 
-Some Golang binaries are not able to run in microsoft/nanoserver-insider images as there is an indirect dependency to the missing netapi32.dll.
+Some Golang binaries are not able to run in mcr.microsoft.com/windows/nanoserver-insider images as there is an indirect dependency to the missing netapi32.dll.
 
 ```
 $ docker build -t currentuser .
@@ -40,8 +40,8 @@ main.main()
 There is a workaround to copy the missing netapi32.dll into the nanoserver-insider image.
 
 ```Dockerfile
-FROM microsoft/windowsservercore-insider as core
-FROM microsoft/nanoserver-insider
+FROM mcr.microsoft.com/windows/servercore-insider as core
+FROM mcr.microsoft.com/windows/nanoserver-insider
 COPY --from=core /windows/system32/netapi32.dll
 ```
 

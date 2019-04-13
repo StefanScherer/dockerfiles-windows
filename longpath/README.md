@@ -7,7 +7,7 @@ PowerShell (still) cannot handle more than 260 characters. Therefore `Expand-Arc
 ```
 $ docker build -t longpath .
 Sending build context to Docker daemon  15.87kB
-Step 1/6 : FROM microsoft/windowsservercore-insider
+Step 1/6 : FROM mcr.microsoft.com/windows/servercore-insider
  ---> edfc78327941
 Step 2/6 : SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
  ---> Using cache

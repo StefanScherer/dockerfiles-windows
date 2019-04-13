@@ -13,5 +13,5 @@ export SIGNTOOL
 
 # run a Windows container to sign the exe/ps1 script
 docker run --rm -v C:/Users/stefan/Dropbox/MVP:C:/certs:ro -v C:$(pwd):C:/signing -w C:/signing \
-  -e SIGNING_PASSWORD -e SIGNTOOL -e FILE=$1 microsoft/windowsservercore \
+  -e SIGNING_PASSWORD -e SIGNTOOL -e FILE=$1 mcr.microsoft.com/windows/servercore:ltsc2019 \
   powershell -command iex\(\$env:SIGNTOOL\)

@@ -38,7 +38,7 @@ docker run scan
 
 ```
 docker rm -f nano
-docker create --name nano microsoft/nanoserver
+docker create --name nano mcr.microsoft.com/windows/nanoserver
 rm -rf tmp
 mkdir tmp
 docker cp nano:Windows/System32/Forwarders tmp

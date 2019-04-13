@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:10.0.14393.2068 as download
+FROM mcr.microsoft.com/windows/servercore:ltsc2016 as download
 
 ENV RUBY_VERSION 2.5.0.1
 ENV RUBYGEMS_VERSION 2.7.4
@@ -21,7 +21,7 @@ RUN Invoke-WebRequest -Uri $('https://rubygems.org/downloads/rubygems-update-{0}
 
 RUN rm /tools/ruby25/unins*
 
-FROM microsoft/windowsservercore:10.0.14393.2068
+FROM mcr.microsoft.com/windows/servercore:ltsc2016
 
 COPY --from=download /tools/ruby25 /tools/ruby25
 

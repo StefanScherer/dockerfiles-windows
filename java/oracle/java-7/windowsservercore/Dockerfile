@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:latest
+FROM mcr.microsoft.com/windows/servercore:latest
 
 ENV JAVA_PKG=jdk1.7.0_80/ \
     JAVA_HOME=C:\\jdk1.7.0_80

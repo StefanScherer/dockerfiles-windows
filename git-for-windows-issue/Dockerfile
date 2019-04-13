@@ -1,4 +1,4 @@
-FROM microsoft/nanoserver:10.0.14393.2068
+FROM mcr.microsoft.com/windows/nanoserver:10.0.14393.2068
 
 ENV GIT_VERSION 2.15.1
 ENV GIT_PATCH_VERSION 2

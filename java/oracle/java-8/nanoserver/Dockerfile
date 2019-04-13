@@ -1,4 +1,4 @@
-FROM microsoft/nanoserver:latest
+FROM mcr.microsoft.com/windows/nanoserver:latest
 
 ENV JAVA_PKG=server-jre-8u112-windows-x64.tar.gz \
     JAVA_HOME=C:\\jdk1.8.0_112

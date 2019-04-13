@@ -125,7 +125,7 @@ ls | measure
 To measure the time that a command takes, use
 
 ```powershell
-Measure-Command {docker run microsoft/nanoserver hostname}
+Measure-Command {docker run mcr.microsoft.com/windows/nanoserver:1809 hostname}
 ```
 
 ## time the stdout of another command

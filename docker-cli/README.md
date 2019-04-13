@@ -3,7 +3,7 @@
 
 To test the Docker API from inside a Windows container it sometimes is useful to have the Docker CLI.
 
-Especially for Windows Server 1709 it's easy to access the Docker API of the host
+Especially since Windows Server 1709 it's easy to access the Docker API of the host
 
 ```
 docker run -v //./pipe/docker_engine://./pipe/docker_engine -u ContainerAdministrator stefanscherer/docker-cli-windows docker version

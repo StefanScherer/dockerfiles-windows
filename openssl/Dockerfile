@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:10.0.14393.2068
+FROM mcr.microsoft.com/windows/servercore:ltsc2016
 MAINTAINER scherer_stefan@icloud.com
 
 ENV OPENSSL_VERSION 1.1.0.60000000

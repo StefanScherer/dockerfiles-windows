@@ -16,7 +16,7 @@ WORKDIR libuv
 RUN .\vcbuild.bat x64
 
 # Run test in a fresh nanoserver container
-FROM microsoft/nanoserver
+FROM mcr.microsoft.com/windows/nanoserver
 COPY --from=0 /libuv/ /libuv/
 WORKDIR libuv
 RUN Debug\run-tests.exe

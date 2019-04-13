@@ -1,4 +1,4 @@
-FROM microsoft/nanoserver-insider:10.0.17046.1000
+FROM mcr.microsoft.com/windows/nanoserver-insider:10.0.17046.1000
 
 ENV GIT_VERSION 2.15.1
 ENV GIT_PATCH_VERSION 2

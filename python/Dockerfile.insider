@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore-insider as python
+FROM mcr.microsoft.com/windows/servercore-insider as python
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 
@@ -52,7 +52,7 @@ RUN Write-Host ('Installing pip=={0} ...' -f $env:PYTHON_PIP_VERSION); \
 	\
 	Write-Host 'Complete.';
 
-FROM microsoft/nanoserver-insider
+FROM mcr.microsoft.com/windows/nanoserver-insider
 
 COPY --from=python /Python /Python
 
