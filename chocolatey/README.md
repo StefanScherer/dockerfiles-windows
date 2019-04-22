@@ -19,7 +19,7 @@ docker build --build-arg version=1803 -t chocolatey .
 ```
 
 
-## Build for 2016 LTSC
+## Build for 2019 LTSC
 
 ```
 docker build --build-arg version=ltsc2019 -t chocolatey .
