@@ -1,5 +1,5 @@
 version: 1.0.{build}
-image: Visual Studio 2017
+image: Windows Server 2019
 
 # Uncomment to debug via RDP
 # init:
