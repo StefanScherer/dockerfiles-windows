@@ -1,19 +1,9 @@
 $version=$(select-string -Path Dockerfile -Pattern "ENV TRAEFIK_VERSION").ToString().split()[-1]
 
-docker tag traefik stefanscherer/traefik-windows:v$version-1607-deprecated
-docker push stefanscherer/traefik-windows:v$version-1607-deprecated
-
-npm install -g rebase-docker-image
-
-rebase-docker-image stefanscherer/traefik-windows:v$version-1607-deprecated `
-  -s mcr.microsoft.com/windows/nanoserver:sac2016 `
-  -t stefanscherer/traefik-windows:v$version-1803 `
-  -b stefanscherer/netapi-helper:1803
-
-rebase-docker-image stefanscherer/traefik-windows:v$version-1607-deprecated `
-  -s mcr.microsoft.com/windows/nanoserver:sac2016 `
-  -t stefanscherer/traefik-windows:v$version-1809 `
-  -b stefanscherer/netapi-helper:1809
+docker tag traefik:1809 stefanscherer/traefik-windows:v$version-1809
+docker push stefanscherer/traefik-windows:v$version-1809
+docker tag traefik:1803 stefanscherer/traefik-windows:v$version-1803
+docker push stefanscherer/traefik-windows:v$version-1803
 
 ..\update-docker-cli.ps1
 
