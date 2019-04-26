@@ -18,7 +18,7 @@ docker run --rm `
   -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
   -e SSL_EXPIRY_DAYS=730 `
   -v "$(pwd)\server:c:\programdata\docker" `
-  -v "$(pwd)\client\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
+  -v "$(pwd)\client\.docker:c:\users\containeruser\.docker" stefanscherer/dockertls-windows
 dir server\certs.d
 dir server\config
 dir client\.docker
@@ -38,7 +38,7 @@ docker run --rm `
   -e SERVER_NAME=$(hostname) `
   -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
   -v "c:\programdata\docker:c:\programdata\docker" `
-  -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
+  -v "$env:USERPROFILE\.docker:c:\users\containeruser\.docker" stefanscherer/dockertls-windows
 ```
 
 Afterwards restart the Docker service in an administrator SHELL
@@ -78,7 +78,7 @@ docker run --rm `
   -e MACHINE_HOME=/Users/you `
   -e MACHINE_IP=192.168.254.135 `
   -v "c:\programdata\docker:c:\programdata\docker" `
-  -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
+  -v "$env:USERPROFILE\.docker:c:\users\containeruser\.docker" stefanscherer/dockertls-windows
 ```
 
 ## Managing Multiple Hosts
@@ -96,7 +96,7 @@ docker run --rm `
   -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
   -v "$env:SystemDrive\DockerSSLCARoot:c:\DockerSSLCARoot" `
   -v "$env:ALLUSERSPROFILE\docker:$env:ALLUSERSPROFILE\docker" `
-  -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
+  -v "$env:USERPROFILE\.docker:c:\users\containeruser\.docker" stefanscherer/dockertls-windows
 ```
 
 ### Subsequent Hosts
@@ -111,7 +111,7 @@ docker run --rm `
   -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
   -v "$env:SystemDrive\DockerSSLCARoot:c:\DockerSSLCARoot" `
   -v "$env:ALLUSERSPROFILE\docker:$env:ALLUSERSPROFILE\docker" `
-  -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
+  -v "$env:USERPROFILE\.docker:c:\users\containeruser\.docker" stefanscherer/dockertls-windows
 ```
 
 ### Using an alternate Docker Data-Root directory in the daemon.json configuration file.
@@ -125,7 +125,7 @@ docker run --rm `
   -e DOCKER_DATA_ROOT=E:\ProgramData\Docker `
   -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
   -v "E:\ProgramData\Docker:c:\programdata\docker" `
-  -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
+  -v "$env:USERPROFILE\.docker:c:\users\containeruser\.docker" stefanscherer/dockertls-windows
 ```
 
 ### Providing additional Subject Alternative Names the Docker TLS certificate will accept.
@@ -139,7 +139,7 @@ docker run --rm `
   -e "ALTERNATIVE_NAMES=$(HostName).$((Get-WmiObject win32_computersystem).Domain),manager.$((Get-WmiObject win32_computersystem).Domain)" `
   -e IP_ADDRESSES=127.0.0.1,192.168.254.135 `
   -v "c:\programdata\docker:c:\programdata\docker" `
-  -v "$env:USERPROFILE\.docker:c:\users\containeradministrator\.docker" stefanscherer/dockertls-windows
+  -v "$env:USERPROFILE\.docker:c:\users\containeruser\.docker" stefanscherer/dockertls-windows
 ```
 
 ## See also

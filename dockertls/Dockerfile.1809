@@ -1,6 +1,6 @@
 # escape=`
-FROM mcr.microsoft.com/windows/servercore:ltsc2019
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+FROM mcr.microsoft.com/powershell:nanoserver-1809
+SHELL ["pwsh", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV VERSION 2.5.5
 
@@ -12,10 +12,8 @@ RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tl
   New-Item -ItemType Directory -Path $Env:LIBRESSLPATH ; `
   Copy-Item $Env:Temp\libressl-$Env:VERSION-windows\x64\* $Env:LIBRESSLPATH\. ; `
   Remove-Item $Env:LIBRESSLPATH\*.pdb ; `
-  $newPath = ('{0};{1}' -f $Env:LIBRESSLPATH, $Env:PATH); `
-  Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\' -Name Path -Value $newPath ; `
   Remove-Item $Env:Temp\libressl-$Env:VERSION-windows, libressl.zip -Force -Recurse ; `
-  New-Item -ItemType Directory -Path $Env:LIBRESSLPATH\ssl
+  New-Item -ItemType Directory -Path $Env:LIBRESSLPATH\ssl 
 
 COPY openssl.cnf $LIBRESSLPATH/ssl/.
 COPY generate-certs.ps1 generate-certs.ps1
