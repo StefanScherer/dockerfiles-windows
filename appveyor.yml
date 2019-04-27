@@ -8,13 +8,6 @@ image: Windows Server 2019
 # on_finish:
 #   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
-environment:
-  APPVEYOR_RDP_PASSWORD:
-    secure: yn73CHgZq4yvPt+v6fFUvKKA4YPZ5fyQ1JzctBZ9298=
-  DOCKER_USER:
-    secure: LjNiW/ZWrfVIJn3Mc9foeg==
-  DOCKER_PASS:
-    secure: TsPp8gG6clIHBAwShkhDFKPTaSP6ts31EufbwQDSFhBMHmAZGtX7e2r8HlYcsYie
 install:
   - ps: Write-Host Server version $(gp 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion').BuildLabEx
   - docker version
