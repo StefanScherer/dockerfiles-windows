@@ -1,5 +1,8 @@
 $ErrorActionPreference = "Stop"
 
+$newPath = ('{0};{1}' -f $Env:LIBRESSLPATH, $Env:PATH) ; `
+[System.Environment]::SetEnvironmentVariable('Path', $newPath)
+
 $Global:DockerSSLCARoot = "c:\DockerSSLCARoot\"
 $Global:caPrivateKeyPassFile = ($Global:DockerSSLCARoot + "ca-key-pass.txt")
 $Global:caPrivateKeyPass = ""

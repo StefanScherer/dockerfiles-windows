@@ -13,5 +13,5 @@ docker container run --rm `
   -e IP_ADDRESSES=$ips,$IPAddresses `
   -e ALTERNATIVE_NAMES=$AlternativeNames `
   -v "C:\ProgramData\docker:C:\ProgramData\docker" `
-  -v "$env:USERPROFILE\.docker:C:\Users\ContainerAdministrator\.docker" `
+  -v "$env:USERPROFILE\.docker:C:\Users\containeruser\.docker" `
   stefanscherer/dockertls-windows
