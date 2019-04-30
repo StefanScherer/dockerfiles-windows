@@ -1,3 +1,4 @@
+ARG TAG=ltsc2019
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 ENV SPINNER_VERSION 1.0.8
