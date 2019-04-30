@@ -15,4 +15,4 @@ RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tl
     Remove-Item spinner.zip ; \
     Move-Item spinner\spinner_v$env:SPINNER_VERSION.exe spinner.exe ; \
     Remove-Item spinner
-CMD [ "spinner.exe", "service", "sshd" ]
+CMD Start-Sleep 5 ; ./spinner.exe service sshd
