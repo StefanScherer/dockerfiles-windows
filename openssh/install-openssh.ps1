@@ -9,11 +9,11 @@ Write-Output "Expanding OpenSSH"
 Expand-Archive OpenSSH-Win64.zip C:\\
 Remove-Item -Force OpenSSH-Win64.zip
 
-Write-Output "Disabling password authentication"
-# Add-Content C:\\OpenSSH-Win64\\sshd_config "`nPasswordAuthentication no"
-Add-Content C:\\OpenSSH-Win64\\sshd_config "`nUseDNS no"
-
 Push-Location C:\\OpenSSH-Win64
+Write-Output "Enable logfile"
+((Get-Content -path sshd_config_default -Raw) -replace '#SyslogFacility AUTH','SyslogFacility LOCAL0') | Set-Content -Path sshd_config_default
+# Write-Output "Disabling password authentication"
+# ((Get-Content -path sshd_config_default -Raw) -replace '#PasswordAuthentication yes','PasswordAuthentication no') | Set-Content -Path sshd_config_default
 
 Write-Output "Installing OpenSSH"
 & .\\install-sshd.ps1
