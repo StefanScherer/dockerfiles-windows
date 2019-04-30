@@ -1,5 +1,5 @@
 ARG TAG=ltsc2019
-FROM mcr.microsoft.com/windows/servercore:ltsc2019
+FROM mcr.microsoft.com/windows/servercore:$TAG
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 ENV SPINNER_VERSION 1.0.8
 COPY install-openssh.ps1 install-openssh.ps1
