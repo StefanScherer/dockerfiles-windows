@@ -40,5 +40,14 @@ operable program or batch file.
 
 Opened issue https://github.com/PowerShell/Win32-OpenSSH/issues/1373
 
+But it can be fixed by using `cmd.exe /c ver` with the exe extension
+
+```
+$ ssh -p 2222 User03@$(dm ip 2019-box) cmd.exe /c ver
+User03@172.16.208.196's password:
+
+Microsoft Windows [Version 10.0.17763.437]
+```
+
 ## Dockerfile
 - [Dockerfile](https://github.com/StefanScherer/dockerfiles-windows/blob/master/openssh/Dockerfile)
