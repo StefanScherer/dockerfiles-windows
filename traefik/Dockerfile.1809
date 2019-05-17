@@ -7,6 +7,7 @@ ENV TRAEFIK_VERSION 1.7.10
 ADD https://github.com/containous/traefik/releases/download/v${TRAEFIK_VERSION}/traefik_windows-amd64.exe /traefik.exe
 
 EXPOSE 80
+USER containeradministrator
 ENTRYPOINT ["/traefik"]
 
 # Metadata
