@@ -1,1 +1,1 @@
-docker build -t docker-cli .
+docker build --isolation=hyperv -t docker-cli .
