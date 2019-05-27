@@ -1,1 +1,1 @@
-docker build -t webserver .
+docker build --isolation=hyperv -t webserver .
