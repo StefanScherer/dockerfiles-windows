@@ -1,1 +1,1 @@
-docker run docker-cli docker --version
+docker run --isolation=hyperv docker-cli docker --version
