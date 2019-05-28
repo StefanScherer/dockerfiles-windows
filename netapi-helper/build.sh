@@ -7,5 +7,5 @@ fi
 
 docker pull mcr.microsoft.com/windows/servercore:$1
 docker pull mcr.microsoft.com/windows/nanoserver:$1
-docker build -t stefanscherer/netapi-helper:$1 -f Dockerfile.$1 --build-arg tag=$1 .
+docker build -t stefanscherer/netapi-helper:$1 --build-arg tag=$1 .
 docker push stefanscherer/netapi-helper:$1
