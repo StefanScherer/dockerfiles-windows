@@ -3,6 +3,7 @@ docker tag docker-cli stefanscherer/docker-cli-windows:$version-1607-deprecated
 docker push stefanscherer/docker-cli-windows:$version-1607-deprecated
 
 npm install -g rebase-docker-image
+
 rebase-docker-image `
   stefanscherer/docker-cli-windows:$version-1607-deprecated `
   -s mcr.microsoft.com/windows/nanoserver:sac2016 `
