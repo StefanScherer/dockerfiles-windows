@@ -1,3 +1,0 @@
-FROM mcr.microsoft.com/windows/servercore:1803 as core
-FROM mcr.microsoft.com/windows/nanoserver:1803
-COPY --from=core /windows/system32/netapi32.dll /windows/system32/netapi32.dll
