@@ -4,7 +4,7 @@ services:
     image: stefanscherer/traefik-windows
     command: --docker.endpoint=npipe:////./pipe/docker_engine --logLevel=DEBUG
     ports:
-      - "8080:8080"
+      - "8080:8080" # Please read: https://docs.traefik.io/configuration/api/#security
       - "443:443"
       - "80:80"
     isolation: process # workaround for https://github.com/containous/traefik/issues/4409

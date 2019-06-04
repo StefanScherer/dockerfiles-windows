@@ -1,8 +1,7 @@
 ################################################################
-# Web configuration backend
+# Enable API/Dashboard
 ################################################################
-[web]
-address = ":8080"
+[api]
 ################################################################
 # Docker configuration backend
 ################################################################
@@ -21,4 +20,3 @@ endpoint = "npipe:////./pipe/docker_engine"
 [entryPoints]
   [entryPoints.http]
   address = ":80"
-
