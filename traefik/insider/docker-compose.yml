@@ -1,7 +1,7 @@
 version: '2.4'
 services:
   traefik:
-    image: stefanscherer/traefik-windows:v1.7.10-insider-10.0.18334.1
+    image: stefanscherer/traefik-windows:v1.7.12-insider-10.0.18334.1
     ports:
       - "8080:8080"
       - "443:443"
