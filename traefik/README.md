@@ -32,9 +32,11 @@ I'm 88673d7e3c03 running on windows/amd64
 PS C:\Users\stefan\code\dockerfiles-windows\traefik>
 ```
 
-The web UI [http://localhost:8080](http://localhost:8080) will give you an overview of the frontends/backends and also a health dashboard.
+The Dashboard UI [http://localhost:8080](http://localhost:8080) will give you an overview of the frontends/backends and also a health dashboard.
 
-![Web UI Providers](https://traefik.io/web.frontend.png)
+Never expose the API/Dashboard UI publicly (<https://docs.traefik.io/configuration/api/#security>).
+
+![Dashboard UI Providers](https://traefik.io/web.frontend.png)
 
 ## Documentation
 

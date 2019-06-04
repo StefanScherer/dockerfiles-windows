@@ -3,7 +3,7 @@ services:
   traefik:
     image: stefanscherer/traefik-windows:v1.7.12-insider-10.0.18334.1
     ports:
-      - "8080:8080"
+      - "8080:8080" # Please read: https://docs.traefik.io/configuration/api/#security
       - "443:443"
       - "80:80"
     volumes:
