@@ -1,4 +1,4 @@
-FROM stefanscherer/node-windows:9.4.0-insider-17074
+FROM stefanscherer/node-windows:10
 
 RUN npm install -g nodemon
 
