@@ -10,19 +10,26 @@ nanoserver.
 
 See pull request [oracle/docker-images#209](https://github.com/oracle/docker-images/pull/209)
 
-Checkout my pull request branch at
-https://github.com/StefanScherer/docker-images/tree/add-windows-java-dockerfiles/OracleJava
-
 ## OpenJDK
+
+The official image `openjdk` has three Windows variants:
+
+```
+$ docker run --rm mplatform/mquery openjdk
+Image: openjdk
+ * Manifest List: Yes
+ * Supported platforms:
+   - linux/amd64
+   - windows/amd64:10.0.17763.615
+   - windows/amd64:10.0.17134.885
+   - windows/amd64:10.0.14393.3085
+```
 
 RedHat has announced the availabilty of OpenJDK for Windows.
 You can build Docker images with RedHat's OpenJDK for both windowsservercore and
 nanoserver.
 
 See pull request [docker-library/openjdk#88](https://github.com/docker-library/openjdk/pull/88)
-
-Checkout my pull request branch at https://github.com/StefanScherer/openjdk/tree/add-windows/8-jdk/windows
-
 
 There are several options where to obtain OpenJDK for Windows.
 
