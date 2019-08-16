@@ -1,9 +1,12 @@
-FROM mcr.microsoft.com/windows/nanoserver:10.0.14393.2068 AS prep
-WORKDIR /busybox
-ADD https://github.com/jhowardmsft/busybox64/raw/master/busybox.exe busybox.exe
-RUN FOR /f "tokens=*" %i IN ('busybox --list') DO mklink C:\busybox\%i.exe busybox.exe
+# Source: http://frippery.org/busybox/
+# This Dockerfile builds a (64-bit) busybox images which is suitable for
+# running many of the integration-cli tests for Docker against a Windows
+# daemon.
 
-FROM stefanscherer/curl-windows:7.58.0
-COPY --from=prep /busybox/ /busybox
-RUN setx /M PATH "C:\busybox;C:\;%PATH%"
-ENTRYPOINT ["cmd.exe", "/s", "/c"]
+FROM mcr.microsoft.com/windows/nanoserver:1809
+RUN mkdir C:\tmp && mkdir C:\bin
+ADD https://frippery.org/files/busybox/busybox64.exe /bin/busybox.exe
+USER ContainerAdministrator
+RUN FOR /f "tokens=*" %i IN ('C:\bin\busybox --list') DO mklink C:\bin\%i.exe C:\bin\busybox.exe
+RUN setx /M PATH "C:\bin;%PATH%"
+CMD ["sh"]
