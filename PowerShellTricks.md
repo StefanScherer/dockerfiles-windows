@@ -83,7 +83,7 @@ Expand-Archive -Path $zip -DestinationPath $dest -Force
 To calculate a SHA256 sum of a file use this
 
 ```powershell
-((Get-FileHash $filename -Algorithm sha256).Hash
+(Get-FileHash $filename -Algorithm sha256).Hash
 ```
 
 ## `printenv`
