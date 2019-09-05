@@ -1,2 +1,2 @@
-docker build -t chocolatey:0.10.13 .
-docker tag chocolatey:0.10.13 chocolatey:latest
+docker build --build-arg version=ltsc2019 -t chocolatey:0.10.15 .
+docker tag chocolatey:0.10.15 chocolatey:latest
