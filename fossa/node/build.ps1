@@ -1,1 +1,1 @@
-docker build -t fossa-node .
+docker build -t "fossa-node" .
