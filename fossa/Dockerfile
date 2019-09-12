@@ -1,7 +1,17 @@
-ARG core=mcr.microsoft.com/windows/servercore:ltsc2019
-FROM $core
+FROM mcr.microsoft.com/dotnet/framework/sdk:4.8
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+ENV chocolateyUseWindowsCompression false
+
+RUN iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')); \
+    choco feature disable --name showDownloadProgress
+
+ENV NODE_VERSION 10.16.3
+ENV GO_VERSION 1.12.9
+
+RUN choco install -y nodejs -version $env:NODE_VERSION ; \
+    choco install -y golang -version $env:GO_VERSION
 
 ENV FOSSA_VERSION 1.0.4
 
