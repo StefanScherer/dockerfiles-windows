@@ -8,5 +8,5 @@ Function PullTagPush($image, $tag) {
   docker tag "${image}:${tag}" "stefanscherer/nanoserver:$osversion"
 }
 
-PullTagPush($image, "1809")
-PullTagPush($image, "1803")
+PullTagPush $image "1809"
+PullTagPush $image "1803"
