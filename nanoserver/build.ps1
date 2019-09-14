@@ -1,3 +1,5 @@
+choco install -y jq
+
 $image="mcr.microsoft.com/windows/nanoserver"
 
 Function PullTagPush($image, $tag) {
