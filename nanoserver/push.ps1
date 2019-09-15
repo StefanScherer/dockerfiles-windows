@@ -8,5 +8,5 @@ Function Push($image, $tag) {
   docker push "stefanscherer/nanoserver:$osversion"
 }
 
-Push($image, "1809")
-Push($image, "1803")
+Push $image "1809"
+Push $image "1803"
