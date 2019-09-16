@@ -1,1 +1,1 @@
-docker run fossa fossa --version
+docker run fossa --version
