@@ -13,6 +13,8 @@ ENV GO_VERSION 1.12.9
 RUN choco install -y nodejs -version $env:NODE_VERSION ; \
     choco install -y golang -version $env:GO_VERSION
 
+RUN npm install -g yarn
+
 ENV FOSSA_VERSION 1.0.4
 
 RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 ; \
@@ -23,4 +25,5 @@ RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tl
 RUN $env:PATH = 'C:\fossa;{0}' -f $env:PATH ; \
     [Environment]::SetEnvironmentVariable('PATH', $env:PATH, [EnvironmentVariableTarget]::Machine)
 
-CMD [ "fossa.exe" ]
+ENTRYPOINT [ "fossa.exe" ]
+CMD [ "--version" ]
