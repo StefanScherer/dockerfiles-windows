@@ -1,0 +1,9 @@
+version: '2.1'
+services:
+  whoami:
+    image: stefanscherer/whoami
+
+networks:
+  default:
+    external:
+      name: nat
