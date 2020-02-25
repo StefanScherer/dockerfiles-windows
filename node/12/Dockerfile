@@ -44,8 +44,7 @@ RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tl
     if ($sig.Status -ne 'Valid') { Write-Error 'Authenticode signature is not valid' } ; \
     Write-Output $sig.SignerCertificate.Thumbprint ; \
     if (@( \
-      '7E253367F8A102A91D04829E37F3410F14B68A5F', \
-      'AF764E1EA56C762617BDC757C8B0F3780A0CF5F9' \
+      '795D68C6828BD3D21B36EB15F7A31EE5873EBE8F' \
       ) -notcontains $sig.SignerCertificate.Thumbprint) { Write-Error 'Unknown signer certificate' } ; \
     Start-Process msiexec.exe -ArgumentList '/i', 'yarn.msi', '/quiet', '/norestart' -NoNewWindow -Wait
 
