@@ -32,6 +32,6 @@ function update_version() {
   find push* -type f -exec sed -i "" "s/${curr_major//./\\.}/$latest_major/g" {} +
 }
 
-update_version 10
+update_version 12
 #update_version 8
 #update_version 6

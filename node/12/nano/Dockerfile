@@ -36,7 +36,7 @@ RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/node-v{0}-win-x64.zip' -f 
     Expand-Archive node.zip -DestinationPath C:\ ; \
     Rename-Item -Path $('C:\node-v{0}-win-x64' -f $env:NODE_VERSION) -NewName 'C:\nodejs'
 
-ENV YARN_VERSION 1.13.0
+ENV YARN_VERSION 1.22.0
 
 RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 ; \
     Invoke-WebRequest $('https://yarnpkg.com/downloads/{0}/yarn-{0}.msi' -f $env:YARN_VERSION) -OutFile yarn.msi -UseBasicParsing ; \
@@ -44,8 +44,7 @@ RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tl
     if ($sig.Status -ne 'Valid') { Write-Error 'Authenticode signature is not valid' } ; \
     Write-Output $sig.SignerCertificate.Thumbprint ; \
     if (@( \
-      '7E253367F8A102A91D04829E37F3410F14B68A5F', \
-      'AF764E1EA56C762617BDC757C8B0F3780A0CF5F9' \
+      '795D68C6828BD3D21B36EB15F7A31EE5873EBE8F' \
       ) -notcontains $sig.SignerCertificate.Thumbprint) { Write-Error 'Unknown signer certificate' } ; \
     Start-Process msiexec.exe -ArgumentList '/i', 'yarn.msi', '/quiet', '/norestart' -NoNewWindow -Wait
 
