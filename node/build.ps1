@@ -6,10 +6,10 @@ function buildVersion($majorMinorPatch, $majorMinor, $major) {
   }
 
   if (Test-Path $major\pure) {
-    docker build --pull -t node:$majorMinorPatch-pure $major/pure
+    docker build -t node:$majorMinorPatch-pure $major/pure
   }
 
-  docker build --pull -t node:$majorMinorPatch-nanoserver $major/nano
+  docker build -t node:$majorMinorPatch-nanoserver $major/nano
 }
 
 Write-Output "Build with server docker engine"
@@ -33,6 +33,9 @@ Write-Output "Start docker"
 Start-Service docker
 Write-Output "Running server docker engine"
 docker version
+
+Write-Output "Update nanoserver image"
+docker pull mcr.microsoft.com/windows/nanoserver:1809
 
 #buildVersion "6.14.4" "6.14" "6"
 #buildVersion "8.11.4" "8.11" "8"
