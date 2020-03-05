@@ -39,5 +39,5 @@ docker pull mcr.microsoft.com/windows/nanoserver:1809
 
 #buildVersion "6.14.4" "6.14" "6"
 #buildVersion "8.11.4" "8.11" "8"
-buildVersion "10.19.0" "10.19" "10"
-#buildVersion "12.16.1" "12.16" "12"
+#buildVersion "10.19.0" "10.19" "10"
+buildVersion "12.16.1" "12.16" "12"
