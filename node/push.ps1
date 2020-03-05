@@ -20,26 +20,36 @@ function pushVersion($majorMinorPatch, $majorMinor, $major) {
 
     rebase-docker-image `
       stefanscherer/node-windows:$majorMinorPatch-pure-1809 `
-      -s mcr.microsoft.com/windows/nanoserver:1809 `
+      -s stefanscherer/nanoserver:1809 `
       -t stefanscherer/node-windows:$majorMinorPatch-pure-1803 `
-      -b mcr.microsoft.com/windows/nanoserver:1803
+      -b stefanscherer/nanoserver:1803
     rebase-docker-image `
       stefanscherer/node-windows:$majorMinorPatch-pure-1809 `
-      -s mcr.microsoft.com/windows/nanoserver:1809 `
+      -s stefanscherer/nanoserver:1809 `
       -t stefanscherer/node-windows:$majorMinorPatch-pure-1903 `
-      -b mcr.microsoft.com/windows/nanoserver:1903
+      -b stefanscherer/nanoserver:1903
+    rebase-docker-image `
+      stefanscherer/node-windows:$majorMinorPatch-pure-1809 `
+      -s stefanscherer/nanoserver:1809 `
+      -t stefanscherer/node-windows:$majorMinorPatch-pure-1909 `
+      -b stefanscherer/nanoserver:1909
   }
 
   rebase-docker-image `
     stefanscherer/node-windows:$majorMinorPatch-nanoserver-1809 `
-    -s mcr.microsoft.com/windows/nanoserver:1809 `
+    -s stefanscherer/nanoserver:1809 `
     -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1803 `
-    -b mcr.microsoft.com/windows/nanoserver:1803
+    -b stefanscherer/nanoserver:1803
   rebase-docker-image `
     stefanscherer/node-windows:$majorMinorPatch-nanoserver-1809 `
-    -s mcr.microsoft.com/windows/nanoserver:1809 `
+    -s stefanscherer/nanoserver:1809 `
     -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1903 `
-    -b mcr.microsoft.com/windows/nanoserver:1903
+    -b stefanscherer/nanoserver:1903
+  rebase-docker-image `
+    stefanscherer/node-windows:$majorMinorPatch-nanoserver-1809 `
+    -s stefanscherer/nanoserver:1809 `
+    -t stefanscherer/node-windows:$majorMinorPatch-nanoserver-1909 `
+    -b stefanscherer/nanoserver:1909
 
   $nanoManifest = @"
 image: stefanscherer/node-windows:{0}
@@ -57,6 +67,11 @@ manifests:
       os: windows
   -
     image: stefanscherer/node-windows:{0}-nanoserver-1903
+    platform:
+      architecture: amd64
+      os: windows
+  -
+    image: stefanscherer/node-windows:{0}-nanoserver-1909
     platform:
       architecture: amd64
       os: windows
@@ -82,6 +97,11 @@ manifests:
       os: windows
   -
     image: stefanscherer/node-windows:{0}-pure-1903
+    platform:
+      architecture: amd64
+      os: windows
+  -
+    image: stefanscherer/node-windows:{0}-pure-1909
     platform:
       architecture: amd64
       os: windows
