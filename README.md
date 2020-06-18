@@ -1,5 +1,5 @@
 # dockerfiles-windows
-[![Build status](https://ci.appveyor.com/api/projects/status/adxm3egqc5md3fe3/branch/master?svg=true)](https://ci.appveyor.com/project/StefanScherer/dockerfiles-windows/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/adxm3egqc5md3fe3/branch/main?svg=true)](https://ci.appveyor.com/project/StefanScherer/dockerfiles-windows/branch/main)
 
 Various Dockerfiles for Windows. Most of these can be run as Windows Containers on Windows 10, Windows Server 2016, Windows Server 1803 and Windows Server 2019.
 
