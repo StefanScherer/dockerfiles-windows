@@ -12,7 +12,7 @@ Clone this repo and run the `build.bat` script.
 * Log into a Windows Server 2016 machine
 * Open a PowerShell window
 * Clone the sources
-* `wget -outfile src.zip https://github.com/StefanScherer/dockerfiles-windows/archive/master.zip`
+* `wget -outfile src.zip https://github.com/StefanScherer/dockerfiles-windows/archive/main.zip`
 * `Expand-Archive .\dockerfiles-windows.zip`
-* `cd src\dockerfiles-windows-master`
+* `cd src\dockerfiles-windows-main`
 * `.\build.bat`

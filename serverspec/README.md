@@ -2,7 +2,7 @@
 
 [![This image on DockerHub](https://img.shields.io/docker/pulls/stefanscherer/serverspec-windows.svg)](https://hub.docker.com/r/stefanscherer/serverspec-windows/)
 
-[Dockerfile](https://github.com/StefanScherer/dockerfiles-windows/blob/master/serverspec/Dockerfile)
+[Dockerfile](https://github.com/StefanScherer/dockerfiles-windows/blob/main/serverspec/Dockerfile)
 
 This is a Windows Docker image with [Serverspec](http://serverspec.org) installed.
 
@@ -15,7 +15,7 @@ a snapshot of your VM.
 ## Example
 
 To run the Serverspec tests create a folder `spec` with some `*_spec.rb` files.
-See the [spec](https://github.com/StefanScherer/dockerfiles-windows/tree/master/serverspec/spec) folder to selftest this Docker image for an example.
+See the [spec](https://github.com/StefanScherer/dockerfiles-windows/tree/main/serverspec/spec) folder to selftest this Docker image for an example.
 
 Run the container like this:
 

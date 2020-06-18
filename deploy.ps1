@@ -1,6 +1,6 @@
 $ErrorActionPreference = 'Stop';
 
-if ( $env:APPVEYOR_PULL_REQUEST_NUMBER -Or ! $env:APPVEYOR_REPO_BRANCH.Equals("master")) {
+if ( $env:APPVEYOR_PULL_REQUEST_NUMBER -Or ! $env:APPVEYOR_REPO_BRANCH.Equals("main")) {
   Write-Host Nothing to deploy.
   Exit 0
 }
@@ -24,7 +24,7 @@ $auth64 = [Convert]::ToBase64String($auth)
 
 if ( $env:APPVEYOR_PULL_REQUEST_NUMBER ) {
   Write-Host Pull request $env:APPVEYOR_PULL_REQUEST_NUMBER
-  $files = $(git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master))
+  $files = $(git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD main))
 } else {
   Write-Host Branch $env:APPVEYOR_REPO_BRANCH
   $files = $(git diff --name-only HEAD~1)

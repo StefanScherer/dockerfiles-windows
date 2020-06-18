@@ -29,4 +29,4 @@ winrm -port 55985 -username User03 -password Passw0rd -hostname localhost ipconf
 ```
 
 ## Dockerfile
-- [Dockerfile](https://github.com/StefanScherer/dockerfiles-windows/blob/master/winrm/Dockerfile)
+- [Dockerfile](https://github.com/StefanScherer/dockerfiles-windows/blob/main/winrm/Dockerfile)

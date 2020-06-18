@@ -50,4 +50,4 @@ Microsoft Windows [Version 10.0.17763.437]
 ```
 
 ## Dockerfile
-- [Dockerfile](https://github.com/StefanScherer/dockerfiles-windows/blob/master/openssh/Dockerfile)
+- [Dockerfile](https://github.com/StefanScherer/dockerfiles-windows/blob/main/openssh/Dockerfile)

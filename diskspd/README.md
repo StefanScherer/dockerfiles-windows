@@ -3,7 +3,7 @@
 
 A feature-rich and versatile storage testing tool, Diskspd (version 2.0.17) combines robust and granular IO workload definition with flexible runtime and output options, creating an ideal tool for synthetic storage subsystem testing and validation.
 
-* [Dockerfile](https://github.com/StefanScherer/dockerfiles-windows/blob/master/diskspd/Dockerfile)
+* [Dockerfile](https://github.com/StefanScherer/dockerfiles-windows/blob/main/diskspd/Dockerfile)
 
 See also https://aka.ms/diskspd
 

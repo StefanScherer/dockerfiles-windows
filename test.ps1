@@ -4,7 +4,7 @@ Write-Host Starting test
 
 if ( $env:APPVEYOR_PULL_REQUEST_NUMBER ) {
   Write-Host Pull request $env:APPVEYOR_PULL_REQUEST_NUMBER
-  $files = $(git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master))
+  $files = $(git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD main))
 } else {
   Write-Host Branch $env:APPVEYOR_REPO_BRANCH
   $files = $(git diff --name-only HEAD~1)
