@@ -64,11 +64,15 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 
 ENV NPM_CONFIG_LOGLEVEL info
 
+ENV VCTargetsPath="C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140"
+
 COPY --from=download /nodejs /nodejs
 COPY --from=download [ "/Program Files (x86)/yarn", "/yarn" ]
 COPY --from=download /git /git
 
 RUN $env:PATH = 'C:\nodejs;C:\yarn\bin;C:\git\cmd;C:\git\mingw64\bin;C:\git\usr\bin;{0}' -f $env:PATH ; \
     [Environment]::SetEnvironmentVariable('PATH', $env:PATH, [EnvironmentVariableTarget]::Machine)
+    
+RUN npm config set msbuild_path='C:\Program Files (x86)\MSBuild\14.0\Bin\amd64\msbuild.exe'
 
 CMD [ "node.exe" ]
