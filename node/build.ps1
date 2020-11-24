@@ -16,8 +16,11 @@ Write-Output "Build with server docker engine"
 # $ErrorActionPreference = 'Continue'
 $docker_version = "19-03-13"
 wget -outfile $env:TEMP\docker.zip $("https://dockermsft.azureedge.net/dockercontainer/docker-{0}.zip" -f $docker_version)
+mkdir $env:ProgramFiles\docker -Force
+mkdir $env:ProgramFiles\docker\cli-plugins -Force
 Expand-Archive -Path $env:TEMP\docker.zip -DestinationPath $env:TEMP -Force
 copy $env:TEMP\docker\*.* $env:ProgramFiles\docker
+copy $env:TEMP\docker\cli-plugins\*.* $env:ProgramFiles\docker\cli-plugins
 Remove-Item $env:TEMP\docker.zip
 # $ErrorActionPreference = 'Stop'
 $env:PATH="c:\program files\docker;$env:PATH"
