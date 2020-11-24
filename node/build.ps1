@@ -23,7 +23,10 @@ copy $env:TEMP\docker\*.* $env:ProgramFiles\docker
 copy $env:TEMP\docker\cli-plugins\*.* $env:ProgramFiles\docker\cli-plugins
 Remove-Item $env:TEMP\docker.zip
 # $ErrorActionPreference = 'Stop'
-$env:PATH="c:\program files\docker;$env:PATH"
+dir $env:ProgramFiles\docker
+$env:PATH="$env:ProgramFiles\docker;$env:PATH"
+docker --version
+dockerd --version
 Write-Output "Stop docker"
 Stop-Service docker
 Write-Output "Stop com.docker.service"
