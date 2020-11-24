@@ -14,7 +14,7 @@ function buildVersion($majorMinorPatch, $majorMinor, $major) {
 
 Write-Output "Build with server docker engine"
 # $ErrorActionPreference = 'Continue'
-$docker_version = "19-03-13"
+$docker_version = "19-03-8"
 wget -outfile $env:TEMP\docker.zip $("https://dockermsft.azureedge.net/dockercontainer/docker-{0}.zip" -f $docker_version)
 mkdir $env:ProgramFiles\docker -Force
 mkdir $env:ProgramFiles\docker\cli-plugins -Force
