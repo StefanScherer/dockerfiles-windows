@@ -1,11 +1,11 @@
 # escape=`
-FROM mcr.microsoft.com/windows/servercore:ltsc2016 as download
+FROM mcr.microsoft.com/windows/servercore:ltsc2019 as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV APACHE_VERSION 2.4.29
+ENV APACHE_VERSION 2.4.48
 
-RUN Invoke-WebRequest ('http://de.apachehaus.com/downloads/httpd-{0}-o102n-x64-vc14-r2.zip' -f $env:APACHE_VERSION) -OutFile 'apache.zip' -UseBasicParsing ; `
+RUN Invoke-WebRequest ('http://de.apachehaus.com/downloads/httpd-{0}-o111l-x64-vc15.zip' -f $env:APACHE_VERSION) -OutFile 'apache.zip' -UseBasicParsing ; `
     Expand-Archive apache.zip -DestinationPath C:\ ; `
     Remove-Item -Path apache.zip
 
@@ -13,7 +13,7 @@ RUN Invoke-WebRequest 'https://download.microsoft.com/download/9/3/F/93FCF1E7-E6
     Start-Process '.\vc_redist.x64.exe' '/install /passive /norestart' -Wait; `
     Remove-Item vc_redist.x64.exe;
 
-FROM mcr.microsoft.com/windows/servercore:ltsc2016
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 COPY --from=download C:\Apache24 C:\Apache24
 COPY --from=download C:\windows\system32\msvcp140.dll C:\windows\system32
