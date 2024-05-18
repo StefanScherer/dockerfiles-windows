@@ -10,6 +10,6 @@
   "author": "Stefan Scherer",
   "license": "MIT",
   "dependencies": {
-    "mongodb": "3.6.1"
+    "mongodb": "3.6.10"
   }
 }
