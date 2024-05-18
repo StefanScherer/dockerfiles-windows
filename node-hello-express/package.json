@@ -5,7 +5,7 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "ejs": "2.6.1",
+    "ejs": "3.1.10",
     "express": "4.19.2",
     "jade": "1.11.0",
     "morgan": "1.9.1"
